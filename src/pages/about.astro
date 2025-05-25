@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import { aboutPageContent } from "../config";
+import ResumeItem from "../components/ResumeItem.astro";
+import SocialLinkBox from "../components/SocialLinkBox.astro";
+---
+
+<Layout seo={aboutPageContent.seo}>
+  <section class="mt-10 max-w-2xl mx-auto px-6">
+    <h1 class="text-3xl mb-1">About</h1>
+    <p class="opacity-60 mb-10 subtitle">{aboutPageContent.subtitle}</p>
+    <div class="mb-14">
+      <p class="mb-5 sm:text-left">
+        Hello 👋, I'm Hai Trinh (Ethan Nguyen), a Software Engineer | Frontend
+        Engineer | Backend Engineer based in Ho Chi Minh City 🇻🇳. I specialize
+        in building scalable and clean UI systems using <span
+          class="gradient-link"
+          >React.js, Next.js, TypeScript and more
+        </span>.
+      </p>
+      <p class="mb-5 sm:text-left">
+        Over the past 3+ years, I’ve worked across industries from trading,
+        beauty, banking systems, to IoT platforms. My experience spans both startups and
+        enterprises where I’ve led UI architecture, optimized performance,
+        mentored junior developers, and collaborated closely with product and
+        backend teams.
+      </p>
+      <p class="mb-5 sm:text-left">
+        My stack includes modern tooling like <strong>Redux Toolkit</strong>, <strong
+          >TanStack Query</strong
+        >, <strong>Vite</strong>, <strong>Rsbuild</strong>, <strong
+          >Rspack</strong
+        >, <strong>CI CD Pipeline</strong> ,and <strong>Docker</strong>. I
+        believe in writing clean, maintainable code, ensuring pixel-perfect UI,
+        and delivering delightful UX.
+      </p>
+      <p class="mb-5 sm:text-left">
+        Outside of coding, you’ll find me debugging layout bugs with a coffee ☕
+        in hand, learning new technologies 🧠, and working out at the gym 💪.
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row">
+      <Image
+        id="about-image-left"
+        src={aboutPageContent.about.image_l.url}
+        alt={aboutPageContent.about.image_l.alt}
+        width={350}
+        height={250}
+        loading="lazy"
+        decoding="async"
+        quality={100}
+        densities={[1.5, 2]}
+        class="w-[350px] h-[250px] object-cover rounded-xl sm:-rotate-6 sm:block image-effect"
+      />
+      <Image
+        id="about-image-right"
+        src={aboutPageContent.about.image_r.url}
+        alt={aboutPageContent.about.image_r.alt}
+        width={150}
+        height={250}
+        loading="lazy"
+        decoding="async"
+        quality={100}
+        densities={[1.5, 2]}
+        class="hidden w-[150px] h-[250px] object-cover rounded-xl rotate-6 mx-auto sm:ml-auto sm:block image-effect"
+      />
+    </div>
+  </section>
+
+  <section class="my-20 mt-32 max-w-2xl mx-auto px-6 sm:flex sm:gap-16">
+    <h2 class="mb-8 sm:mb-0 opacity-60 navbar">Work</h2>
+    <div>
+      <div class="mb-6">
+        I’ve recently worked on:
+        <ul class="list-disc mt-2 mb-2">
+          <li>
+            <strong>Real-time trading platform</strong> for commodities like copper,
+            silver, platinum, and agricultural/energy products — fully integrated with
+            the Vietnam Commodity Exchange (MXV).
+          </li>
+          <li>
+            <strong>KOMO Booking:</strong> Customer-facing platform to discover and
+            book salon services.
+          </li>
+          <li>
+            <strong>KOMO Admin:</strong> Dashboard for salon owners to manage branches,
+            services, staff, and appointments.
+          </li>
+        </ul>
+        I primarily use <strong>React.js</strong>, <strong>Flutter</strong>, <strong>MUI</strong>, <strong>Tailwind CSS</strong>, <strong
+          >TypeScript</strong
+        >, <strong
+        >Javascript</strong
+      >, <strong>Redux Toolkit</strong>, <strong>Socket.io</strong>, <strong
+          >Vite</strong
+        >, <strong>Rsbuild</strong>, and <strong>Apollo GraphQL</strong> to build
+        performant and maintainable frontend applications.
+      </div>
+      <div class="grid grid-cols-1 group social-bar">
+        {aboutPageContent.work.items.map((item) => <ResumeItem {...item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-32 max-w-2xl mx-auto px-6 sm:flex sm:gap-16">
+    <h2 class="mb-8 sm:mb-0 opacity-60 navbar">Connect</h2>
+    <div>
+      <div class="mb-6">
+        I'm open to freelance or remote opportunities. Feel free to reach out to
+        me via GitHub or LinkedIn.
+      </div>
+      <div class="grid grid-cols-2 gap-2 group social-bar">
+        {
+          aboutPageContent.connect.links.map((item) => (
+            <SocialLinkBox {...item} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
