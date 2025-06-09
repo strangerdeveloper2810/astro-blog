@@ -98,7 +98,7 @@ export const aboutPageContent: AboutPageContent = {
       {
         title: "Software Engineer & Mentor",
         company: { name: "Cybersoft Technology", url: "https://cybersoft.edu.vn/", image: "/img/cybersoft_logo.jpeg" },
-        date: "Jan 2022 – Apr 2024",
+        date: "Mar 2021 – Apr 2024",
       },
     ],
   },
