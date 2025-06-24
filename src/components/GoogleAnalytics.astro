@@ -7,9 +7,11 @@ const measurementId = props.measurementId;
 <!-- Google Analytics GA4 with Enhanced Tracking for SEO -->
 <script
   type="text/partytown"
+  is:inline
   src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
 <script
   type="text/partytown"
+  is:inline
   data-ga-measurement-id={measurementId}
   id="ga-init"
 >
@@ -64,7 +66,7 @@ const measurementId = props.measurementId;
 </script>
 
 <!-- Enhanced tracking for external links and downloads -->
-<script type="text/partytown">
+<script type="text/partytown" is:inline>
   // Track external link clicks for SEO insights
   document.addEventListener("click", function (event) {
     const link = event.target.closest("a");

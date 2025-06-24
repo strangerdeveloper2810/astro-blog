@@ -9,7 +9,7 @@ const { gtmId, measurementId } = props;
 
 {gtmId ? (
   <!-- Google Tag Manager -->
-  <script type="text/partytown" id="gtm-script" data-gtm-id={gtmId}>
+  <script type="text/partytown" is:inline id="gtm-script" data-gtm-id={gtmId}>
     const gtmId = document.getElementById('gtm-script').getAttribute('data-gtm-id');
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -21,9 +21,11 @@ const { gtmId, measurementId } = props;
   <!-- Fallback to Direct GA4 -->
   <script
     type="text/partytown"
+    is:inline
     src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
   <script
     type="text/partytown"
+    is:inline
     data-ga-measurement-id={measurementId}
     id="ga-init"
   >

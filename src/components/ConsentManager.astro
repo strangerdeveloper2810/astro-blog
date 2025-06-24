@@ -3,7 +3,7 @@
 ---
 
 <!-- Google Consent Mode v2 -->
-<script type="text/partytown">
+<script type="text/partytown" is:inline>
   // Default consent state
   window.dataLayer = window.dataLayer || [];
   function gtag() {
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<script>
+<script is:inline>
   // Simple consent management
   const consentBanner = document.getElementById("consent-banner");
   const acceptBtn = document.getElementById("accept-cookies");
@@ -81,8 +81,8 @@
     consentBanner?.classList.add("hidden");
 
     // Update consent
-    if (typeof gtag !== "undefined") {
-      gtag("consent", "update", {
+    if (typeof window.gtag !== "undefined") {
+      window.gtag("consent", "update", {
         analytics_storage: "granted",
       });
     }
@@ -93,8 +93,8 @@
     consentBanner?.classList.add("hidden");
 
     // Keep consent denied
-    if (typeof gtag !== "undefined") {
-      gtag("consent", "update", {
+    if (typeof window.gtag !== "undefined") {
+      window.gtag("consent", "update", {
         analytics_storage: "denied",
       });
     }
