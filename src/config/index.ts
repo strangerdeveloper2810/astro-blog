@@ -31,6 +31,10 @@ export const navBarLinks: NavBarLink[] = [
   {
     title: "About",
     url: "/about",
+  },
+  {
+    title: "Skills",
+    url: "/skills",
   }
 ];
 
@@ -81,6 +85,7 @@ export const homePageContent: HomePageContent = {
   homeSocialLinks,
   links: [
     { title: "About", url: "/about", icon: "mdi:account-circle" },
+    { title: "Skills", url: "/skills", icon: "mdi:code-braces" },
     { title: "GitHub", url: "https://github.com/strangerdeveloper2810", icon: "mdi:github", external: true },
   ],
 };
@@ -171,3 +176,4 @@ export const aboutPageContent: AboutPageContent = {
 export * from "./social";
 export * from "./featured";
 export * from "./github";
+export * from "./skills";

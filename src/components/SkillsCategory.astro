@@ -1,0 +1,61 @@
+---
+import type { SkillCategory } from "../types/config";
+import SkillCard from "./SkillCard.astro";
+
+interface Props {
+  category: SkillCategory;
+  index: number;
+}
+
+const { category, index } = Astro.props;
+---
+
+<section class="mb-16">
+  <!-- Category Header -->
+  <div class="text-center mb-12">
+    <h2
+      class="text-3xl font-bold text-gray-900 dark:text-white mb-4 relative inline-block"
+    >
+      {category.name}
+      <!-- Decorative underline -->
+      <div
+        class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
+      >
+      </div>
+    </h2>
+  </div>
+
+  <!-- Skills Grid -->
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  >
+    {
+      category.skills.map((skill, skillIndex) => (
+        <div
+          class="animate-fade-in-up"
+          style={`animation-delay: ${index * 100 + skillIndex * 50}ms`}
+        >
+          <SkillCard skill={skill} />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+</style>

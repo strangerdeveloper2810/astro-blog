@@ -1,0 +1,64 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Skill } from "../types/config";
+
+interface Props {
+  skill: Skill;
+}
+
+const { skill } = Astro.props;
+---
+
+<div
+  class="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-44 flex flex-col"
+>
+  <!-- Icon & Name -->
+  <div class="flex items-center gap-4 mb-4">
+    <div class="relative">
+      <Icon
+        name={skill.icon}
+        width={48}
+        height={48}
+        class="transition-transform duration-300 group-hover:scale-110"
+      />
+    </div>
+    <div class="flex-1">
+      <h3 class="font-semibold text-lg text-gray-900 dark:text-white">
+        {skill.name}
+      </h3>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="flex-1">
+    {
+      skill.description && (
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          {skill.description}
+        </p>
+      )
+    }
+  </div>
+
+  <!-- Hover effect overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+  >
+  </div>
+
+  <!-- Floating particles effect on hover -->
+  <div class="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
+    <div
+      class="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"
+    >
+    </div>
+    <div
+      class="absolute bottom-6 left-6 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 right-8 w-1.5 h-1.5 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-bounce"
+    >
+    </div>
+  </div>
+</div>

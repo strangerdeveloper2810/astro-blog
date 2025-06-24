@@ -129,3 +129,23 @@ export type FeaturedPost = {
   author: string;
   publisher: string;
 };
+
+export interface SkillCategory {
+  name: string;
+  skills: Skill[];
+}
+
+export interface Skill {
+  name: string;
+  icon: string;
+  level?: number; // 1-5 proficiency level (optional)
+  description?: string;
+  years?: number;
+}
+
+export interface SkillsPageContent {
+  seo: SEOInfo;
+  title: string;
+  subtitle: string;
+  categories: SkillCategory[];
+}
