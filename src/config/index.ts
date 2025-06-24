@@ -15,6 +15,14 @@ export const identity: Identity = {
 
 export const openGraphImage: string = "/ethan.png";
 
+// Google Analytics Configuration
+export const googleAnalytics = {
+  measurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-7C63WGJJ5Y",
+  gtmId: import.meta.env.PUBLIC_GTM_ID || "", // Optional Google Tag Manager ID
+  enabled: true, // Always enabled for production tracking
+  consentMode: true, // Enable GDPR consent management
+};
+
 export const navBarLinks: NavBarLink[] = [
   {
     title: "Home",

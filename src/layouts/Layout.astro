@@ -1,7 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import { navBarLinks, identity } from "../config";
+import { navBarLinks, identity, googleAnalytics } from "../config";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import GoogleTagManager from "../components/GoogleTagManager.astro";
+import ConsentManager from "../components/ConsentManager.astro";
 import type { SEOInfo } from "../types/config";
 import "@styles/base.css";
 
@@ -146,6 +149,26 @@ const canonicalUrl = seo.canonical || seo.url;
           set:html={JSON.stringify(seo.structuredData)}
         />
       )
+    }
+
+    <!-- Consent Management (GDPR) -->
+    {
+      googleAnalytics.enabled && googleAnalytics.consentMode && (
+        <ConsentManager />
+      )
+    }
+
+    <!-- Google Analytics / Tag Manager -->
+    {
+      googleAnalytics.enabled &&
+        (googleAnalytics.gtmId ? (
+          <GoogleTagManager
+            gtmId={googleAnalytics.gtmId}
+            measurementId={googleAnalytics.measurementId}
+          />
+        ) : (
+          <GoogleAnalytics measurementId={googleAnalytics.measurementId} />
+        ))
     }
   </head>
   <body>

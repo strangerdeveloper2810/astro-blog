@@ -4,6 +4,7 @@ const props = Astro.props as Props;
 const measurementId = props.measurementId;
 ---
 
+<!-- Google Analytics GA4 with Enhanced Tracking for SEO -->
 <script
   type="text/partytown"
   src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
@@ -15,10 +16,94 @@ const measurementId = props.measurementId;
   const measurementId = document
     .getElementById("ga-init")
     .getAttribute("data-ga-measurement-id");
+
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
   }
+
   gtag("js", new Date());
-  gtag("config", measurementId);
+
+  // Enhanced GA4 configuration for better SEO tracking
+  gtag("config", measurementId, {
+    // Enhanced measurement events for better SEO insights
+    enhanced_measurement: {
+      scrolls: true,
+      outbound_clicks: true,
+      site_search: true,
+      video_engagement: true,
+      file_downloads: true,
+    },
+    // Cookie settings
+    cookie_flags: "SameSite=None;Secure",
+    // Page view tracking
+    send_page_view: true,
+    // Custom parameters for SEO tracking
+    custom_map: {
+      custom_parameter_1: "page_category",
+      custom_parameter_2: "content_group",
+    },
+  });
+
+  // Track page category for portfolio pages
+  const pathname = window.location.pathname;
+  let pageCategory = "home";
+
+  if (pathname.includes("/about")) {
+    pageCategory = "about";
+  } else if (pathname === "/") {
+    pageCategory = "home";
+  }
+
+  // Send custom event for page categorization (helps with SEO insights)
+  gtag("event", "page_view_enhanced", {
+    page_category: pageCategory,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
+</script>
+
+<!-- Enhanced tracking for external links and downloads -->
+<script type="text/partytown">
+  // Track external link clicks for SEO insights
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest("a");
+    if (link && link.href) {
+      const isExternal = link.hostname !== window.location.hostname;
+      const isDownload = link.hasAttribute("download");
+
+      if (isExternal) {
+        gtag("event", "click", {
+          event_category: "outbound",
+          event_label: link.href,
+          transport_type: "beacon",
+        });
+      }
+
+      if (isDownload) {
+        gtag("event", "file_download", {
+          file_name: link.href.split("/").pop(),
+          link_url: link.href,
+        });
+      }
+    }
+  });
+
+  // Track scroll depth for engagement metrics
+  let scrollDepth = 0;
+  window.addEventListener("scroll", function () {
+    const currentScroll = Math.round(
+      (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+        100,
+    );
+
+    if (currentScroll > scrollDepth && currentScroll % 25 === 0) {
+      scrollDepth = currentScroll;
+      gtag("event", "scroll", {
+        event_category: "engagement",
+        event_label: scrollDepth + "%",
+        value: scrollDepth,
+      });
+    }
+  });
 </script>
