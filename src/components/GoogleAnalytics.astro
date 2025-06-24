@@ -6,29 +6,21 @@ const measurementId = props.measurementId;
 
 <!-- Google Analytics GA4 with Enhanced Tracking for SEO -->
 <script
-  type="text/partytown"
-  is:inline
+  async
   src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
-<script
-  type="text/partytown"
-  is:inline
-  data-ga-measurement-id={measurementId}
-  id="ga-init"
->
-  const measurementId = document
-    .getElementById("ga-init")
-    .getAttribute("data-ga-measurement-id");
 
+<script is:inline>
+  // Initialize gtag function globally
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
   }
+  window.gtag = gtag; // Make it globally accessible
 
   gtag("js", new Date());
 
   // Enhanced GA4 configuration for better SEO tracking
-  gtag("config", measurementId, {
-    // Enhanced measurement events for better SEO insights
+  gtag("config", "G-7C63WGJJ5Y", {
     enhanced_measurement: {
       scrolls: true,
       outbound_clicks: true,
@@ -36,11 +28,8 @@ const measurementId = props.measurementId;
       video_engagement: true,
       file_downloads: true,
     },
-    // Cookie settings
     cookie_flags: "SameSite=None;Secure",
-    // Page view tracking
     send_page_view: true,
-    // Custom parameters for SEO tracking
     custom_map: {
       custom_parameter_1: "page_category",
       custom_parameter_2: "content_group",
@@ -63,49 +52,50 @@ const measurementId = props.measurementId;
     page_location: window.location.href,
     page_title: document.title,
   });
-</script>
 
-<!-- Enhanced tracking for external links and downloads -->
-<script type="text/partytown" is:inline>
-  // Track external link clicks for SEO insights
-  document.addEventListener("click", function (event) {
-    const link = event.target.closest("a");
-    if (link && link.href) {
-      const isExternal = link.hostname !== window.location.hostname;
-      const isDownload = link.hasAttribute("download");
+  // Track external link clicks for SEO insights - with delay to ensure gtag is loaded
+  setTimeout(function () {
+    document.addEventListener("click", function (event) {
+      const link = event.target.closest("a");
+      if (link && link.href && typeof gtag === "function") {
+        const isExternal = link.hostname !== window.location.hostname;
+        const isDownload = link.hasAttribute("download");
 
-      if (isExternal) {
-        gtag("event", "click", {
-          event_category: "outbound",
-          event_label: link.href,
-          transport_type: "beacon",
-        });
+        if (isExternal) {
+          gtag("event", "click", {
+            event_category: "outbound",
+            event_label: link.href,
+            transport_type: "beacon",
+          });
+        }
+
+        if (isDownload) {
+          gtag("event", "file_download", {
+            file_name: link.href.split("/").pop(),
+            link_url: link.href,
+          });
+        }
       }
+    });
 
-      if (isDownload) {
-        gtag("event", "file_download", {
-          file_name: link.href.split("/").pop(),
-          link_url: link.href,
-        });
+    // Track scroll depth for engagement metrics
+    let scrollDepth = 0;
+    window.addEventListener("scroll", function () {
+      if (typeof gtag === "function") {
+        const currentScroll = Math.round(
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+            100,
+        );
+
+        if (currentScroll > scrollDepth && currentScroll % 25 === 0) {
+          scrollDepth = currentScroll;
+          gtag("event", "scroll", {
+            event_category: "engagement",
+            event_label: scrollDepth + "%",
+            value: scrollDepth,
+          });
+        }
       }
-    }
-  });
-
-  // Track scroll depth for engagement metrics
-  let scrollDepth = 0;
-  window.addEventListener("scroll", function () {
-    const currentScroll = Math.round(
-      (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
-        100,
-    );
-
-    if (currentScroll > scrollDepth && currentScroll % 25 === 0) {
-      scrollDepth = currentScroll;
-      gtag("event", "scroll", {
-        event_category: "engagement",
-        event_label: scrollDepth + "%",
-        value: scrollDepth,
-      });
-    }
-  });
+    });
+  }, 1000); // Wait 1 second for gtag to be ready
 </script>

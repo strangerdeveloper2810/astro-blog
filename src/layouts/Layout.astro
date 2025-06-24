@@ -4,7 +4,6 @@ import { Icon } from "astro-icon/components";
 import { navBarLinks, identity, googleAnalytics } from "../config";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import GoogleTagManager from "../components/GoogleTagManager.astro";
-import ConsentManager from "../components/ConsentManager.astro";
 import type { SEOInfo } from "../types/config";
 import "@styles/base.css";
 
@@ -153,12 +152,7 @@ const canonicalUrl = seo.canonical || seo.url;
       )
     }
 
-    <!-- Consent Management (GDPR) -->
-    {
-      googleAnalytics.enabled && googleAnalytics.consentMode && (
-        <ConsentManager />
-      )
-    }
+    <!-- Auto-consent enabled in analytics components -->
 
     <!-- Google Analytics / Tag Manager -->
     {
