@@ -7,30 +7,38 @@ import Link from "../components/Link.astro";
 ---
 
 <Layout seo={homePageContent.seo}>
-  <section class="mt-10 max-w-2xl mx-auto px-6">
-    <h1 class="text-3xl mb-1">{identity.name}</h1>
-    <p class="opacity-60 mb-10 subtitle">
-      {homePageContent.role}
-      <span
-        class="lazy-badge inline-flex items-center bg-[#2a2a2a] text-[#ffe895] text-xs font-semibold ml-2 px-2.5 py-0.5 rounded-full border border-[#3a3a3a]">
+  <article class="mt-10 max-w-2xl mx-auto px-6">
+    <header>
+      <h1 class="text-3xl mb-1">{identity.name}</h1>
+      <p class="opacity-60 mb-10 subtitle">
+        {homePageContent.role}
         <span
-          class="inline-block w-2 h-2 rounded-full bg-[#00abda] mr-1.5 pulse-dot"></span>
-        Open for freelance/ Remote opportunities
-      </span>
-    </p>
-    <div class="flex flex-row flex-wrap gap-6 mb-8">
+          class="lazy-badge inline-flex items-center bg-[#2a2a2a] text-[#ffe895] text-xs font-semibold ml-2 px-2.5 py-0.5 rounded-full border border-[#3a3a3a]"
+        >
+          <span
+            class="inline-block w-2 h-2 rounded-full bg-[#00abda] mr-1.5 pulse-dot"
+          ></span>
+          Open for freelance/ Remote opportunities
+        </span>
+      </p>
+    </header>
+
+    <section class="flex flex-row flex-wrap gap-6 mb-8">
       <Image
         src="/img/Ethan_Nguyen_2.jpg"
-        alt={identity.name}
+        alt="Professional portrait of Hai Trinh (Ethan Nguyen), Software Engineer specializing in React.js and Frontend Development"
         width={100}
         height={100}
-        loading="lazy"
+        loading="eager"
         decoding="async"
         quality={100}
         densities={[1.5, 2]}
         class="rounded-lg border border-[#3a3a3a] border-2 border-opacity-80"
       />
-      <div class="group flex flex-col justify-center gap-2 w-fit social-bar">
+      <nav
+        class="group flex flex-col justify-center gap-2 w-fit social-bar"
+        aria-label="Social media links"
+      >
         {
           homePageContent.homeSocialLinks.map((link) => (
             <SocialLink
@@ -41,21 +49,55 @@ import Link from "../components/Link.astro";
             />
           ))
         }
-      </div>
-    </div>
-    <p class="max-w-md mb-8">
-      I'm a Software Engineer with 3+ years of experience, specializing in building scalable UI systems using <strong>React</strong>, <strong>Next.js</strong>, and <strong>TypeScript</strong>. I’ve worked on platforms in trading, beauty platform, IoT, and banking systems — from startups to enterprise systems.
-      <br /><br />
-      I recently built a real-time commodity trading platform integrated with the Vietnam Commodity Exchange (MXV), and led the frontend architecture of KOMO — an end-to-end beauty service booking system.
-      <br /><br />
-      My stack includes <strong>Redux Toolkit</strong>, <strong>Apollo GraphQL</strong>, <strong>Socket.io</strong>, <strong>Flutter</strong>, <strong>Vite</strong>, <strong>Rsbuild</strong>, <strong>Rspack</strong>, <strong>CI CD Pipeline</strong> ,and <strong>Docker</strong>.
-      <br /><br />
-      Outside of coding, I enjoy debugging with a ☕, exploring new tech 🧠, and staying active at the gym 💪.
-      <br /><br />
-      <span class="navbar">
-        In a nutshell: 👨‍💻 + ☕ + 💪 = <a class="gradient-link glowing-animation" href="/about">@ethantrinh</a>
-      </span>
-      <div class="flex items-center gap-4 group w-fit social-bar mt-6">
+      </nav>
+    </section>
+
+    <section class="max-w-md mb-8">
+      <p>
+        I'm a <strong>Software Engineer</strong> with 3+ years of experience, specializing
+        in building scalable UI systems using <strong>React</strong>, <strong
+          >Next.js</strong
+        >, and <strong>TypeScript</strong>. I've worked on platforms in trading,
+        beauty platform, IoT, and banking systems — from startups to enterprise
+        systems.
+      </p>
+      <br />
+      <p>
+        I recently built a real-time commodity trading platform integrated with
+        the Vietnam Commodity Exchange (MXV), and led the frontend architecture
+        of KOMO — an end-to-end beauty service booking system.
+      </p>
+      <br />
+      <p>
+        My stack includes <strong>Redux Toolkit</strong>, <strong
+          >Apollo GraphQL</strong
+        >, <strong>Socket.io</strong>, <strong>Flutter</strong>, <strong
+          >Vite</strong
+        >, <strong>Rsbuild</strong>, <strong>Rspack</strong>, <strong
+          >CI CD Pipeline</strong
+        > ,and <strong>Docker</strong>.
+      </p>
+      <br />
+      <p>
+        Outside of coding, I enjoy debugging with a ☕, exploring new tech 🧠,
+        and staying active at the gym 💪.
+      </p>
+      <br />
+      <p>
+        <span class="navbar">
+          In a nutshell: 👨‍💻 + ☕ + 💪 = <a
+            class="gradient-link glowing-animation"
+            href="/about"
+            aria-label="Learn more about Ethan Nguyen on the About page"
+            >@ethantrinh</a
+          >
+        </span>
+      </p>
+
+      <nav
+        class="flex items-center gap-4 group w-fit social-bar mt-6"
+        aria-label="Navigation links"
+      >
         {
           homePageContent.links.map((link) => (
             <Link
@@ -66,7 +108,7 @@ import Link from "../components/Link.astro";
             />
           ))
         }
-      </div>
-    </p>
-  </section>
+      </nav>
+    </section>
+  </article>
 </Layout>

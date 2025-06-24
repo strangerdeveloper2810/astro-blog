@@ -1,10 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import {
-  navBarLinks,
-  identity,
-} from "../config";
+import { navBarLinks, identity } from "../config";
 import type { SEOInfo } from "../types/config";
 import "@styles/base.css";
 
@@ -14,6 +11,7 @@ interface Props {
 
 const { seo } = Astro.props;
 const ogImageUrl = seo.image;
+const canonicalUrl = seo.canonical || seo.url;
 ---
 
 <script>
@@ -55,12 +53,33 @@ const ogImageUrl = seo.image;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Kanit&display=swap"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      as="style"
+    />
+
+    <!-- Favicon and App Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Font Connections -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -71,22 +90,32 @@ const ogImageUrl = seo.image;
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- External Scripts -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- SEO Meta Tags -->
     <meta name="generator" content={Astro.generator} />
     <title>{seo.title}</title>
-
-    <!-- HTML Meta Tags -->
     <meta name="description" content={seo.description} />
-    <meta property="og:title" content={seo.title} />
-    <meta property="og:description" content={seo.description} />
-    <meta property="og:image" content={ogImageUrl} />
+    {seo.keywords && <meta name="keywords" content={seo.keywords} />}
+    {seo.author && <meta name="author" content={seo.author} />}
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="theme-color" content="#000000" />
 
-    <!-- Facebook Meta Tags -->
+    <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:url" content={seo.url} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={seo.type || "website"} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={seo.title} />
+    <meta
+      property="og:site_name"
+      content="Hai Trinh (Ethan Nguyen) Portfolio"
+    />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -95,7 +124,18 @@ const ogImageUrl = seo.image;
     <meta name="twitter:title" content={seo.title} />
     <meta name="twitter:description" content={seo.description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={seo.title} />
+    <meta name="twitter:creator" content="@ethantrinh" />
 
+    <!-- Structured Data -->
+    {
+      seo.structuredData && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(seo.structuredData)}
+        />
+      )
+    }
   </head>
   <body>
     <header>

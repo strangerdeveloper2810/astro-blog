@@ -30,6 +30,11 @@ export type SEOInfo = {
   image: string;
   domain: string;
   url: string;
+  keywords?: string;
+  canonical?: string;
+  author?: string;
+  type?: string;
+  structuredData?: any;
 };
 
 export type HomePageContent = {

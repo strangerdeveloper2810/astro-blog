@@ -33,13 +33,42 @@ export const homePageContent: HomePageContent = {
     description:
       "Portfolio of Hai Trinh (Ethan Nguyen), a software engineer specializing in React.js, Next.js, and scalable UI systems.",
     image: openGraphImage,
-    domain: "trinhdev.vercel.app",
-    url: "https://trinhdev.vercel.app",
+    domain: "www.ethansoftwaredeveloper.com",
+    url: "https://www.ethansoftwaredeveloper.com",
+    keywords: "Software Engineer, Frontend Developer, React.js, Next.js, TypeScript, Vue.js, Full-stack Developer, Web Development, Portfolio, Hai Trinh, Ethan Nguyen",
+    canonical: "https://www.ethansoftwaredeveloper.com",
+    author: "Hai Trinh (Ethan Nguyen)",
+    type: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hai Trinh",
+      "alternateName": "Ethan Nguyen",
+      "jobTitle": "Software Engineer",
+      "description": "Software Engineer with 3+ years of experience building scalable web applications using React.js, Next.js, TypeScript, and Redux.",
+      "url": "https://www.ethansoftwaredeveloper.com",
+      "image": "https://www.ethansoftwaredeveloper.com/ethan.png",
+      "email": "n.haitrinh@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ho Chi Minh City",
+        "addressCountry": "Vietnam"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EDS/Bolt Technologies"
+      },
+      "knowsAbout": ["React.js", "Next.js", "TypeScript", "Redux", "Vue.js", "Node.js", "GraphQL", "Socket.io", "Docker", "Flutter"],
+      "sameAs": [
+        "https://github.com/strangerdeveloper2810",
+        "https://linkedin.com/in/trinhhainguyen"
+      ]
+    }
   },
   role: "Software Engineer",
   company: "EDS/Bolt Technologies",
   description:
-    "Hi, I’m Hai Trinh (Ethan Nguyen), a software engineer with 3+ years of experience building scalable web applications using React.js, Next.js, TypeScript, and Redux. I’ve worked on trading platforms, beauty platforms, banking systems, and IoT systems.",
+    "Hi, I'm Hai Trinh (Ethan Nguyen), a software engineer with 3+ years of experience building scalable web applications using React.js, Next.js, TypeScript, and Redux. I've worked on trading platforms, beauty platforms, banking systems, and IoT systems.",
   socialLinks,
   homeSocialLinks,
   links: [
@@ -55,8 +84,31 @@ export const aboutPageContent: AboutPageContent = {
     description:
       "About Hai Trinh - Software Engineer from Vietnam. Skilled in React.js, Next.js, TypeScript, and scalable UI architecture. Strong in mentorship and cross-team collaboration.",
     image: openGraphImage,
-    domain: "trinhdev.vercel.app",
-    url: "https://trinhdev.vercel.app/about",
+    domain: "www.ethansoftwaredeveloper.com",
+    url: "https://www.ethansoftwaredeveloper.com/about",
+    keywords: "About Hai Trinh, Ethan Nguyen, Software Engineer Vietnam, React Developer, Frontend Engineer, Full-stack Developer, UI Architecture, Mentorship",
+    canonical: "https://www.ethansoftwaredeveloper.com/about",
+    author: "Hai Trinh (Ethan Nguyen)",
+    type: "webpage",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About Hai Trinh (Ethan Nguyen)",
+      "description": "About Hai Trinh - Software Engineer from Vietnam. Skilled in React.js, Next.js, TypeScript, and scalable UI architecture.",
+      "url": "https://www.ethansoftwaredeveloper.com/about",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Hai Trinh",
+        "alternateName": "Ethan Nguyen",
+        "jobTitle": "Software Engineer",
+        "description": "Software Engineer with 3+ years of experience building scalable web applications",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ho Chi Minh City",
+          "addressCountry": "Vietnam"
+        }
+      }
+    }
   },
   subtitle: "Thanks for stopping by! Here's a bit about me.",
   about: {
@@ -73,7 +125,7 @@ export const aboutPageContent: AboutPageContent = {
     },
   },
   work: {
-    description: "Here are some of the companies and projects I’ve worked on recently:",
+    description: "Here are some of the companies and projects I've worked on recently:",
     items: [
       {
         title: "Software Engineer",
