@@ -1,0 +1,236 @@
+---
+// ScrollAnimations.astro - Reusable scroll animation component
+---
+
+<script>
+  // Enhanced Scroll Animations with Intersection Observer
+  class ScrollAnimations {
+    constructor() {
+      this.observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      this.init();
+    }
+
+    init() {
+      // Wait for DOM to be ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () =>
+          this.setupAnimations(),
+        );
+      } else {
+        this.setupAnimations();
+      }
+    }
+
+    setupAnimations() {
+      this.setupScrollReveal();
+      this.setupStaggeredAnimations();
+      this.setupParallaxElements();
+    }
+
+    setupScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+
+            // Add special handling for different element types
+            this.handleSpecialElements(entry.target);
+          }
+        });
+      }, this.observerOptions);
+
+      // Observe all scroll-reveal elements
+      document.querySelectorAll(".scroll-reveal").forEach((el) => {
+        observer.observe(el);
+      });
+    }
+
+    setupStaggeredAnimations() {
+      const staggeredElements = document.querySelectorAll("[data-stagger]");
+
+      if (staggeredElements.length === 0) return;
+
+      const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const children = entry.target.children;
+            const delay = parseInt(entry.target.dataset.stagger) || 100;
+
+            Array.from(children).forEach((child, index) => {
+              setTimeout(() => {
+                child.classList.add("animate-fadeInUp");
+              }, index * delay);
+            });
+          }
+        });
+      }, this.observerOptions);
+
+      staggeredElements.forEach((el) => staggerObserver.observe(el));
+    }
+
+    setupParallaxElements() {
+      const parallaxElements = document.querySelectorAll("[data-parallax]");
+
+      if (parallaxElements.length === 0) return;
+
+      const handleScroll = () => {
+        const scrolled = window.pageYOffset;
+
+        parallaxElements.forEach((element) => {
+          const speed = parseFloat(element.dataset.parallax) || 0.5;
+          const yPos = -(scrolled * speed);
+          element.style.transform = `translateY(${yPos}px)`;
+        });
+      };
+
+      // Throttle scroll events
+      let ticking = false;
+      const throttledScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener("scroll", throttledScroll);
+    }
+
+    handleSpecialElements(element) {
+      // Handle different types of elements with custom animations
+      if (element.classList.contains("counter")) {
+        this.animateCounter(element);
+      }
+
+      if (element.classList.contains("progress-bar")) {
+        this.animateProgressBar(element);
+      }
+    }
+
+    animateCounter(element) {
+      const target = parseInt(element.dataset.count) || 0;
+      const duration = parseInt(element.dataset.duration) || 1000;
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
+
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          element.textContent = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target;
+        }
+      };
+
+      updateCounter();
+    }
+
+    animateProgressBar(element) {
+      const width = element.dataset.width || "100%";
+      element.style.width = "0%";
+
+      setTimeout(() => {
+        element.style.width = width;
+      }, 100);
+    }
+  }
+
+  // Initialize scroll animations
+  new ScrollAnimations();
+
+  // Add utility functions to global scope
+  window.addScrollReveal = (selector, customOptions = {}) => {
+    const options = { ...this.observerOptions, ...customOptions };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    }, options);
+
+    document.querySelectorAll(selector).forEach((el) => {
+      observer.observe(el);
+    });
+  };
+</script>
+
+<style>
+  /* Enhanced scroll reveal animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Scroll reveal variants */
+  .scroll-reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-reveal-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-reveal-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Counter animations */
+  .counter {
+    font-weight: bold;
+    color: #ffe895;
+  }
+
+  /* Progress bar animations */
+  .progress-bar {
+    height: 4px;
+    background: linear-gradient(to right, #00abda, #1476ff);
+    border-radius: 2px;
+    transition: width 1.5s ease-out;
+  }
+
+  /* Staggered animation helper */
+  [data-stagger] > * {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  [data-stagger] > *.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+</style>
+

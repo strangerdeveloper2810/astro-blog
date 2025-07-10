@@ -1,0 +1,469 @@
+---
+// AdvancedAnimations.astro - Advanced interactive animations
+---
+
+<!-- Custom Cursor -->
+<div id="custom-cursor" class="custom-cursor">
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+</div>
+
+<!-- Mouse Follower Particles -->
+<div id="mouse-particles" class="mouse-particles"></div>
+
+<!-- Interactive Background Grid -->
+<div id="interactive-grid" class="interactive-grid">
+  {
+    Array.from({ length: 20 }, (_, i) => (
+      <div class="grid-line" style={`--delay: ${i * 0.1}s`} />
+    ))
+  }
+</div>
+
+<script>
+  class AdvancedAnimations {
+    constructor() {
+      this.cursor = {
+        dot: document.querySelector(".cursor-dot"),
+        outline: document.querySelector(".cursor-outline"),
+      };
+      this.mousePosition = { x: 0, y: 0 };
+      this.particles = [];
+      this.maxParticles = 15;
+      this.init();
+    }
+
+    init() {
+      this.setupCustomCursor();
+      this.setupMouseParticles();
+      this.setupMagneticElements();
+      this.setupInteractiveGrid();
+      this.setupAdvanced3D();
+    }
+
+    setupCustomCursor() {
+      let lastX = 0,
+        lastY = 0;
+      let isMoving = false;
+
+      const updateCursor = (e) => {
+        this.mousePosition.x = e.clientX;
+        this.mousePosition.y = e.clientY;
+
+        // Smooth cursor movement
+        if (this.cursor.dot && this.cursor.outline) {
+          this.cursor.dot.style.left = e.clientX + "px";
+          this.cursor.dot.style.top = e.clientY + "px";
+
+          // Delayed outline
+          setTimeout(() => {
+            this.cursor.outline.style.left = e.clientX + "px";
+            this.cursor.outline.style.top = e.clientY + "px";
+          }, 100);
+        }
+
+        // Velocity-based scaling
+        const velocity = Math.sqrt(
+          (e.clientX - lastX) ** 2 + (e.clientY - lastY) ** 2,
+        );
+        const scale = Math.min(1 + velocity * 0.01, 2);
+
+        if (this.cursor.dot) {
+          this.cursor.dot.style.transform = `scale(${scale})`;
+        }
+
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        if (!isMoving) {
+          isMoving = true;
+          document.body.classList.add("cursor-moving");
+          setTimeout(() => {
+            isMoving = false;
+            document.body.classList.remove("cursor-moving");
+          }, 150);
+        }
+      };
+
+      document.addEventListener("mousemove", updateCursor);
+
+      // Cursor state changes
+      const interactiveElements = document.querySelectorAll(
+        'a, button, [role="button"], .hover-lift',
+      );
+      interactiveElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-hover");
+        });
+      });
+    }
+
+    setupMouseParticles() {
+      const container = document.getElementById("mouse-particles");
+      if (!container) return;
+
+      const createParticle = (x, y) => {
+        if (this.particles.length >= this.maxParticles) {
+          const oldParticle = this.particles.shift();
+          if (oldParticle && oldParticle.element.parentNode) {
+            oldParticle.element.parentNode.removeChild(oldParticle.element);
+          }
+        }
+
+        const particle = document.createElement("div");
+        particle.className = "mouse-particle";
+
+        const size = Math.random() * 4 + 2;
+        const life = Math.random() * 1000 + 1000;
+        const velocityX = (Math.random() - 0.5) * 2;
+        const velocityY = (Math.random() - 0.5) * 2;
+
+        particle.style.left = x + "px";
+        particle.style.top = y + "px";
+        particle.style.width = size + "px";
+        particle.style.height = size + "px";
+
+        container.appendChild(particle);
+
+        const particleObj = {
+          element: particle,
+          x: x,
+          y: y,
+          vx: velocityX,
+          vy: velocityY,
+          life: life,
+          maxLife: life,
+        };
+
+        this.particles.push(particleObj);
+
+        // Animate particle
+        const animate = () => {
+          particleObj.x += particleObj.vx;
+          particleObj.y += particleObj.vy;
+          particleObj.life -= 16;
+
+          const opacity = particleObj.life / particleObj.maxLife;
+          particle.style.left = particleObj.x + "px";
+          particle.style.top = particleObj.y + "px";
+          particle.style.opacity = opacity;
+          particle.style.transform = `scale(${opacity})`;
+
+          if (particleObj.life > 0) {
+            requestAnimationFrame(animate);
+          } else {
+            if (particle.parentNode) {
+              particle.parentNode.removeChild(particle);
+            }
+            const index = this.particles.indexOf(particleObj);
+            if (index > -1) this.particles.splice(index, 1);
+          }
+        };
+
+        requestAnimationFrame(animate);
+      };
+
+      let lastParticleTime = 0;
+      document.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastParticleTime > 50) {
+          // Throttle particle creation
+          createParticle(e.clientX, e.clientY);
+          lastParticleTime = now;
+        }
+      });
+    }
+
+    setupMagneticElements() {
+      const magneticElements = document.querySelectorAll(
+        ".magnetic, .profile-image, .social-item",
+      );
+
+      magneticElements.forEach((el) => {
+        let bounds;
+
+        const onMouseMove = (e) => {
+          if (!bounds) bounds = el.getBoundingClientRect();
+
+          const centerX = bounds.left + bounds.width / 2;
+          const centerY = bounds.top + bounds.height / 2;
+          const distance = Math.sqrt(
+            (e.clientX - centerX) ** 2 + (e.clientY - centerY) ** 2,
+          );
+
+          if (distance < 100) {
+            const strength = (100 - distance) / 100;
+            const moveX = (e.clientX - centerX) * strength * 0.3;
+            const moveY = (e.clientY - centerY) * strength * 0.3;
+
+            el.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 + strength * 0.1})`;
+          }
+        };
+
+        const onMouseLeave = () => {
+          el.style.transform = "translate(0px, 0px) scale(1)";
+          bounds = null;
+        };
+
+        el.addEventListener("mousemove", onMouseMove);
+        el.addEventListener("mouseleave", onMouseLeave);
+      });
+    }
+
+    setupInteractiveGrid() {
+      const grid = document.getElementById("interactive-grid");
+      if (!grid) return;
+
+      document.addEventListener("mousemove", (e) => {
+        const gridRect = grid.getBoundingClientRect();
+        const x = (e.clientX - gridRect.left) / gridRect.width;
+        const y = (e.clientY - gridRect.top) / gridRect.height;
+
+        grid.style.setProperty("--mouse-x", x);
+        grid.style.setProperty("--mouse-y", y);
+      });
+    }
+
+    setupAdvanced3D() {
+      // 3D card effects
+      const cards = document.querySelectorAll(
+        ".skill-card, .resume-item, .social-link-item",
+      );
+
+      cards.forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((y - centerY) / centerY) * -10;
+          const rotateY = ((x - centerX) / centerX) * 10;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform =
+            "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+        });
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => new AdvancedAnimations(),
+    );
+  } else {
+    new AdvancedAnimations();
+  }
+</script>
+
+<style>
+  /* Custom Cursor Styles */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #00abda, #ffe895);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 10px rgba(0, 171, 218, 0.5);
+  }
+
+  .cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(0, 171, 218, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+  }
+
+  /* Hide default cursor */
+  body * {
+    cursor: none !important;
+  }
+
+  /* Cursor states */
+  body.cursor-hover .cursor-dot {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: linear-gradient(45deg, #ffe895, #00abda);
+  }
+
+  body.cursor-hover .cursor-outline {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: rgba(255, 232, 149, 0.6);
+  }
+
+  body.cursor-moving .cursor-dot {
+    box-shadow: 0 0 20px rgba(0, 171, 218, 0.8);
+  }
+
+  /* Mouse Particles */
+  .mouse-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .mouse-particle {
+    position: absolute;
+    background: radial-gradient(
+      circle,
+      rgba(0, 171, 218, 0.8) 0%,
+      rgba(255, 232, 149, 0.4) 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float 1s ease-out forwards;
+  }
+
+  @keyframes particle-float {
+    0% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+
+  /* Interactive Grid */
+  .interactive-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+    --mouse-x: 0.5;
+    --mouse-y: 0.5;
+  }
+
+  .grid-line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 171, 218, calc(var(--mouse-x) * 0.5)) 50%,
+      transparent 100%
+    );
+    left: calc(var(--index, 0) * 5%);
+    animation: grid-pulse 3s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .grid-line:nth-child(even) {
+    transform: rotate(90deg);
+    transform-origin: center;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255, 232, 149, calc(var(--mouse-y) * 0.3)) 50%,
+      transparent 100%
+    );
+  }
+
+  @keyframes grid-pulse {
+    0%,
+    100% {
+      opacity: 0.1;
+      transform: scaleY(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scaleY(1.1);
+    }
+  }
+
+  /* Enhanced 3D Effects */
+  .skill-card,
+  .resume-item,
+  .social-link-item {
+    transition: transform 0.2s ease;
+    transform-style: preserve-3d;
+  }
+
+  /* Magnetic Elements */
+  .magnetic {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Advanced Glow Effects */
+  .profile-image {
+    position: relative;
+  }
+
+  .profile-image::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: conic-gradient(from 0deg, #00abda, #ffe895, #00abda);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    animation: rotate-glow 3s linear infinite;
+  }
+
+  .profile-image:hover::before {
+    opacity: 0.7;
+  }
+
+  @keyframes rotate-glow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .custom-cursor,
+    .mouse-particles {
+      display: none;
+    }
+
+    body * {
+      cursor: auto !important;
+    }
+  }
+</style>
+

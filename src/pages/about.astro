@@ -7,11 +7,43 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
 ---
 
 <Layout seo={aboutPageContent.seo}>
+  <!-- Floating particles background -->
+  <div class="floating-particles">
+    <div
+      class="particle"
+      style="top: 15%; left: 15%; width: 5px; height: 5px; animation-delay: 0s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="top: 25%; right: 25%; width: 3px; height: 3px; animation-delay: 3s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="top: 60%; left: 8%; width: 4px; height: 4px; animation-delay: 5s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="bottom: 20%; right: 15%; width: 6px; height: 6px; animation-delay: 7s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="bottom: 40%; left: 25%; width: 3px; height: 3px; animation-delay: 2s;"
+    >
+    </div>
+  </div>
+
   <section class="mt-10 max-w-2xl mx-auto px-6">
-    <h1 class="text-3xl mb-1">About</h1>
-    <p class="opacity-60 mb-10 subtitle">{aboutPageContent.subtitle}</p>
-    <div class="mb-14">
-      <p class="mb-5 sm:text-left">
+    <div class="animate-fadeInDown">
+      <h1 class="text-3xl mb-1">About</h1>
+      <p class="opacity-60 mb-10 subtitle">{aboutPageContent.subtitle}</p>
+    </div>
+
+    <div class="mb-14 animate-fadeInUp delay-200">
+      <p class="mb-5 sm:text-left scroll-reveal">
         Hello 👋, I'm Hai Trinh (Ethan Nguyen), a Software Engineer | Frontend
         Engineer | Backend Engineer based in Ho Chi Minh City 🇻🇳. I specialize
         in building scalable and clean UI systems using <span
@@ -19,14 +51,14 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
           >React.js, Next.js, TypeScript and more
         </span>.
       </p>
-      <p class="mb-5 sm:text-left">
-        Over the past 3+ years, I’ve worked across industries from trading,
-        beauty, banking systems, to IoT platforms. My experience spans both startups and
-        enterprises where I’ve led UI architecture, optimized performance,
-        mentored junior developers, and collaborated closely with product and
-        backend teams.
+      <p class="mb-5 sm:text-left scroll-reveal">
+        Over the past 3+ years, I've worked across industries from trading,
+        beauty, banking systems, to IoT platforms. My experience spans both
+        startups and enterprises where I've led UI architecture, optimized
+        performance, mentored junior developers, and collaborated closely with
+        product and backend teams.
       </p>
-      <p class="mb-5 sm:text-left">
+      <p class="mb-5 sm:text-left scroll-reveal">
         My stack includes modern tooling like <strong>Redux Toolkit</strong>, <strong
           >TanStack Query</strong
         >, <strong>Vite</strong>, <strong>Rsbuild</strong>, <strong
@@ -35,12 +67,13 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
         believe in writing clean, maintainable code, ensuring pixel-perfect UI,
         and delivering delightful UX.
       </p>
-      <p class="mb-5 sm:text-left">
-        Outside of coding, you’ll find me debugging layout bugs with a coffee ☕
+      <p class="mb-5 sm:text-left scroll-reveal">
+        Outside of coding, you'll find me debugging layout bugs with a coffee ☕
         in hand, learning new technologies 🧠, and working out at the gym 💪.
       </p>
     </div>
-    <div class="flex flex-col sm:flex-row">
+
+    <div class="flex flex-col sm:flex-row animate-fadeInLeft delay-400">
       <Image
         id="about-image-left"
         src={aboutPageContent.about.image_l.url}
@@ -51,7 +84,7 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
         decoding="async"
         quality={100}
         densities={[1.5, 2]}
-        class="w-[350px] h-[250px] object-cover rounded-xl sm:-rotate-6 sm:block image-effect"
+        class="w-[350px] h-[250px] object-cover rounded-xl sm:-rotate-6 sm:block image-effect profile-image hover-glow"
       />
       <Image
         id="about-image-right"
@@ -63,60 +96,113 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
         decoding="async"
         quality={100}
         densities={[1.5, 2]}
-        class="hidden w-[150px] h-[250px] object-cover rounded-xl rotate-6 mx-auto sm:ml-auto sm:block image-effect"
+        class="hidden w-[150px] h-[250px] object-cover rounded-xl rotate-6 mx-auto sm:ml-auto sm:block image-effect profile-image hover-glow delay-200"
       />
     </div>
   </section>
 
-  <section class="my-20 mt-32 max-w-2xl mx-auto px-6 sm:flex sm:gap-16">
+  <section
+    class="my-20 mt-32 max-w-2xl mx-auto px-6 sm:flex sm:gap-16 animate-fadeInUp delay-600"
+  >
     <h2 class="mb-8 sm:mb-0 opacity-60 navbar">Work</h2>
     <div>
-      <div class="mb-6">
-        I’ve recently worked on:
+      <div class="mb-6 scroll-reveal">
+        I've recently worked on:
         <ul class="list-disc mt-2 mb-2">
-          <li>
+          <li class="scroll-reveal">
             <strong>Real-time trading platform</strong> for commodities like copper,
-            silver, platinum, and agricultural/energy products — fully integrated with
-            the Vietnam Commodity Exchange (MXV).
+            silver, platinum, and agricultural/energy products — fully integrated
+            with the Vietnam Commodity Exchange (MXV).
           </li>
-          <li>
+          <li class="scroll-reveal">
             <strong>KOMO Booking:</strong> Customer-facing platform to discover and
             book salon services.
           </li>
-          <li>
+          <li class="scroll-reveal">
             <strong>KOMO Admin:</strong> Dashboard for salon owners to manage branches,
             services, staff, and appointments.
           </li>
         </ul>
-        I primarily use <strong>React.js</strong>, <strong>Flutter</strong>, <strong>MUI</strong>, <strong>Tailwind CSS</strong>, <strong
-          >TypeScript</strong
-        >, <strong
-        >Javascript</strong
-      >, <strong>Redux Toolkit</strong>, <strong>Socket.io</strong>, <strong
-          >Vite</strong
-        >, <strong>Rsbuild</strong>, and <strong>Apollo GraphQL</strong> to build
-        performant and maintainable frontend applications.
+        <p class="scroll-reveal">
+          I primarily use <strong>React.js</strong>, <strong>Flutter</strong>, <strong
+            >MUI</strong
+          >, <strong>Tailwind CSS</strong>, <strong>TypeScript</strong>, <strong
+            >Javascript</strong
+          >, <strong>Redux Toolkit</strong>, <strong>Socket.io</strong>, <strong
+            >Vite</strong
+          >, <strong>Rsbuild</strong>, and <strong>Apollo GraphQL</strong> to build
+          performant and maintainable frontend applications.
+        </p>
       </div>
       <div class="grid grid-cols-1 group social-bar">
-        {aboutPageContent.work.items.map((item) => <ResumeItem {...item} />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="mt-32 max-w-2xl mx-auto px-6 sm:flex sm:gap-16">
-    <h2 class="mb-8 sm:mb-0 opacity-60 navbar">Connect</h2>
-    <div>
-      <div class="mb-6">
-        I'm open to freelance or remote opportunities. Feel free to reach out to
-        me via GitHub or LinkedIn.
-      </div>
-      <div class="grid grid-cols-2 gap-2 group social-bar">
         {
-          aboutPageContent.connect.links.map((item) => (
-            <SocialLinkBox {...item} />
+          aboutPageContent.work.items.map((item, index) => (
+            <div class={`scroll-reveal hover-lift delay-${index * 100}`}>
+              <ResumeItem {...item} />
+            </div>
           ))
         }
       </div>
     </div>
   </section>
+
+  <section
+    class="mt-32 max-w-2xl mx-auto px-6 sm:flex sm:gap-16 animate-fadeInRight delay-800"
+  >
+    <h2 class="mb-8 sm:mb-0 opacity-60 navbar">Connect</h2>
+    <div>
+      <div class="mb-6 scroll-reveal">
+        I'm open to freelance or remote opportunities. Feel free to reach out to
+        me via GitHub or LinkedIn.
+      </div>
+      <div class="grid grid-cols-2 gap-2 group social-bar">
+        {
+          aboutPageContent.connect.links.map((item, index) => (
+            <div class={`scroll-reveal hover-lift delay-${index * 150}`}>
+              <SocialLinkBox {...item} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".scroll-reveal").forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Add hover animation to images
+    const images = document.querySelectorAll(
+      "#about-image-left, #about-image-right",
+    );
+    images.forEach((img) => {
+      img.addEventListener("mouseenter", () => {
+        img.style.transform =
+          img.id === "about-image-left"
+            ? "scale(1.05) rotate(-8deg)"
+            : "scale(1.05) rotate(8deg)";
+      });
+      img.addEventListener("mouseleave", () => {
+        img.style.transform =
+          img.id === "about-image-left"
+            ? "scale(1) rotate(-6deg)"
+            : "scale(1) rotate(6deg)";
+      });
+    });
+  </script>
 </Layout>

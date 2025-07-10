@@ -4,6 +4,10 @@ import { Icon } from "astro-icon/components";
 import { navBarLinks, identity, googleAnalytics } from "../config";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import GoogleTagManager from "../components/GoogleTagManager.astro";
+import ScrollAnimations from "../components/ScrollAnimations.astro";
+import AdvancedAnimations from "../components/AdvancedAnimations.astro";
+import GlitchEffects from "../components/GlitchEffects.astro";
+import LiquidMorphing from "../components/LiquidMorphing.astro";
 import type { SEOInfo } from "../types/config";
 import "@styles/base.css";
 
@@ -264,5 +268,11 @@ const canonicalUrl = seo.canonical || seo.url;
       <slot />
     </main>
     <footer></footer>
+
+    <!-- Advanced Animation Systems -->
+    <ScrollAnimations />
+    <AdvancedAnimations />
+    <GlitchEffects />
+    <LiquidMorphing />
   </body>
 </html>

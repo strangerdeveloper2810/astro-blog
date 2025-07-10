@@ -1,0 +1,563 @@
+---
+// GlitchEffects.astro - Cyber/Futuristic glitch animations
+---
+
+<!-- Matrix Background -->
+<canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+
+<!-- Glitch Overlay -->
+<div id="glitch-overlay" class="glitch-overlay"></div>
+
+<!-- Holographic Scanner -->
+<div id="holo-scanner" class="holo-scanner"></div>
+
+<script>
+  class GlitchEffects {
+    constructor() {
+      this.canvas = document.getElementById("matrix-canvas");
+      this.ctx = this.canvas ? this.canvas.getContext("2d") : null;
+      this.matrix = [];
+      this.matrixChars =
+        "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      this.init();
+    }
+
+    init() {
+      this.setupMatrix();
+      this.setupGlitchText();
+      this.setupHolographicElements();
+      this.setupScanlines();
+      this.setupDigitalRain();
+    }
+
+    setupMatrix() {
+      if (!this.canvas || !this.ctx) return;
+
+      const resizeCanvas = () => {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+
+        const columns = Math.floor(this.canvas.width / 20);
+        this.matrix = Array(columns).fill(0);
+      };
+
+      const draw = () => {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.fillStyle = "#00ff88";
+        this.ctx.font = "15px monospace";
+
+        for (let i = 0; i < this.matrix.length; i++) {
+          const text =
+            this.matrixChars[
+              Math.floor(Math.random() * this.matrixChars.length)
+            ];
+          this.ctx.fillText(text, i * 20, this.matrix[i] * 20);
+
+          if (
+            this.matrix[i] * 20 > this.canvas.height &&
+            Math.random() > 0.975
+          ) {
+            this.matrix[i] = 0;
+          }
+          this.matrix[i]++;
+        }
+      };
+
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      setInterval(draw, 50);
+    }
+
+    setupGlitchText() {
+      const glitchElements = document.querySelectorAll(".glitch-text");
+
+      glitchElements.forEach((element) => {
+        const originalText = element.textContent;
+        let isGlitching = false;
+
+        const glitch = () => {
+          if (isGlitching) return;
+          isGlitching = true;
+
+          const iterations = Math.random() * 10 + 5;
+          let currentIteration = 0;
+
+          const glitchInterval = setInterval(() => {
+            if (currentIteration >= iterations) {
+              element.textContent = originalText;
+              clearInterval(glitchInterval);
+              isGlitching = false;
+              return;
+            }
+
+            element.textContent = originalText
+              .split("")
+              .map((char, index) => {
+                if (index < currentIteration) return char;
+                return this.matrixChars[
+                  Math.floor(Math.random() * this.matrixChars.length)
+                ];
+              })
+              .join("");
+
+            currentIteration++;
+          }, 30);
+        };
+
+        // Random glitch
+        setInterval(() => {
+          if (Math.random() > 0.95) glitch();
+        }, 1000);
+
+        // Glitch on hover
+        element.addEventListener("mouseenter", glitch);
+      });
+    }
+
+    setupHolographicElements() {
+      const holoElements = document.querySelectorAll(".holographic");
+
+      holoElements.forEach((element) => {
+        element.style.position = "relative";
+        element.style.overflow = "hidden";
+
+        // Create holographic overlay
+        const overlay = document.createElement("div");
+        overlay.className = "holo-overlay";
+        overlay.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+            transparent, 
+            rgba(0, 255, 255, 0.3), 
+            rgba(255, 0, 255, 0.3), 
+            transparent
+          );
+          z-index: 1;
+          pointer-events: none;
+          animation: holoScan 3s ease-in-out infinite;
+        `;
+        element.appendChild(overlay);
+
+        // RGB shift effect
+        element.style.textShadow = `
+          2px 0 0 #ff0000,
+          -2px 0 0 #00ffff,
+          0 2px 0 #ff00ff
+        `;
+      });
+    }
+
+    setupScanlines() {
+      const scanlines = document.createElement("div");
+      scanlines.className = "scanlines";
+      scanlines.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 255, 0, 0.03) 2px,
+          rgba(0, 255, 0, 0.03) 4px
+        );
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.3;
+        animation: scanlines-flicker 0.1s linear infinite;
+      `;
+      document.body.appendChild(scanlines);
+    }
+
+    setupDigitalRain() {
+      const rainContainer = document.createElement("div");
+      rainContainer.className = "digital-rain";
+      rainContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.1;
+      `;
+
+      for (let i = 0; i < 20; i++) {
+        const drop = document.createElement("div");
+        drop.style.cssText = `
+          position: absolute;
+          left: ${Math.random() * 100}%;
+          animation: digitalDrop ${Math.random() * 3 + 2}s linear infinite;
+          animation-delay: ${Math.random() * 2}s;
+          color: #00ff88;
+          font-family: monospace;
+          font-size: 14px;
+        `;
+        drop.textContent =
+          this.matrixChars[Math.floor(Math.random() * this.matrixChars.length)];
+        rainContainer.appendChild(drop);
+      }
+
+      document.body.appendChild(rainContainer);
+    }
+  }
+
+  // Initialize glitch effects
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => new GlitchEffects());
+  } else {
+    new GlitchEffects();
+  }
+
+  // Add glitch classes to specific elements
+  document.addEventListener("DOMContentLoaded", () => {
+    // Add glitch to main title
+    const mainTitle = document.querySelector("h1");
+    if (mainTitle) {
+      mainTitle.classList.add("glitch-text");
+    }
+
+    // Add holographic to profile image
+    const profileImages = document.querySelectorAll(".profile-image");
+    profileImages.forEach((img) => {
+      img.classList.add("holographic");
+    });
+
+    // Add glitch to social links
+    const socialLinks = document.querySelectorAll(".social-item");
+    socialLinks.forEach((link) => {
+      link.classList.add("holographic");
+    });
+  });
+</script>
+
+<style>
+  /* Matrix Canvas */
+  .matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -2;
+    opacity: 0.1;
+  }
+
+  /* Glitch Text Effects */
+  .glitch-text {
+    position: relative;
+    color: #ffffff;
+    animation: glitch-flicker 2s infinite;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch-text::before {
+    animation: glitch-1 0.5s infinite;
+    color: #ff0000;
+    z-index: -1;
+  }
+
+  .glitch-text::after {
+    animation: glitch-2 0.5s infinite;
+    color: #00ffff;
+    z-index: -2;
+  }
+
+  @keyframes glitch-flicker {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    98% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0.95;
+    }
+  }
+
+  @keyframes glitch-1 {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes glitch-2 {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(2px, 2px);
+    }
+    40% {
+      transform: translate(2px, -2px);
+    }
+    60% {
+      transform: translate(-2px, 2px);
+    }
+    80% {
+      transform: translate(-2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  /* Holographic Effects */
+  .holographic {
+    background: linear-gradient(
+      45deg,
+      rgba(255, 0, 150, 0.1),
+      rgba(0, 255, 255, 0.1),
+      rgba(150, 255, 0, 0.1)
+    );
+    background-size: 400% 400%;
+    animation: holographic-shift 3s ease infinite;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow:
+      0 0 10px rgba(0, 255, 255, 0.5),
+      inset 0 0 10px rgba(255, 0, 255, 0.2);
+  }
+
+  @keyframes holographic-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes holoScan {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Scanlines */
+  @keyframes scanlines-flicker {
+    0% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.1;
+    }
+    100% {
+      opacity: 0.3;
+    }
+  }
+
+  /* Digital Rain */
+  @keyframes digitalDrop {
+    0% {
+      top: -50px;
+      opacity: 1;
+    }
+    100% {
+      top: 100vh;
+      opacity: 0;
+    }
+  }
+
+  /* Cyber Button Effects */
+  .cyber-button {
+    position: relative;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(0, 255, 255, 0.1),
+      transparent
+    );
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .cyber-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .cyber-button:hover::before {
+    left: 100%;
+  }
+
+  .cyber-button:hover {
+    color: #ffffff;
+    box-shadow:
+      0 0 20px rgba(0, 255, 255, 0.6),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  }
+
+  /* Glitch Overlay */
+  .glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 100px,
+        rgba(255, 0, 0, 0.03) 100px,
+        rgba(255, 0, 0, 0.03) 101px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 100px,
+        rgba(0, 255, 0, 0.03) 100px,
+        rgba(0, 255, 0, 0.03) 101px
+      );
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    animation: glitch-overlay 8s infinite;
+  }
+
+  @keyframes glitch-overlay {
+    0%,
+    90%,
+    100% {
+      opacity: 0;
+    }
+    91%,
+    99% {
+      opacity: 1;
+    }
+  }
+
+  /* Holographic Scanner */
+  .holo-scanner {
+    position: fixed;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #00ffff,
+      #ff00ff,
+      #ffff00,
+      transparent
+    );
+    animation: holo-scan-move 4s linear infinite;
+    z-index: 1001;
+    opacity: 0.7;
+  }
+
+  @keyframes holo-scan-move {
+    0% {
+      top: -2px;
+    }
+    100% {
+      top: 100vh;
+    }
+  }
+
+  /* Terminal Text Effect */
+  .terminal-text {
+    font-family: "Courier New", monospace;
+    color: #00ff00;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-left: 3px solid #00ff00;
+    position: relative;
+  }
+
+  .terminal-text::before {
+    content: "> ";
+    color: #00ffff;
+  }
+
+  .terminal-text::after {
+    content: "_";
+    animation: terminal-cursor 1s infinite;
+  }
+
+  @keyframes terminal-cursor {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .matrix-canvas {
+      opacity: 0.05;
+    }
+
+    .scanlines {
+      display: none;
+    }
+
+    .digital-rain {
+      display: none;
+    }
+  }
+</style>
+

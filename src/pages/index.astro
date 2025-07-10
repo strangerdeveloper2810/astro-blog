@@ -7,11 +7,40 @@ import Link from "../components/Link.astro";
 ---
 
 <Layout seo={homePageContent.seo}>
+  <!-- Floating particles background -->
+  <div class="floating-particles">
+    <div
+      class="particle"
+      style="top: 10%; left: 10%; width: 4px; height: 4px; animation-delay: 0s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="top: 20%; right: 20%; width: 6px; height: 6px; animation-delay: 2s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="top: 50%; left: 5%; width: 3px; height: 3px; animation-delay: 4s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="bottom: 30%; right: 10%; width: 5px; height: 5px; animation-delay: 6s;"
+    >
+    </div>
+    <div
+      class="particle"
+      style="bottom: 10%; left: 30%; width: 4px; height: 4px; animation-delay: 1s;"
+    >
+    </div>
+  </div>
+
   <article class="mt-10 max-w-2xl mx-auto px-6">
-    <header>
+    <header class="animate-fadeInDown">
       <h1 class="text-3xl mb-1">{identity.name}</h1>
       <p class="opacity-60 mb-10 subtitle">
-        {homePageContent.role}
+        <span id="typing-text" class="typing-text"></span>
         <span
           class="lazy-badge inline-flex items-center bg-[#2a2a2a] text-[#ffe895] text-xs font-semibold ml-2 px-2.5 py-0.5 rounded-full border border-[#3a3a3a]"
         >
@@ -23,7 +52,9 @@ import Link from "../components/Link.astro";
       </p>
     </header>
 
-    <section class="flex flex-row flex-wrap gap-6 mb-8">
+    <section
+      class="flex flex-row flex-wrap gap-6 mb-8 animate-fadeInLeft delay-200"
+    >
       <Image
         src="/img/Ethan_Nguyen_2.jpg"
         alt="Professional portrait of Hai Trinh (Ethan Nguyen), Software Engineer specializing in React.js and Frontend Development"
@@ -33,27 +64,29 @@ import Link from "../components/Link.astro";
         decoding="async"
         quality={100}
         densities={[1.5, 2]}
-        class="rounded-lg border border-[#3a3a3a] border-2 border-opacity-80"
+        class="rounded-lg border border-[#3a3a3a] border-2 border-opacity-80 profile-image hover-glow"
       />
       <nav
         class="group flex flex-col justify-center gap-2 w-fit social-bar"
         aria-label="Social media links"
       >
         {
-          homePageContent.homeSocialLinks.map((link) => (
-            <SocialLink
-              title={link.title}
-              url={link.url}
-              icon={link.icon}
-              external={link.external}
-            />
+          homePageContent.homeSocialLinks.map((link, index) => (
+            <div class={`social-item delay-${(index + 1) * 100}`}>
+              <SocialLink
+                title={link.title}
+                url={link.url}
+                icon={link.icon}
+                external={link.external}
+              />
+            </div>
           ))
         }
       </nav>
     </section>
 
-    <section class="max-w-md mb-8">
-      <p>
+    <section class="max-w-md mb-8 animate-fadeInRight delay-400">
+      <p class="scroll-reveal">
         I'm a <strong>Software Engineer</strong> with 3+ years of experience, specializing
         in building scalable UI systems using <strong>React</strong>, <strong
           >Next.js</strong
@@ -62,13 +95,13 @@ import Link from "../components/Link.astro";
         systems.
       </p>
       <br />
-      <p>
+      <p class="scroll-reveal">
         I recently built a real-time commodity trading platform integrated with
         the Vietnam Commodity Exchange (MXV), and led the frontend architecture
         of KOMO — an end-to-end beauty service booking system.
       </p>
       <br />
-      <p>
+      <p class="scroll-reveal">
         My stack includes <strong>Redux Toolkit</strong>, <strong
           >Apollo GraphQL</strong
         >, <strong>Socket.io</strong>, <strong>Flutter</strong>, <strong
@@ -78,12 +111,12 @@ import Link from "../components/Link.astro";
         > ,and <strong>Docker</strong>.
       </p>
       <br />
-      <p>
+      <p class="scroll-reveal">
         Outside of coding, I enjoy debugging with a ☕, exploring new tech 🧠,
         and staying active at the gym 💪.
       </p>
       <br />
-      <p>
+      <p class="scroll-reveal">
         <span class="navbar">
           In a nutshell: 👨‍💻 + ☕ + 💪 = <a
             class="gradient-link glowing-animation"
@@ -95,20 +128,116 @@ import Link from "../components/Link.astro";
       </p>
 
       <nav
-        class="flex items-center gap-4 group w-fit social-bar mt-6"
+        class="flex items-center gap-4 group w-fit social-bar mt-6 animate-fadeInUp delay-600"
         aria-label="Navigation links"
       >
         {
-          homePageContent.links.map((link) => (
-            <Link
-              text={link.title}
-              href={link.url}
-              external={link.external}
-              icon={link.icon}
-            />
+          homePageContent.links.map((link, index) => (
+            <div class={`hover-lift delay-${(index + 1) * 100}`}>
+              <Link
+                text={link.title}
+                href={link.url}
+                external={link.external}
+                icon={link.icon}
+              />
+            </div>
           ))
         }
       </nav>
     </section>
   </article>
+
+  <script>
+    // Typing animation
+    const roles = [
+      "Software Engineer",
+      "Frontend Engineer",
+      "Backend Engineer",
+      "Full-stack Developer",
+      "React.js Specialist",
+      "TypeScript Developer",
+    ];
+
+    let currentRole = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById("typing-text");
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 2000;
+
+    function typeWriter() {
+      const currentText = roles[currentRole];
+
+      if (isDeleting) {
+        typingElement.textContent = currentText.substring(0, currentChar - 1);
+        currentChar--;
+
+        if (currentChar === 0) {
+          isDeleting = false;
+          currentRole = (currentRole + 1) % roles.length;
+          setTimeout(typeWriter, 500);
+          return;
+        }
+        setTimeout(typeWriter, deletingSpeed);
+      } else {
+        typingElement.textContent = currentText.substring(0, currentChar + 1);
+        currentChar++;
+
+        if (currentChar === currentText.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, pauseTime);
+          return;
+        }
+        setTimeout(typeWriter, typingSpeed);
+      }
+    }
+
+    // Start typing animation after page load
+    setTimeout(() => {
+      typeWriter();
+    }, 1000);
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".scroll-reveal").forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
+
+  <style>
+    .typing-text {
+      color: #ffe895;
+      font-weight: 600;
+    }
+
+    .typing-text::after {
+      content: "|";
+      color: #ffe895;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
 </Layout>

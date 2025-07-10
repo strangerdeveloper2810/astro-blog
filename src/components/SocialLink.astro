@@ -9,11 +9,42 @@ const { title, url, icon, external } = Astro.props;
 
 <a
   href={url}
-  class="flex items-center gap-2 opacity-60 group-hover:opacity-30 hover:!opacity-60 transition-opacity"
+  class="flex items-center gap-2 opacity-60 group-hover:opacity-30 hover:!opacity-100 transition-all duration-300 social-link-item hover-lift"
   target={external ? "_blank" : "_self"}
 >
-  <Icon name={icon} width={25} height={25} />
-  <div>
-    <p>{title}</p>
+  <Icon
+    name={icon}
+    width={25}
+    height={25}
+    class="transition-all duration-300 hover:scale-110 hover:rotate-12"
+  />
+  <div class="transition-all duration-300">
+    <p class="hover:text-[#ffe895]">{title}</p>
   </div>
 </a>
+
+<style>
+  .social-link-item:hover {
+    transform: translateX(5px);
+  }
+
+  .social-link-item:hover .icon {
+    animation: bounce 0.6s ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-3px);
+    }
+    60% {
+      transform: translateY(-1px);
+    }
+  }
+</style>
