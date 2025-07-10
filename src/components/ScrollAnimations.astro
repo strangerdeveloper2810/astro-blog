@@ -5,6 +5,8 @@
 <script>
   // Enhanced Scroll Animations with Intersection Observer
   class ScrollAnimations {
+    public observerOptions: IntersectionObserverInit;
+
     constructor() {
       this.observerOptions = {
         threshold: 0.1,
@@ -58,7 +60,10 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const children = entry.target.children;
-            const delay = parseInt(entry.target.dataset.stagger) || 100;
+            const delay =
+              parseInt(
+                (entry.target as HTMLElement).dataset.stagger || "100",
+              ) || 100;
 
             Array.from(children).forEach((child, index) => {
               setTimeout(() => {
@@ -81,9 +86,11 @@
         const scrolled = window.pageYOffset;
 
         parallaxElements.forEach((element) => {
-          const speed = parseFloat(element.dataset.parallax) || 0.5;
+          const speed =
+            parseFloat((element as HTMLElement).dataset.parallax || "0.5") ||
+            0.5;
           const yPos = -(scrolled * speed);
-          element.style.transform = `translateY(${yPos}px)`;
+          (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
         });
       };
 
@@ -102,37 +109,37 @@
       window.addEventListener("scroll", throttledScroll);
     }
 
-    handleSpecialElements(element) {
+    handleSpecialElements(element: Element) {
       // Handle different types of elements with custom animations
       if (element.classList.contains("counter")) {
-        this.animateCounter(element);
+        this.animateCounter(element as HTMLElement);
       }
 
       if (element.classList.contains("progress-bar")) {
-        this.animateProgressBar(element);
+        this.animateProgressBar(element as HTMLElement);
       }
     }
 
-    animateCounter(element) {
-      const target = parseInt(element.dataset.count) || 0;
-      const duration = parseInt(element.dataset.duration) || 1000;
+    animateCounter(element: HTMLElement) {
+      const target = parseInt(element.dataset.count || "0") || 0;
+      const duration = parseInt(element.dataset.duration || "1000") || 1000;
       const increment = target / (duration / 16); // 60fps
       let current = 0;
 
       const updateCounter = () => {
         current += increment;
         if (current < target) {
-          element.textContent = Math.floor(current);
+          element.textContent = Math.floor(current).toString();
           requestAnimationFrame(updateCounter);
         } else {
-          element.textContent = target;
+          element.textContent = target.toString();
         }
       };
 
       updateCounter();
     }
 
-    animateProgressBar(element) {
+    animateProgressBar(element: HTMLElement) {
       const width = element.dataset.width || "100%";
       element.style.width = "0%";
 
@@ -146,8 +153,12 @@
   new ScrollAnimations();
 
   // Add utility functions to global scope
-  window.addScrollReveal = (selector, customOptions = {}) => {
-    const options = { ...this.observerOptions, ...customOptions };
+  (window as any).addScrollReveal = (
+    selector: string,
+    customOptions: any = {},
+  ) => {
+    const scrollAnimations = new ScrollAnimations();
+    const options = { ...scrollAnimations.observerOptions, ...customOptions };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -233,4 +244,3 @@
     animation: fadeInUp 0.6s ease-out forwards;
   }
 </style>
-

@@ -167,6 +167,8 @@ import Link from "../components/Link.astro";
     const pauseTime = 2000;
 
     function typeWriter() {
+      if (!typingElement) return;
+
       const currentText = roles[currentRole];
 
       if (isDeleting) {

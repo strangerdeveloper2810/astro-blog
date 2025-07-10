@@ -192,14 +192,14 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
     );
     images.forEach((img) => {
       img.addEventListener("mouseenter", () => {
-        img.style.transform =
-          img.id === "about-image-left"
+        (img as HTMLElement).style.transform =
+          (img as HTMLElement).id === "about-image-left"
             ? "scale(1.05) rotate(-8deg)"
             : "scale(1.05) rotate(8deg)";
       });
       img.addEventListener("mouseleave", () => {
-        img.style.transform =
-          img.id === "about-image-left"
+        (img as HTMLElement).style.transform =
+          (img as HTMLElement).id === "about-image-left"
             ? "scale(1) rotate(-6deg)"
             : "scale(1) rotate(6deg)";
       });

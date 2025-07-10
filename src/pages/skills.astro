@@ -124,10 +124,10 @@ import { Icon } from "astro-icon/components";
       const categories = document.querySelectorAll('section[class*="mb-16"]');
       categories.forEach((category) => {
         category.addEventListener("mouseenter", () => {
-          category.style.transform = "translateY(-5px)";
+          (category as HTMLElement).style.transform = "translateY(-5px)";
         });
         category.addEventListener("mouseleave", () => {
-          category.style.transform = "translateY(0)";
+          (category as HTMLElement).style.transform = "translateY(0)";
         });
       });
 
@@ -141,7 +141,7 @@ import { Icon } from "astro-icon/components";
 
         parallax.forEach((element) => {
           const yPos = -(scrolled * speed);
-          element.style.transform = `translateY(${yPos}px)`;
+          (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
         });
       });
     });

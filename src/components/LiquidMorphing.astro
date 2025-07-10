@@ -45,9 +45,20 @@
 
 <script>
   class LiquidMorphing {
+    private blob1: SVGPathElement | null;
+    private blob2: SVGPathElement | null;
+    private morphingSpeed: number;
+    private time: number;
+    private prefersReducedMotion: boolean;
+    private transitionsEnabled: boolean;
+
     constructor() {
-      this.blob1 = document.getElementById("blob1");
-      this.blob2 = document.getElementById("blob2");
+      this.blob1 = document.getElementById(
+        "blob1",
+      ) as unknown as SVGPathElement;
+      this.blob2 = document.getElementById(
+        "blob2",
+      ) as unknown as SVGPathElement;
       this.morphingSpeed = 0.02;
       this.time = 0;
       this.prefersReducedMotion = window.matchMedia(
@@ -86,8 +97,8 @@
           this.time + Math.PI,
         );
 
-        this.blob1.setAttribute("d", blob1Path);
-        this.blob2.setAttribute("d", blob2Path);
+        if (this.blob1) this.blob1.setAttribute("d", blob1Path);
+        if (this.blob2) this.blob2.setAttribute("d", blob2Path);
 
         requestAnimationFrame(animateBlobs);
       };
@@ -95,7 +106,12 @@
       animateBlobs();
     }
 
-    generateBlobPath(centerX, centerY, baseRadius, time) {
+    generateBlobPath(
+      centerX: number,
+      centerY: number,
+      baseRadius: number,
+      time: number,
+    ) {
       const points = 8;
       const angleStep = (Math.PI * 2) / points;
       let path = "";
@@ -161,8 +177,8 @@
           transform: scale(0);
         `;
 
-        button.style.position = "relative";
-        button.style.overflow = "hidden";
+        (button as HTMLElement).style.position = "relative";
+        (button as HTMLElement).style.overflow = "hidden";
         button.appendChild(overlay);
 
         button.addEventListener("mouseenter", (e) => {
@@ -177,14 +193,17 @@
           overlay.style.transform = "scale(0)";
         });
 
-        button.addEventListener("mousemove", (e) => {
-          const rect = button.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
+        (button as HTMLElement).addEventListener(
+          "mousemove",
+          (e: MouseEvent) => {
+            const rect = (button as HTMLElement).getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-          overlay.style.setProperty("--mouse-x", `${x}%`);
-          overlay.style.setProperty("--mouse-y", `${y}%`);
-        });
+            overlay.style.setProperty("--mouse-x", `${x}%`);
+            overlay.style.setProperty("--mouse-y", `${y}%`);
+          },
+        );
       });
     }
 
@@ -193,13 +212,13 @@
 
       cards.forEach((card) => {
         card.addEventListener("mouseenter", () => {
-          card.style.borderRadius = "20px 5px 20px 5px";
-          card.style.transition =
+          (card as HTMLElement).style.borderRadius = "20px 5px 20px 5px";
+          (card as HTMLElement).style.transition =
             "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
         });
 
         card.addEventListener("mouseleave", () => {
-          card.style.borderRadius = "";
+          (card as HTMLElement).style.borderRadius = "";
         });
       });
     }
@@ -213,7 +232,7 @@
       let transitionIndex = 0;
 
       links.forEach((link) => {
-        link.addEventListener("click", (e) => {
+        (link as HTMLElement).addEventListener("click", (e: MouseEvent) => {
           if (e.ctrlKey || e.metaKey) return; // Don't hijack if opening in new tab
 
           e.preventDefault();
@@ -222,15 +241,15 @@
           const transitions = [
             () =>
               this.showLiquidTransition(
-                () => (window.location.href = link.href),
+                () => (window.location.href = (link as HTMLAnchorElement).href),
               ),
             () =>
               this.showMorphingTransition(
-                () => (window.location.href = link.href),
+                () => (window.location.href = (link as HTMLAnchorElement).href),
               ),
             () =>
               this.showClothTransition(
-                () => (window.location.href = link.href),
+                () => (window.location.href = (link as HTMLAnchorElement).href),
               ),
           ];
 
@@ -258,7 +277,7 @@
       }
     }
 
-    showMorphingTransition(callback) {
+    showMorphingTransition(callback: () => void) {
       if (!this.transitionsEnabled) {
         callback();
         return;
@@ -353,7 +372,7 @@
       }, 1200);
     }
 
-    showClothTransition(callback) {
+    showClothTransition(callback: () => void) {
       if (!this.transitionsEnabled) {
         callback();
         return;
@@ -369,7 +388,7 @@
         : 8;
 
       // Create cloth panels
-      const panels = [];
+      const panels: HTMLElement[] = [];
 
       for (let i = 0; i < panelCount; i++) {
         const panel = document.createElement("div");
@@ -466,7 +485,7 @@
       };
     }
 
-    showLiquidTransition(callback) {
+    showLiquidTransition(callback: () => void) {
       // Skip if transitions disabled
       if (!this.transitionsEnabled) {
         callback();
@@ -483,7 +502,7 @@
         : 3;
 
       // Create multiple ripple circles for smooth effect
-      const ripples = [];
+      const ripples: HTMLElement[] = [];
       for (let i = 0; i < rippleCount; i++) {
         const ripple = document.createElement("div");
         ripple.className = "ripple-circle";
@@ -566,7 +585,7 @@
       }, 1200);
     }
 
-    generateTransitionPath(progress) {
+    generateTransitionPath(progress: number) {
       // This method is no longer used with the new ripple effect
       // Keeping for backward compatibility
       return `M 0,100 L 100,100 L 100,0 L 0,0 Z`;
@@ -578,6 +597,14 @@
     document.addEventListener("DOMContentLoaded", () => new LiquidMorphing());
   } else {
     new LiquidMorphing();
+  }
+
+  // Global declarations
+  declare global {
+    interface Window {
+      showLiquidLoader: () => void;
+      hideLiquidLoader: () => void;
+    }
   }
 </script>
 
