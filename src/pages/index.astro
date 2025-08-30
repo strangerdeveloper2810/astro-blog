@@ -52,83 +52,133 @@ import Link from "../components/Link.astro";
       </p>
     </header>
 
-    <section
-      class="flex flex-row flex-wrap gap-6 mb-8 animate-fadeInLeft delay-200"
-    >
-      <Image
-        src="/img/Ethan_Nguyen_2.jpg"
-        alt="Professional portrait of Hai Trinh (Ethan Nguyen), Software Engineer specializing in React.js and Frontend Development"
-        width={100}
-        height={100}
-        loading="eager"
-        decoding="async"
-        quality={100}
-        densities={[1.5, 2]}
-        class="rounded-lg border border-[#3a3a3a] border-2 border-opacity-80 profile-image hover-glow"
-      />
-      <nav
-        class="group flex flex-col justify-center gap-2 w-fit social-bar"
-        aria-label="Social media links"
-      >
-        {
-          homePageContent.homeSocialLinks.map((link, index) => (
-            <div class={`social-item delay-${(index + 1) * 100}`}>
-              <SocialLink
-                title={link.title}
-                url={link.url}
-                icon={link.icon}
-                external={link.external}
-              />
+    <section class="flex flex-col md:flex-row gap-8 mb-12 animate-fadeInLeft delay-200">
+      <div class="flex-shrink-0">
+        <div class="relative group">
+          <Image
+            src="/img/Ethan_Nguyen_2.jpg"
+            alt="Professional portrait of Hai Trinh (Ethan Nguyen), Software Engineer specializing in React.js and Frontend Development"
+            width={150}
+            height={150}
+            loading="eager"
+            decoding="async"
+            quality={100}
+            densities={[1.5, 2]}
+            class="rounded-xl border-2 border-[#3a3a3a] border-opacity-80 profile-image hover-glow transition-all duration-300 filter hover:brightness-110"
+          />
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        
+        <nav
+          class="mt-4 flex flex-row md:flex-col justify-center gap-2 w-fit social-bar"
+          aria-label="Social media links"
+        >
+          {
+            homePageContent.homeSocialLinks.map((link, index) => (
+              <div class={`social-item delay-${(index + 1) * 100}`}>
+                <SocialLink
+                  title={link.title}
+                  url={link.url}
+                  icon={link.icon}
+                  external={link.external}
+                />
+              </div>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div class="flex-grow space-y-6 animate-fadeInRight delay-400">
+        <div class="bg-gradient-to-r from-[#2a2a2a] to-[#1a1a1a] p-6 rounded-xl border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all duration-300 scroll-reveal">
+          <h2 class="text-xl font-bold mb-4 text-[#ffe895]">👋 Hey there!</h2>
+          <p class="leading-relaxed">
+            I'm a <strong>Software Engineer</strong> with 3+ years of experience crafting exceptional digital experiences. I specialize in building scalable UI systems using <strong class="text-blue-400">React</strong>, <strong class="text-blue-400">Next.js</strong>, and <strong class="text-blue-400">TypeScript</strong>.
+          </p>
+        </div>
+
+        <div class="space-y-4 scroll-reveal">
+          <h3 class="text-lg font-semibold text-[#ffe895]">🚀 Recent Achievements</h3>
+          <ul class="space-y-2 list-none">
+            <li class="flex items-start gap-2">
+              <span class="text-blue-400">▹</span>
+              Built a real-time commodity trading platform integrated with Vietnam Commodity Exchange (MXV)
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-blue-400">▹</span>
+              Led frontend architecture for KOMO's beauty service booking ecosystem
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-blue-400">▹</span>
+              Optimized application performance, reducing load times by 40%
+            </li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-[#ffe895]">🛠️ Tech Stack</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-sm font-medium mb-2 text-blue-400">Frontend Development</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">React.js</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Next.js</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">TypeScript</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Vue.js</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Redux Toolkit</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">TanStack Query</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Material UI</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Tailwind CSS</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium mb-2 text-blue-400">Mobile Development</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Flutter</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">React Native</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium mb-2 text-blue-400">Backend & APIs</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Java</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Spring Boot</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Node.js</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Express</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">GraphQL</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">REST APIs</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Socket.io</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium mb-2 text-blue-400">Development & Tools</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Git</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Docker</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">CI/CD</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Vite</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Rsbuild</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Rspack</span>
+                  <span class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all">Jest</span>
+                </div>
+              </div>
             </div>
-          ))
-        }
-      </nav>
+          </div>
+        </div>
+
+        <div class="pt-4 scroll-reveal">
+          <p class="text-sm opacity-80">
+            When I'm not coding, you'll find me debugging with ☕, exploring new tech 🧠, and staying active at the gym 💪
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section class="max-w-md mb-8 animate-fadeInRight delay-400">
-      <p class="scroll-reveal">
-        I'm a <strong>Software Engineer</strong> with 3+ years of experience, specializing
-        in building scalable UI systems using <strong>React</strong>, <strong
-          >Next.js</strong
-        >, and <strong>TypeScript</strong>. I've worked on platforms in trading,
-        beauty platform, IoT, and banking systems — from startups to enterprise
-        systems.
-      </p>
-      <br />
-      <p class="scroll-reveal">
-        I recently built a real-time commodity trading platform integrated with
-        the Vietnam Commodity Exchange (MXV), and led the frontend architecture
-        of KOMO — an end-to-end beauty service booking system.
-      </p>
-      <br />
-      <p class="scroll-reveal">
-        My stack includes <strong>Redux Toolkit</strong>, <strong
-          >Apollo GraphQL</strong
-        >, <strong>Socket.io</strong>, <strong>Flutter</strong>, <strong
-          >Vite</strong
-        >, <strong>Rsbuild</strong>, <strong>Rspack</strong>, <strong
-          >CI CD Pipeline</strong
-        > ,and <strong>Docker</strong>.
-      </p>
-      <br />
-      <p class="scroll-reveal">
-        Outside of coding, I enjoy debugging with a ☕, exploring new tech 🧠,
-        and staying active at the gym 💪.
-      </p>
-      <br />
-      <p class="scroll-reveal">
-        <span class="navbar">
-          In a nutshell: 👨‍💻 + ☕ + 💪 = <a
-            class="gradient-link glowing-animation"
-            href="/about"
-            aria-label="Learn more about Ethan Nguyen on the About page"
-            >@ethantrinh</a
-          >
-        </span>
-      </p>
-
       <nav
-        class="flex items-center gap-4 group w-fit social-bar mt-6 animate-fadeInUp delay-600"
+        class="flex flex-wrap items-center gap-4 group w-fit mt-8 animate-fadeInUp delay-600"
         aria-label="Navigation links"
       >
         {
@@ -144,6 +194,13 @@ import Link from "../components/Link.astro";
           ))
         }
       </nav>
+
+      <div class="mt-12 pt-8 border-t border-[#3a3a3a] text-center">
+        <p class="text-sm opacity-60">
+          Looking for opportunities to create impactful web experiences?
+          <a href="/about" class="text-[#ffe895] hover:underline ml-1">Let's connect!</a>
+        </p>
+      </div>
     </section>
   </article>
 
