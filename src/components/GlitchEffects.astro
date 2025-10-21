@@ -1,259 +1,545 @@
 ---
-// GlitchEffects.astro - Cyber/Futuristic glitch animations
+// CodingEffects.astro - Coding and engineering themed background
 ---
 
-<!-- Matrix Background -->
-<canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+<!-- Coding Background Canvas -->
+<canvas id="coding-canvas" class="coding-canvas"></canvas>
 
-<!-- Glitch Overlay -->
-<div id="glitch-overlay" class="glitch-overlay"></div>
+<!-- Code Terminal Overlay -->
+<div id="terminal-overlay" class="terminal-overlay"></div>
 
-<!-- Holographic Scanner -->
-<div id="holo-scanner" class="holo-scanner"></div>
+<!-- Circuit Board Scanner -->
+<div id="circuit-scanner" class="circuit-scanner"></div>
 
 <script>
-  class GlitchEffects {
+  class CodingEffects {
     private canvas: HTMLCanvasElement | null;
     private ctx: CanvasRenderingContext2D | null;
-    private matrix: number[];
-    private matrixChars: string;
+    private codeSnippets: string[];
+    private techSymbols: string[];
+    private binaryStreams: string[];
+    private animationId: number | null;
 
     constructor() {
       this.canvas = document.getElementById(
-        "matrix-canvas",
+        "coding-canvas",
       ) as HTMLCanvasElement;
       this.ctx = this.canvas ? this.canvas.getContext("2d") : null;
-      this.matrix = [];
-      this.matrixChars =
-        "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+      this.codeSnippets = [
+        "function createPortfolio() {",
+        "  const skills = ['React', 'Vue', 'TypeScript'];",
+        "  return buildAmazingApp(skills);",
+        "}",
+        "const engineer = {",
+        "  name: 'Nguyen Hai Trinh',",
+        "  role: 'Software Engineer',",
+        "  experience: '3+ years'",
+        "};",
+        "import { useState, useEffect } from 'react';",
+        "const [projects, setProjects] = useState([]);",
+        "useEffect(() => {",
+        "  fetchProjects().then(setProjects);",
+        "}, []);",
+        "class SoftwareEngineer {",
+        "  constructor(name, skills) {",
+        "    this.name = name;",
+        "    this.skills = skills;",
+        "  }",
+        "  build() {",
+        "    return 'Amazing software';",
+        "  }",
+        "}",
+        "const tradingPlatform = {",
+        "  charts: 'TradingView',",
+        "  realtime: 'WebSocket',",
+        "  framework: 'React 19'",
+        "};",
+        "// API Integration",
+        "const apiClient = axios.create({",
+        "  baseURL: 'https://api.example.com',",
+        "  timeout: 5000",
+        "});",
+        "// GraphQL Query",
+        "const GET_PROJECTS = gql`",
+        "  query GetProjects {",
+        "    projects {",
+        "      id",
+        "      name",
+        "      description",
+        "    }",
+        "  }",
+        "`;",
+        "// WebSocket Connection",
+        "const ws = new WebSocket('ws://localhost:8080');",
+        "ws.onmessage = (event) => {",
+        "  const data = JSON.parse(event.data);",
+        "  updateChart(data);",
+        "};",
+        "// Docker Configuration",
+        "FROM node:18-alpine",
+        "WORKDIR /app",
+        "COPY package*.json ./",
+        "RUN npm install",
+        "COPY . .",
+        "EXPOSE 3000",
+        "CMD ['npm', 'start']",
+        "// Database Schema",
+        "CREATE TABLE users (",
+        "  id INT PRIMARY KEY,",
+        "  name VARCHAR(100),",
+        "  email VARCHAR(100)",
+        ");",
+        "// Testing",
+        "describe('Portfolio Component', () => {",
+        "  it('renders correctly', () => {",
+        "    render(<Portfolio />);",
+        "    expect(screen.getByText('Software Engineer')).toBeInTheDocument();",
+        "  });",
+        "});",
+        "// Performance Optimization",
+        "const memoizedComponent = React.memo(({ data }) => {",
+        "  return <div>{data.name}</div>;",
+        "});",
+        "// Error Handling",
+        "try {",
+        "  const result = await riskyOperation();",
+        "} catch (error) {",
+        "  console.error('Operation failed:', error);",
+        "}",
+      ];
+
+      this.techSymbols = [
+        "</>",
+        "{ }",
+        "()",
+        "[]",
+        "=>",
+        "++",
+        "--",
+        "&&",
+        "||",
+        "==",
+        "!=",
+        "<=",
+        ">=",
+        "/*",
+        "*/",
+        "//",
+        ".js",
+        ".ts",
+        ".jsx",
+        ".tsx",
+        ".vue",
+        ".html",
+        ".css",
+        ".scss",
+        ".json",
+        ".md",
+        ".yml",
+        ".xml",
+        "npm",
+        "yarn",
+        "pnpm",
+        "git",
+        "docker",
+        "kubernetes",
+        "aws",
+        "gcp",
+        "azure",
+        "react",
+        "vue",
+        "angular",
+        "svelte",
+        "next",
+        "nuxt",
+        "sveltekit",
+        "typescript",
+        "javascript",
+        "python",
+        "java",
+        "go",
+        "rust",
+        "c++",
+        "c#",
+        "mysql",
+        "postgresql",
+        "mongodb",
+        "redis",
+        "elasticsearch",
+        "graphql",
+        "rest",
+        "websocket",
+        "grpc",
+        "tcp",
+        "udp",
+        "jest",
+        "cypress",
+        "playwright",
+        "vitest",
+        "mocha",
+        "chai",
+        "webpack",
+        "vite",
+        "rollup",
+        "esbuild",
+        "parcel",
+        "babel",
+        "tailwind",
+        "bootstrap",
+        "mui",
+        "antd",
+        "chakra",
+        "styled-components",
+        "linux",
+        "windows",
+        "macos",
+        "ubuntu",
+        "centos",
+        "debian",
+        "nginx",
+        "apache",
+        "express",
+        "fastify",
+        "koa",
+        "hapi",
+        "microservices",
+        "monolith",
+        "serverless",
+        "edge",
+        "cdn",
+        "api",
+      ];
+
+      this.binaryStreams = [
+        "1010 1100 1111 0001",
+        "A5F3 C7E9 2B8D 4F1A",
+        "0101 1010 1111 0000",
+        "F7A2 9C4E 1B8D 3F5A",
+        "1100 0011 1010 0101",
+        "E9C7 2A5F 8D3B 1F4A",
+        "1111 0000 1010 0101",
+        "B3F7 8A2C 5E9D 1F4A",
+        "0000 1111 0101 1010",
+        "C8E2 7F5A 9B3D 1F4A",
+        "1010 0101 1111 0000",
+        "D4F2 8C7A 3E9B 1F5A",
+        "0101 1111 0000 1010",
+        "E7A3 9F5C 2B8D 1F4A",
+        "1111 1010 0101 0000",
+        "F2A8 7C5E 9B3D 1F4A",
+        "0000 0101 1111 1010",
+        "A5F3 8C7E 2B9D 1F4A",
+        "1010 1111 0000 0101",
+        "B7E2 9F5C 3A8D 1F4A",
+        "0101 0000 1111 1010",
+        "C8F3 7A5E 9B2D 1F4A",
+        "1111 0101 0000 1010",
+        "D2A7 8F5C 3E9B 1F4A",
+      ];
+
+      this.animationId = null;
       this.init();
     }
 
     init() {
-      this.setupMatrix();
-      this.setupGlitchText();
-      this.setupHolographicElements();
-      this.setupScanlines();
-      this.setupDigitalRain();
+      this.setupCodingCanvas();
+      this.setupTerminalOverlay();
+      this.setupCircuitScanner();
+      this.startAnimation();
     }
 
-    setupMatrix() {
+    setupCodingCanvas() {
       if (!this.canvas || !this.ctx) return;
 
       const resizeCanvas = () => {
         if (!this.canvas) return;
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-
-        const columns = Math.floor(this.canvas.width / 20);
-        this.matrix = Array(columns).fill(0);
-      };
-
-      const draw = () => {
-        if (!this.ctx || !this.canvas) return;
-        this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.ctx.fillStyle = "#00ff88";
-        this.ctx.font = "15px monospace";
-
-        for (let i = 0; i < this.matrix.length; i++) {
-          const text =
-            this.matrixChars[
-              Math.floor(Math.random() * this.matrixChars.length)
-            ];
-          this.ctx.fillText(text, i * 20, this.matrix[i] * 20);
-
-          if (
-            this.matrix[i] * 20 > this.canvas.height &&
-            Math.random() > 0.975
-          ) {
-            this.matrix[i] = 0;
-          }
-          this.matrix[i]++;
-        }
       };
 
       resizeCanvas();
       window.addEventListener("resize", resizeCanvas);
 
-      setInterval(draw, 50);
+      // Set canvas style
+      this.ctx.font = "12px Courier New";
+      this.ctx.fillStyle = "rgba(0, 255, 0, 0.3)";
     }
 
-    setupGlitchText() {
-      const glitchElements = document.querySelectorAll(".glitch-text");
+    setupTerminalOverlay() {
+      const terminal = document.getElementById("terminal-overlay");
+      if (!terminal) return;
 
-      glitchElements.forEach((element) => {
-        const originalText = element.textContent;
-        if (!originalText) return;
-        let isGlitching = false;
+      // Create terminal-like elements
+      const terminalLines = [
+        "🚀 $ pnpm dev",
+        "⚡ > Starting development server...",
+        "✅ ✓ Server running on localhost:4321",
+        '📝 $ git commit -m "feat: add coding background"',
+        "✅ ✓ Committed successfully",
+        "🧪 $ npm run test",
+        "⚡ > Running test suite...",
+        "✅ ✓ All tests passed",
+        "🔨 $ pnpm build",
+        "⚡ > Building for production...",
+        "✅ ✓ Build completed successfully",
+        "🚀 $ pnpm deploy",
+        "⚡ > Deploying to production...",
+        "✅ ✓ Deployed successfully",
+        "🌐 ✓ Web is running at: https://www.ethansoftwaredeveloper.com/",
+        "📤 $ git push origin main",
+        "✅ ✓ Pushed to remote repository",
+        "🐳 $ docker build -t portfolio .",
+        "⚡ > Building Docker image...",
+        "✅ ✓ Image built successfully",
+        "🎉 Deployment complete! Portfolio is live!",
+        "💻 Ready for next development cycle...",
+        "🔍 $ npm run lint",
+        "⚡ > Running linter...",
+        "✅ ✓ No linting errors found",
+        "📊 $ npm run analyze",
+        "⚡ > Analyzing bundle size...",
+        "✅ ✓ Bundle analysis complete",
+        "🔄 $ git pull origin main",
+        "✅ ✓ Latest changes pulled",
+        "🛡️ $ npm audit",
+        "⚡ > Running security audit...",
+        "✅ ✓ No vulnerabilities found",
+        "📈 $ npm run performance-test",
+        "⚡ > Running performance tests...",
+        "✅ ✓ Performance tests passed",
+        "🎯 All systems operational!",
+        "🚀 Ready for next sprint!",
+      ];
 
-        const glitch = () => {
-          if (isGlitching) return;
-          isGlitching = true;
+      // Add some lines immediately for scroll testing
+      const immediateLines = terminalLines.slice(0, 15);
+      immediateLines.forEach((line, index) => {
+        const lineElement = document.createElement("div");
+        lineElement.className = "terminal-line";
+        lineElement.textContent = line;
+        lineElement.style.opacity = "1";
+        terminal.appendChild(lineElement);
+      });
 
-          const iterations = Math.random() * 10 + 5;
-          let currentIteration = 0;
+      // Add remaining lines with animation
+      const remainingLines = terminalLines.slice(15);
+      remainingLines.forEach((line, index) => {
+        setTimeout(() => {
+          const lineElement = document.createElement("div");
+          lineElement.className = "terminal-line";
+          lineElement.textContent = line;
+          terminal.appendChild(lineElement);
 
-          const glitchInterval = setInterval(() => {
-            if (currentIteration >= iterations) {
-              element.textContent = originalText;
-              clearInterval(glitchInterval);
-              isGlitching = false;
-              return;
-            }
-
-            element.textContent = originalText
-              .split("")
-              .map((char, index) => {
-                if (index < currentIteration) return char;
-                return this.matrixChars[
-                  Math.floor(Math.random() * this.matrixChars.length)
-                ];
-              })
-              .join("");
-
-            currentIteration++;
-          }, 30);
-        };
-
-        // Random glitch
-        setInterval(() => {
-          if (Math.random() > 0.95) glitch();
-        }, 1000);
-
-        // Glitch on hover
-        element.addEventListener("mouseenter", glitch);
+          // Auto scroll to bottom when new line is added
+          terminal.scrollTop = terminal.scrollHeight;
+        }, index * 2000);
       });
     }
 
-    setupHolographicElements() {
-      const holoElements = document.querySelectorAll(".holographic");
+    setupCircuitScanner() {
+      const scanner = document.getElementById("circuit-scanner");
+      if (!scanner) return;
 
-      holoElements.forEach((element) => {
-        (element as HTMLElement).style.position = "relative";
-        (element as HTMLElement).style.overflow = "hidden";
-
-        // Create holographic overlay
-        const overlay = document.createElement("div");
-        overlay.className = "holo-overlay";
-        overlay.style.cssText = `
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(0, 255, 255, 0.3), 
-            rgba(255, 0, 255, 0.3), 
-            transparent
-          );
-          z-index: 1;
-          pointer-events: none;
-          animation: holoScan 3s ease-in-out infinite;
-        `;
-        element.appendChild(overlay);
-
-        // RGB shift effect
-        (element as HTMLElement).style.textShadow = `
-           2px 0 0 #ff0000,
-           -2px 0 0 #00ffff,
-           0 2px 0 #ff00ff
-         `;
-      });
-    }
-
-    setupScanlines() {
-      const scanlines = document.createElement("div");
-      scanlines.className = "scanlines";
-      scanlines.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(0, 255, 0, 0.03) 2px,
-          rgba(0, 255, 0, 0.03) 4px
-        );
-        pointer-events: none;
-        z-index: 1000;
-        opacity: 0.3;
-        animation: scanlines-flicker 0.1s linear infinite;
-      `;
-      document.body.appendChild(scanlines);
-    }
-
-    setupDigitalRain() {
-      const rainContainer = document.createElement("div");
-      rainContainer.className = "digital-rain";
-      rainContainer.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.1;
-      `;
-
+      // Create circuit-like scanning effect
       for (let i = 0; i < 20; i++) {
-        const drop = document.createElement("div");
-        drop.style.cssText = `
-          position: absolute;
-          left: ${Math.random() * 100}%;
-          animation: digitalDrop ${Math.random() * 3 + 2}s linear infinite;
-          animation-delay: ${Math.random() * 2}s;
-          color: #00ff88;
-          font-family: monospace;
-          font-size: 14px;
-        `;
-        drop.textContent =
-          this.matrixChars[Math.floor(Math.random() * this.matrixChars.length)];
-        rainContainer.appendChild(drop);
+        const circuitLine = document.createElement("div");
+        circuitLine.className = "circuit-line";
+        circuitLine.style.left = Math.random() * 100 + "%";
+        circuitLine.style.top = Math.random() * 100 + "%";
+        circuitLine.style.width = Math.random() * 200 + 100 + "px";
+        circuitLine.style.transform = `rotate(${Math.random() * 360}deg)`;
+        circuitLine.style.animationDelay = Math.random() * 5 + "s";
+        scanner.appendChild(circuitLine);
+      }
+    }
+
+    startAnimation() {
+      let frameCount = 0;
+      const animate = () => {
+        if (!this.ctx || !this.canvas) return;
+
+        frameCount++;
+
+        // Clear canvas with fade effect
+        this.ctx.fillStyle = "rgba(15, 15, 35, 0.05)";
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw code snippets with wave effect
+        this.drawCodeSnippets(frameCount);
+
+        // Draw tech symbols with floating effect
+        this.drawTechSymbols(frameCount);
+
+        // Draw binary streams with falling effect
+        this.drawBinaryStreams(frameCount);
+
+        // Draw additional effects
+        this.drawFloatingElements(frameCount);
+        this.drawConnectingLines(frameCount);
+
+        this.animationId = requestAnimationFrame(animate);
+      };
+
+      animate();
+    }
+
+    drawCodeSnippets(frameCount) {
+      if (!this.ctx) return;
+
+      this.ctx.font = "14px Courier New";
+
+      for (let i = 0; i < 8; i++) {
+        const snippet =
+          this.codeSnippets[
+            Math.floor(Math.random() * this.codeSnippets.length)
+          ];
+        const baseX = (i * 200) % (this.canvas!.width - 200);
+        const baseY = (i * 100) % (this.canvas!.height - 50);
+
+        // Wave effect
+        const waveOffset = Math.sin((frameCount + i * 50) * 0.02) * 20;
+        const x = baseX + waveOffset;
+        const y = baseY + Math.sin((frameCount + i * 30) * 0.01) * 10;
+
+        // Fade effect - brighter and more visible
+        const alpha = 0.6 + Math.sin((frameCount + i * 20) * 0.03) * 0.3;
+        this.ctx.fillStyle = `rgba(0, 255, 0, ${alpha})`;
+
+        this.ctx.fillText(snippet, x, y);
+      }
+    }
+
+    drawTechSymbols(frameCount) {
+      if (!this.ctx) return;
+
+      this.ctx.font = "18px Courier New";
+
+      for (let i = 0; i < 12; i++) {
+        const symbol =
+          this.techSymbols[Math.floor(Math.random() * this.techSymbols.length)];
+        const baseX = (i * 150) % (this.canvas!.width - 50);
+        const baseY = (i * 80) % (this.canvas!.height - 20);
+
+        // Floating effect
+        const floatX = baseX + Math.sin((frameCount + i * 40) * 0.015) * 30;
+        const floatY = baseY + Math.cos((frameCount + i * 25) * 0.012) * 15;
+
+        // Rotation effect
+        this.ctx.save();
+        this.ctx.translate(floatX, floatY);
+        this.ctx.rotate((frameCount + i * 10) * 0.005);
+
+        // Glow effect - brighter and more visible
+        const alpha = 0.7 + Math.sin((frameCount + i * 15) * 0.02) * 0.3;
+        this.ctx.fillStyle = `rgba(0, 255, 100, ${alpha})`;
+
+        this.ctx.fillText(symbol, 0, 0);
+        this.ctx.restore();
+      }
+    }
+
+    drawBinaryStreams(frameCount) {
+      if (!this.ctx) return;
+
+      this.ctx.font = "12px Courier New";
+
+      for (let i = 0; i < 6; i++) {
+        const binary =
+          this.binaryStreams[
+            Math.floor(Math.random() * this.binaryStreams.length)
+          ];
+        const baseX = (i * 200) % (this.canvas!.width - 150);
+
+        // Falling effect
+        const fallSpeed = 0.5 + i * 0.1;
+        const y =
+          (frameCount * fallSpeed + i * 200) % (this.canvas!.height + 50);
+
+        // Fade in/out effect - brighter and more visible
+        const alpha = Math.sin((frameCount + i * 30) * 0.01) * 0.4 + 0.5;
+        this.ctx.fillStyle = `rgba(0, 255, 150, ${alpha})`;
+
+        this.ctx.fillText(binary, baseX, y);
+      }
+    }
+
+    drawFloatingElements(frameCount) {
+      if (!this.ctx) return;
+
+      // Draw floating particles
+      for (let i = 0; i < 20; i++) {
+        const x = (i * 100 + frameCount * 0.5) % this.canvas!.width;
+        const y =
+          (i * 80 + Math.sin(frameCount * 0.01 + i) * 50) % this.canvas!.height;
+
+        this.ctx.fillStyle = `rgba(0, 255, 0, ${0.3 + Math.sin(frameCount * 0.02 + i) * 0.2})`;
+        this.ctx.fillRect(x, y, 3, 3);
       }
 
-      document.body.appendChild(rainContainer);
+      // Draw connecting lines
+      for (let i = 0; i < 10; i++) {
+        const x1 = (i * 150 + frameCount * 0.3) % this.canvas!.width;
+        const y1 =
+          (i * 100 + Math.sin(frameCount * 0.008 + i) * 30) %
+          this.canvas!.height;
+        const x2 = ((i + 5) * 150 + frameCount * 0.3) % this.canvas!.width;
+        const y2 =
+          ((i + 5) * 100 + Math.sin(frameCount * 0.008 + i + 5) * 30) %
+          this.canvas!.height;
+
+        this.ctx.strokeStyle = `rgba(0, 255, 0, ${0.3 + Math.sin(frameCount * 0.01 + i) * 0.2})`;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x1, y1);
+        this.ctx.lineTo(x2, y2);
+        this.ctx.stroke();
+      }
+    }
+
+    drawConnectingLines(frameCount) {
+      if (!this.ctx) return;
+
+      // Draw network-like connections
+      for (let i = 0; i < 15; i++) {
+        const centerX = this.canvas!.width / 2;
+        const centerY = this.canvas!.height / 2;
+        const radius = 100 + Math.sin(frameCount * 0.005 + i) * 50;
+        const angle = (frameCount * 0.002 + i * 0.4) % (Math.PI * 2);
+
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+
+        this.ctx.strokeStyle = `rgba(0, 255, 100, ${0.4 + Math.sin(frameCount * 0.01 + i) * 0.3})`;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.moveTo(centerX, centerY);
+        this.ctx.lineTo(x, y);
+        this.ctx.stroke();
+
+        // Draw node - brighter and larger
+        this.ctx.fillStyle = `rgba(0, 255, 0, ${0.6 + Math.sin(frameCount * 0.02 + i) * 0.4})`;
+        this.ctx.fillRect(x - 3, y - 3, 6, 6);
+      }
+    }
+    destroy() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+      }
     }
   }
 
-  // Initialize glitch effects
+  // Initialize when DOM is ready
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => new GlitchEffects());
+    document.addEventListener("DOMContentLoaded", () => new CodingEffects());
   } else {
-    new GlitchEffects();
+    new CodingEffects();
   }
-
-  // Add glitch classes to specific elements
-  document.addEventListener("DOMContentLoaded", () => {
-    // Add glitch to main title
-    const mainTitle = document.querySelector("h1");
-    if (mainTitle) {
-      mainTitle.classList.add("glitch-text");
-    }
-
-    // Add holographic to profile image
-    const profileImages = document.querySelectorAll(".profile-image");
-    profileImages.forEach((img) => {
-      img.classList.add("holographic");
-    });
-
-    // Add glitch to social links
-    const socialLinks = document.querySelectorAll(".social-item");
-    socialLinks.forEach((link) => {
-      link.classList.add("holographic");
-    });
-  });
 </script>
 
 <style>
-  /* Matrix Canvas */
-  .matrix-canvas {
+  /* Coding Canvas */
+  .coding-canvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -261,312 +547,126 @@
     height: 100%;
     pointer-events: none;
     z-index: -2;
-    opacity: 0.1;
+    opacity: 0.6;
   }
 
-  /* Glitch Text Effects */
-  .glitch-text {
-    position: relative;
-    color: #ffffff;
-    animation: glitch-flicker 2s infinite;
+  /* Terminal Overlay */
+  .terminal-overlay {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 380px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid rgba(0, 255, 0, 0.6);
+    border-radius: 12px;
+    padding: 20px;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    color: rgba(0, 255, 0, 1);
+    z-index: -1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
   }
 
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
+  /* Custom scrollbar for terminal */
+  .terminal-overlay::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .terminal-overlay::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .terminal-overlay::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 0, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+  }
+
+  .terminal-overlay::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 0, 0.8);
+  }
+
+  .terminal-line {
+    margin: 2px 0;
+    opacity: 0;
+    animation: terminalFadeIn 0.5s ease-in forwards;
+    white-space: nowrap;
+    overflow: visible;
+  }
+
+  @keyframes terminalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Circuit Scanner */
+  .circuit-scanner {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-  }
-
-  .glitch-text::before {
-    animation: glitch-1 0.5s infinite;
-    color: #ff0000;
+    pointer-events: none;
     z-index: -1;
   }
 
-  .glitch-text::after {
-    animation: glitch-2 0.5s infinite;
-    color: #00ffff;
-    z-index: -2;
-  }
-
-  @keyframes glitch-flicker {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    98% {
-      opacity: 1;
-    }
-    99% {
-      opacity: 0.95;
-    }
-  }
-
-  @keyframes glitch-1 {
-    0% {
-      transform: translate(0);
-    }
-    20% {
-      transform: translate(-2px, 2px);
-    }
-    40% {
-      transform: translate(-2px, -2px);
-    }
-    60% {
-      transform: translate(2px, 2px);
-    }
-    80% {
-      transform: translate(2px, -2px);
-    }
-    100% {
-      transform: translate(0);
-    }
-  }
-
-  @keyframes glitch-2 {
-    0% {
-      transform: translate(0);
-    }
-    20% {
-      transform: translate(2px, 2px);
-    }
-    40% {
-      transform: translate(2px, -2px);
-    }
-    60% {
-      transform: translate(-2px, 2px);
-    }
-    80% {
-      transform: translate(-2px, -2px);
-    }
-    100% {
-      transform: translate(0);
-    }
-  }
-
-  /* Holographic Effects */
-  .holographic {
-    background: linear-gradient(
-      45deg,
-      rgba(255, 0, 150, 0.1),
-      rgba(0, 255, 255, 0.1),
-      rgba(150, 255, 0, 0.1)
-    );
-    background-size: 400% 400%;
-    animation: holographic-shift 3s ease infinite;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    box-shadow:
-      0 0 10px rgba(0, 255, 255, 0.5),
-      inset 0 0 10px rgba(255, 0, 255, 0.2);
-  }
-
-  @keyframes holographic-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  @keyframes holoScan {
-    0% {
-      left: -100%;
-    }
-    100% {
-      left: 100%;
-    }
-  }
-
-  /* Scanlines */
-  @keyframes scanlines-flicker {
-    0% {
-      opacity: 0.3;
-    }
-    50% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 0.3;
-    }
-  }
-
-  /* Digital Rain */
-  @keyframes digitalDrop {
-    0% {
-      top: -50px;
-      opacity: 1;
-    }
-    100% {
-      top: 100vh;
-      opacity: 0;
-    }
-  }
-
-  /* Cyber Button Effects */
-  .cyber-button {
-    position: relative;
-    background: linear-gradient(
-      45deg,
-      transparent,
-      rgba(0, 255, 255, 0.1),
-      transparent
-    );
-    border: 1px solid #00ffff;
-    color: #00ffff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .cyber-button::before {
-    content: "";
+  .circuit-line {
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
+    height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(0, 255, 255, 0.4),
+      rgba(0, 255, 0, 0.3),
       transparent
     );
-    transition: left 0.5s ease;
+    animation: circuitPulse 5s ease-in-out infinite;
   }
 
-  .cyber-button:hover::before {
-    left: 100%;
-  }
-
-  .cyber-button:hover {
-    color: #ffffff;
-    box-shadow:
-      0 0 20px rgba(0, 255, 255, 0.6),
-      inset 0 0 20px rgba(0, 255, 255, 0.1);
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-  }
-
-  /* Glitch Overlay */
-  .glitch-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 100px,
-        rgba(255, 0, 0, 0.03) 100px,
-        rgba(255, 0, 0, 0.03) 101px
-      ),
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 100px,
-        rgba(0, 255, 0, 0.03) 100px,
-        rgba(0, 255, 0, 0.03) 101px
-      );
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0;
-    animation: glitch-overlay 8s infinite;
-  }
-
-  @keyframes glitch-overlay {
+  @keyframes circuitPulse {
     0%,
-    90%,
     100% {
-      opacity: 0;
+      opacity: 0.1;
+      transform: scaleX(1);
     }
-    91%,
-    99% {
-      opacity: 1;
-    }
-  }
-
-  /* Holographic Scanner */
-  .holo-scanner {
-    position: fixed;
-    top: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      #00ffff,
-      #ff00ff,
-      #ffff00,
-      transparent
-    );
-    animation: holo-scan-move 4s linear infinite;
-    z-index: 1001;
-    opacity: 0.7;
-  }
-
-  @keyframes holo-scan-move {
-    0% {
-      top: -2px;
-    }
-    100% {
-      top: 100vh;
-    }
-  }
-
-  /* Terminal Text Effect */
-  .terminal-text {
-    font-family: "Courier New", monospace;
-    color: #00ff00;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    border-left: 3px solid #00ff00;
-    position: relative;
-  }
-
-  .terminal-text::before {
-    content: "> ";
-    color: #00ffff;
-  }
-
-  .terminal-text::after {
-    content: "_";
-    animation: terminal-cursor 1s infinite;
-  }
-
-  @keyframes terminal-cursor {
-    0%,
     50% {
-      opacity: 1;
-    }
-    51%,
-    100% {
-      opacity: 0;
+      opacity: 0.4;
+      transform: scaleX(1.2);
     }
   }
 
-  /* Mobile optimizations */
+  /* Responsive Design */
   @media (max-width: 768px) {
-    .matrix-canvas {
-      opacity: 0.05;
+    .terminal-overlay {
+      width: 250px;
+      height: 150px;
+      font-size: 10px;
     }
 
-    .scanlines {
-      display: none;
+    .coding-canvas {
+      opacity: 0.4;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-line,
+    .circuit-line {
+      animation: none;
     }
 
-    .digital-rain {
-      display: none;
+    .coding-canvas {
+      opacity: 0.2;
     }
   }
 </style>
