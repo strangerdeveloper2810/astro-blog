@@ -186,7 +186,7 @@ const canonicalUrl = seo.canonical || seo.url;
             decoding="async"
             quality={100}
             densities={[1.5, 2]}
-            class="w-[50px] h-[50px] object-cover transform -rotate-90"
+            class="w-[50px] h-[50px] object-cover header-logo-rotate"
           />
         </a>
         <nav class="ml-auto mr-6 sm:m-0 navbar">
@@ -274,5 +274,11 @@ const canonicalUrl = seo.canonical || seo.url;
     <AdvancedAnimations />
     <GlitchEffects />
     <LiquidMorphing />
+
+    <style>
+      .header-logo-rotate {
+        transform: rotate(-90deg);
+      }
+    </style>
   </body>
 </html>

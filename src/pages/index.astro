@@ -66,7 +66,7 @@ import Link from "../components/Link.astro";
             decoding="async"
             quality={100}
             densities={[1.5, 2]}
-            class="rounded-xl border-2 border-[#3a3a3a] border-opacity-80 profile-image hover-glow transition-all duration-300 filter hover:brightness-110 transform -rotate-90"
+            class="rounded-xl border-2 border-[#3a3a3a] border-opacity-80 profile-image hover-glow transition-all duration-300 filter hover:brightness-110 profile-image-rotate"
           />
           <div
             class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -659,5 +659,9 @@ useEffect(() => {
     100% {
       opacity: 0;
     }
+  }
+
+  .profile-image-rotate {
+    transform: rotate(-90deg);
   }
 </style>
