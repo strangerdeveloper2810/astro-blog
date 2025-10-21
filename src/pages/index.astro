@@ -67,14 +67,13 @@ import Link from "../components/Link.astro";
             quality={100}
             densities={[1.5, 2]}
             class="rounded-xl border-2 border-[#3a3a3a] border-opacity-80 profile-image hover-glow transition-all duration-300 filter hover:brightness-110"
-            style="transform: rotate(-90deg);"
           />
           <div
             class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
           </div>
         </div>
-
+        
         <nav
           class="mt-4 flex flex-row md:flex-col justify-center gap-2 w-fit social-bar"
           aria-label="Social media links"
@@ -305,32 +304,32 @@ import Link from "../components/Link.astro";
       </div>
     </section>
 
-    <nav
-      class="flex flex-wrap items-center gap-4 group w-fit mt-8 animate-fadeInUp delay-600"
-      aria-label="Navigation links"
-    >
-      {
-        homePageContent.links.map((link, index) => (
-          <div class={`hover-lift delay-${(index + 1) * 100}`}>
-            <Link
-              text={link.title}
-              href={link.url}
-              external={link.external}
-              icon={link.icon}
-            />
-          </div>
-        ))
-      }
-    </nav>
+      <nav
+        class="flex flex-wrap items-center gap-4 group w-fit mt-8 animate-fadeInUp delay-600"
+        aria-label="Navigation links"
+      >
+        {
+          homePageContent.links.map((link, index) => (
+            <div class={`hover-lift delay-${(index + 1) * 100}`}>
+              <Link
+                text={link.title}
+                href={link.url}
+                external={link.external}
+                icon={link.icon}
+              />
+            </div>
+          ))
+        }
+      </nav>
 
-    <div class="mt-12 pt-8 border-t border-[#3a3a3a] text-center">
-      <p class="text-sm opacity-60">
-        Looking for opportunities to create impactful web experiences?
+      <div class="mt-12 pt-8 border-t border-[#3a3a3a] text-center">
+        <p class="text-sm opacity-60">
+          Looking for opportunities to create impactful web experiences?
         <a href="/about" class="text-[#ffe895] hover:underline ml-1"
           >Let's connect!</a
         >
-      </p>
-    </div>
+        </p>
+      </div>
   </article>
 
   <!-- Cool Background Effects -->
@@ -339,74 +338,74 @@ import Link from "../components/Link.astro";
   <div class="test-background" id="testBg"></div>
 </Layout>
 
-<script>
-  // Typing animation
-  const roles = [
-    "Software Engineer",
-    "Frontend Engineer",
-    "Backend Engineer",
+  <script>
+    // Typing animation
+    const roles = [
+      "Software Engineer",
+      "Frontend Engineer",
+      "Backend Engineer",
     "React.js Developer",
-  ];
+    ];
 
-  let currentRole = 0;
-  let currentChar = 0;
-  let isDeleting = false;
-  const typingElement = document.getElementById("typing-text");
-  const typingSpeed = 100;
-  const deletingSpeed = 50;
-  const pauseTime = 2000;
+    let currentRole = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById("typing-text");
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 2000;
 
-  function typeWriter() {
-    if (!typingElement) return;
+    function typeWriter() {
+      if (!typingElement) return;
 
-    const currentText = roles[currentRole];
+      const currentText = roles[currentRole];
 
-    if (isDeleting) {
-      typingElement.textContent = currentText.substring(0, currentChar - 1);
-      currentChar--;
+      if (isDeleting) {
+        typingElement.textContent = currentText.substring(0, currentChar - 1);
+        currentChar--;
 
-      if (currentChar === 0) {
-        isDeleting = false;
-        currentRole = (currentRole + 1) % roles.length;
-        setTimeout(typeWriter, 500);
-        return;
+        if (currentChar === 0) {
+          isDeleting = false;
+          currentRole = (currentRole + 1) % roles.length;
+          setTimeout(typeWriter, 500);
+          return;
+        }
+        setTimeout(typeWriter, deletingSpeed);
+      } else {
+        typingElement.textContent = currentText.substring(0, currentChar + 1);
+        currentChar++;
+
+        if (currentChar === currentText.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, pauseTime);
+          return;
+        }
+        setTimeout(typeWriter, typingSpeed);
       }
-      setTimeout(typeWriter, deletingSpeed);
-    } else {
-      typingElement.textContent = currentText.substring(0, currentChar + 1);
-      currentChar++;
-
-      if (currentChar === currentText.length) {
-        isDeleting = true;
-        setTimeout(typeWriter, pauseTime);
-        return;
-      }
-      setTimeout(typeWriter, typingSpeed);
     }
-  }
 
-  // Start typing animation after page load
-  setTimeout(() => {
-    typeWriter();
-  }, 1000);
+    // Start typing animation after page load
+    setTimeout(() => {
+      typeWriter();
+    }, 1000);
 
-  // Scroll reveal animation
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("revealed");
-      }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".scroll-reveal").forEach((el) => {
+      observer.observe(el);
     });
-  }, observerOptions);
-
-  document.querySelectorAll(".scroll-reveal").forEach((el) => {
-    observer.observe(el);
-  });
 
   // Cool floating particles
   function createParticles() {
@@ -637,28 +636,28 @@ useEffect(() => {
   }
 
   // addMagneticEffect(); // Disabled for better readability
-</script>
+  </script>
 
-<style>
-  .typing-text {
-    color: #ffe895;
-    font-weight: 600;
-  }
-
-  .typing-text::after {
-    content: "|";
-    color: #ffe895;
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%,
-    50% {
-      opacity: 1;
+  <style>
+    .typing-text {
+      color: #ffe895;
+      font-weight: 600;
     }
-    51%,
-    100% {
-      opacity: 0;
+
+    .typing-text::after {
+      content: "|";
+      color: #ffe895;
+      animation: blink 1s infinite;
     }
-  }
-</style>
+
+    @keyframes blink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
