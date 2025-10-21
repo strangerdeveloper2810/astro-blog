@@ -9,11 +9,11 @@ import { socialLinks, homeSocialLinks } from "./social";
 
 export const identity: Identity = {
   name: "Nguyen Hai Trinh",
-  logo: "/ethan.png",
+  logo: "/img/me_2.jpg",
   email: "n.haitrinh2810@gmail.com",
 };
 
-export const openGraphImage: string = "/ethan.png";
+export const openGraphImage: string = "/img/me_2.jpg";
 
 // Google Analytics Configuration
 export const googleAnalytics = {
@@ -41,7 +41,8 @@ export const navBarLinks: NavBarLink[] = [
 // Home (/)
 export const homePageContent: HomePageContent = {
   seo: {
-    title: "Nguyen Hai Trinh | Software Engineer | Frontend Specialist | Backend Developer",
+    title:
+      "Nguyen Hai Trinh | Software Engineer | Frontend Specialist | Backend Developer",
     description:
       "Portfolio of Nguyen Hai Trinh, a Software Engineer specializing in React.js, Vue.js, TypeScript, Go, and Node.js with 3+ years of experience building scalable web applications.",
     image: openGraphImage,
@@ -60,7 +61,7 @@ export const homePageContent: HomePageContent = {
       description:
         "Goal-oriented Software Engineer with strong experience in building scalable web applications using modern technologies. Specializes in frontend development and expanding into backend with Go and Node.js.",
       url: "https://www.ethansoftwaredeveloper.com",
-      image: "https://www.ethansoftwaredeveloper.com/ethan.png",
+      image: "https://www.ethansoftwaredeveloper.com/img/me_2.jpg",
       email: "n.haitrinh2810@gmail.com",
       address: {
         "@type": "PostalAddress",
@@ -158,7 +159,7 @@ export const aboutPageContent: AboutPageContent = {
       alt: "Nguyen Hai Trinh",
     },
     image_r: {
-      url: "/img/Ethan_Nguyen_2.jpg",
+      url: "/img/me_2.jpg",
       alt: "Nguyen Hai Trinh",
     },
   },

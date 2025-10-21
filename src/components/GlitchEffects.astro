@@ -294,18 +294,18 @@
         "✅ ✓ Image built successfully",
         "🎉 Deployment complete! Portfolio is live!",
         "💻 Ready for next development cycle...",
-        "🔍 $ npm run lint",
+        "🔍 $ pnpm run lint",
         "⚡ > Running linter...",
         "✅ ✓ No linting errors found",
-        "📊 $ npm run analyze",
+        "📊 $ pnpm run analyze",
         "⚡ > Analyzing bundle size...",
         "✅ ✓ Bundle analysis complete",
         "🔄 $ git pull origin main",
         "✅ ✓ Latest changes pulled",
-        "🛡️ $ npm audit",
+        "🛡️ $ pnpm audit",
         "⚡ > Running security audit...",
         "✅ ✓ No vulnerabilities found",
-        "📈 $ npm run performance-test",
+        "📈 $ pnpm run performance-test",
         "⚡ > Running performance tests...",
         "✅ ✓ Performance tests passed",
         "🎯 All systems operational!",
@@ -314,7 +314,7 @@
 
       // Add some lines immediately for scroll testing
       const immediateLines = terminalLines.slice(0, 15);
-      immediateLines.forEach((line, index) => {
+      immediateLines.forEach((line) => {
         const lineElement = document.createElement("div");
         lineElement.className = "terminal-line";
         lineElement.textContent = line;
@@ -384,7 +384,7 @@
       animate();
     }
 
-    drawCodeSnippets(frameCount) {
+    drawCodeSnippets(frameCount: number) {
       if (!this.ctx) return;
 
       this.ctx.font = "14px Courier New";
@@ -410,7 +410,7 @@
       }
     }
 
-    drawTechSymbols(frameCount) {
+    drawTechSymbols(frameCount: number) {
       if (!this.ctx) return;
 
       this.ctx.font = "18px Courier New";
@@ -439,7 +439,7 @@
       }
     }
 
-    drawBinaryStreams(frameCount) {
+    drawBinaryStreams(frameCount: number) {
       if (!this.ctx) return;
 
       this.ctx.font = "12px Courier New";
@@ -464,7 +464,7 @@
       }
     }
 
-    drawFloatingElements(frameCount) {
+    drawFloatingElements(frameCount: number) {
       if (!this.ctx) return;
 
       // Draw floating particles
@@ -497,7 +497,7 @@
       }
     }
 
-    drawConnectingLines(frameCount) {
+    drawConnectingLines(frameCount: number) {
       if (!this.ctx) return;
 
       // Draw network-like connections
