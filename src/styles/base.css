@@ -1,6 +1,5 @@
-/* ===== COOL MODERN THEME ===== */
+/* ===== MODERN MESH GRADIENT THEME ===== */
 html {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -8,9 +7,12 @@ html {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+
+  /* Base gradient */
+  background: linear-gradient(135deg, #0a0a1a 0%, #111827 50%, #0f172a 100%);
 }
 
-/* Cool animated gradient background */
+/* Mesh gradient overlay - creates beautiful color blobs */
 html::before {
   content: '';
   position: fixed;
@@ -18,34 +20,25 @@ html::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background:
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
   z-index: -2;
-  animation: gradientShift 20s ease infinite;
+  background:
+    /* Top-left purple/indigo blob */
+    radial-gradient(ellipse 80% 50% at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+    /* Top-right pink/rose blob */
+    radial-gradient(ellipse 60% 40% at 85% 15%, rgba(244, 114, 182, 0.2) 0%, transparent 50%),
+    /* Center-left blue blob */
+    radial-gradient(ellipse 50% 60% at 5% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    /* Center violet blob */
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    /* Bottom-right cyan/teal blob */
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(34, 211, 238, 0.18) 0%, transparent 50%),
+    /* Bottom-left warm accent */
+    radial-gradient(ellipse 50% 40% at 20% 85%, rgba(251, 146, 60, 0.12) 0%, transparent 50%),
+    /* Bottom center purple */
+    radial-gradient(ellipse 80% 40% at 60% 95%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
 }
 
-@keyframes gradientShift {
-
-  0%,
-  100% {
-    transform: translateX(0) translateY(0) scale(1);
-    opacity: 0.8;
-  }
-
-  33% {
-    transform: translateX(-20px) translateY(-10px) scale(1.1);
-    opacity: 0.6;
-  }
-
-  66% {
-    transform: translateX(20px) translateY(10px) scale(0.9);
-    opacity: 0.7;
-  }
-}
-
-/* Subtle grid pattern */
+/* Subtle noise texture for depth */
 html::after {
   content: '';
   position: fixed;
@@ -53,23 +46,10 @@ html::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
   z-index: -1;
-  opacity: 0.4;
-  animation: gridMove 30s linear infinite;
-}
-
-@keyframes gridMove {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(50px, 50px);
-  }
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
 }
 
 .navbar {
@@ -536,117 +516,6 @@ code {
   }
 }
 
-/* ===== CODING BACKGROUND EFFECTS ===== */
-.coding-background {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: -1;
-  background: transparent !important;
-}
-
-.code-snippet {
-  position: absolute;
-  color: rgba(120, 219, 255, 0.3);
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  line-height: 1.4;
-  animation: codeFloat 25s infinite ease-in-out;
-  white-space: pre;
-}
-
-@keyframes codeFloat {
-
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.2;
-  }
-
-  50% {
-    transform: translateY(-50px) translateX(20px);
-    opacity: 0.4;
-  }
-}
-
-.binary-stream {
-  position: absolute;
-  color: rgba(120, 219, 255, 0.2);
-  font-family: 'Courier New', monospace;
-  font-size: 8px;
-  animation: binaryFlow 20s infinite linear;
-  opacity: 0.1;
-}
-
-@keyframes binaryFlow {
-  0% {
-    transform: translateY(100vh) translateX(0);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 0.3;
-  }
-
-  90% {
-    opacity: 0.3;
-  }
-
-  100% {
-    transform: translateY(-100px) translateX(0);
-    opacity: 0;
-  }
-}
-
-.circuit-line {
-  position: absolute;
-  background: linear-gradient(90deg, transparent, rgba(120, 219, 255, 0.1), transparent);
-  height: 1px;
-  animation: circuitPulse 15s infinite ease-in-out;
-}
-
-@keyframes circuitPulse {
-
-  0%,
-  100% {
-    opacity: 0.1;
-    transform: scaleX(1);
-  }
-
-  50% {
-    opacity: 0.3;
-    transform: scaleX(1.2);
-  }
-}
-
-.tech-symbol {
-  position: absolute;
-  color: rgba(120, 119, 198, 0.2);
-  font-size: 16px;
-  animation: symbolFloat 30s infinite ease-in-out;
-}
-
-@keyframes symbolFloat {
-
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.2;
-  }
-
-  33% {
-    transform: translateY(-30px) rotate(120deg);
-    opacity: 0.4;
-  }
-
-  66% {
-    transform: translateY(20px) rotate(240deg);
-    opacity: 0.3;
-  }
-}
-
 /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
 @media (prefers-reduced-motion: reduce) {
 
@@ -664,17 +533,3 @@ code {
   }
 }
 
-/* Test background để kiểm tra */
-.test-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg,
-      rgba(255, 0, 0, 0.1) 0%,
-      rgba(0, 255, 0, 0.1) 50%,
-      rgba(0, 0, 255, 0.1) 100%);
-  z-index: -3;
-  pointer-events: none;
-}

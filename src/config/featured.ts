@@ -2,11 +2,24 @@ import type { FeaturedPost } from "../types/config";
 
 export const featuredPosts: FeaturedPost[] = [
   {
+    title: "AI-Powered Healthcare Platform",
+    description:
+      "Leading frontend development for AI-powered healthcare products, owning frontend architecture, code quality, and delivery standards. Built with React, React Native for mobile, Go & Gin for backend APIs, and Playwright for automation testing.",
+    date: "2025-09-01",
+    url: "https://cognisian.ai/",
+    author: "Nguyen Hai Trinh",
+    image: {
+      url: "/img/cognisian_logo.jpeg",
+      alt: "Cognisian Healthcare Platform",
+    },
+    publisher: "Cognisian",
+  },
+  {
     title: "Trading Nano - Derivatives Trading Platform",
     description:
       "A derivatives trading platform integrated with Vietnam Commodity Exchange APIs featuring Advanced Charts (TradingView) for technical analysis. Built with React 19, GraphQL, WebSocket, and NestJS microservices.",
     date: "2025-04-01",
-    url: "#",
+    url: "https://nano.f1trading.com.vn/",
     author: "Nguyen Hai Trinh",
     image: {
       url: "/img/bolt_logo.jpg",
@@ -19,7 +32,7 @@ export const featuredPosts: FeaturedPost[] = [
     description:
       "Public web + CMS + backend services extending the trading platform with content operations, onboarding, and real-time board prices. Built with Vue 3, TypeScript, Spring Boot, and MySQL.",
     date: "2025-01-01",
-    url: "#",
+    url: "https://f1trading.com.vn",
     author: "Nguyen Hai Trinh",
     image: {
       url: "/img/bolt_logo.jpg",
@@ -32,7 +45,7 @@ export const featuredPosts: FeaturedPost[] = [
     description:
       "End-to-end beauty service booking platform comprising customer-facing web app and salon management dashboard. Built with React.js, TypeScript, MUI, and integrated CI/CD pipeline.",
     date: "2024-12-01",
-    url: "https://komobook.com/",
+    url: "https://mykomo.co/",
     author: "Nguyen Hai Trinh",
     image: {
       url: "/img/komo_logo.svg",

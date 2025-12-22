@@ -1,41 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import { aboutPageContent } from "../config";
+import { aboutPageContent, featuredPosts } from "../config";
 import ResumeItem from "../components/ResumeItem.astro";
 import SocialLinkBox from "../components/SocialLinkBox.astro";
 ---
 
 <Layout seo={aboutPageContent.seo}>
-  <!-- Floating particles background -->
-  <div class="floating-particles">
-    <div
-      class="particle"
-      style="top: 15%; left: 15%; width: 5px; height: 5px; animation-delay: 0s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="top: 25%; right: 25%; width: 3px; height: 3px; animation-delay: 3s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="top: 60%; left: 8%; width: 4px; height: 4px; animation-delay: 5s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="bottom: 20%; right: 15%; width: 6px; height: 6px; animation-delay: 7s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="bottom: 40%; left: 25%; width: 3px; height: 3px; animation-delay: 2s;"
-    >
-    </div>
-  </div>
-
   <section class="mt-10 max-w-2xl mx-auto px-6">
     <div class="animate-fadeInDown">
       <h1 class="text-3xl mb-1">About</h1>
@@ -45,20 +16,21 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
     <div class="mb-14 animate-fadeInUp delay-200">
       <p class="mb-5 sm:text-left scroll-reveal">
         Hello 👋, I'm <span class="font-bold">Nguyen Hai Trinh</span>, a
-        goal-oriented Software Engineer based in Ho Chi Minh City 🇻🇳. With over
-        3 years of experience, I specialize in building scalable web
-        applications using modern technologies, with strong expertise in
-        frontend development and expanding into backend development.
+        goal-oriented Software Engineer based in Ho Chi Minh City 🇻🇳. With 4+
+        years of experience, I specialize in building scalable web applications
+        and leading frontend teams. Currently, I'm leading frontend development
+        for AI-powered healthcare products, working hands-on across web, mobile,
+        and backend development.
       </p>
 
       <p class="mb-5 sm:text-left scroll-reveal">
         I've had the privilege of working across diverse sectors - from
-        derivatives trading platforms and sophisticated banking systems to
-        modern beauty tech and IoT platforms. My expertise lies in architecting
-        scalable frontend systems using <span class="gradient-link"
-          >React.js, Next.js, Vue.js, TypeScript</span
-        >, and I'm currently expanding my backend skills with <span
-          class="gradient-link">Go and Node.js</span
+        AI-powered healthcare platforms and derivatives trading systems to
+        SaaS booking platforms, banking systems, and IoT solutions. My expertise
+        lies in architecting scalable systems using <span class="gradient-link"
+          >React.js, React Native, Next.js, Vue.js, TypeScript</span
+        >, and I'm actively working with backend technologies like <span
+          class="gradient-link">Go, Gin, and Node.js</span
         >.
       </p>
 
@@ -66,16 +38,16 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
         <h3 class="text-xl font-semibold mb-2">🎯 Career Goals:</h3>
         <ul class="list-disc ml-6 space-y-2">
           <li>
-            <strong>3 years:</strong> Become a Senior Frontend Developer, mastering
-            system design and leading frontend best practices
+            <strong>3 years:</strong> Become a Senior Software Engineer, mastering
+            system design and leading engineering best practices across full stack
           </li>
           <li>
             <strong>5 years:</strong> Take on the role of a Tech Lead, driving product
-            and engineering decisions
+            and engineering decisions at scale
           </li>
           <li>
             <strong>7-10 years:</strong> Grow into a Software Architect or Engineering
-            Manager, designing robust, scalable systems
+            Manager, designing robust, scalable systems across large-scale platforms
           </li>
         </ul>
       </div>
@@ -84,15 +56,20 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
         <h3 class="text-xl font-semibold mb-2">🚀 Key Achievements:</h3>
         <ul class="list-disc ml-6 space-y-2">
           <li>
-            Led frontend development for Trading Nano platform with real-time
-            TradingView Advanced Charts integration
+            Leading frontend development for AI-powered healthcare products with
+            React, React Native, and Go backend integration
           </li>
           <li>
-            Built F1 Trading Ecosystem with Vue 3, TypeScript, and Spring Boot
+            Built real-time commodities trading platform with TradingView
+            Advanced Charts and WebSocket communication
           </li>
           <li>
-            Architected KOMO Booking & Admin platforms serving multiple salon
-            chains
+            Led frontend team for KOMO Booking & Admin SaaS platforms serving
+            multiple salon chains across Australia
+          </li>
+          <li>
+            Designed and implemented automation testing with Playwright for
+            production reliability
           </li>
           <li>Developed IoT solutions for smart building management systems</li>
           <li>
@@ -104,15 +81,16 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
       <p class="mb-5 sm:text-left scroll-reveal">
         My technical toolkit includes modern technologies like <strong
           >React.js (v19)</strong
-        >, <strong>Vue.js (v3)</strong>, <strong>TypeScript</strong>, <strong
-          >Redux Toolkit</strong
-        >, <strong>GraphQL</strong>, <strong>TradingView Advanced Charts</strong
-        >, <strong>WebSocket</strong>, <strong>TailwindCSS</strong>, <strong
-          >MUI</strong
-        >, <strong>Ant Design</strong>, <strong>Go</strong>, <strong
-          >Node.js</strong
-        >, and <strong>Docker</strong>. I'm passionate about clean code
-        architecture, performance optimization, and creating delightful user
+        >, <strong>React Native</strong>, <strong>Vue.js (v3)</strong>, <strong
+          >TypeScript</strong
+        >, <strong>Go & Gin</strong>, <strong>GraphQL</strong>, <strong
+          >TradingView Advanced Charts</strong
+        >, <strong>WebSocket</strong>, <strong>Playwright</strong>, <strong
+          >TailwindCSS</strong
+        >, <strong>MUI</strong>, <strong>PostgreSQL</strong>, and <strong
+          >Docker</strong
+        >. I'm passionate about clean code architecture, performance
+        optimization, automation testing, and creating delightful user
         experiences.
       </p>
 
@@ -160,64 +138,31 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
       <div class="mb-8 scroll-reveal">
         <h3 class="text-xl font-semibold mb-4">Featured Projects</h3>
         <div class="space-y-4">
-          <div
-            class="p-4 rounded-lg bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all scroll-reveal"
-          >
-            <h4 class="font-bold mb-2">
-              📈 Trading Nano - Derivatives Trading Platform
-            </h4>
-            <p class="text-sm opacity-90 mb-2">
-              A derivatives trading platform integrated with Vietnam Commodity
-              Exchange APIs featuring TradingView Advanced Charts (not widget)
-              for technical analysis.
-            </p>
-            <ul class="list-disc ml-4 text-sm opacity-80">
-              <li>
-                Built with React 19, GraphQL, WebSocket, and NestJS
-                microservices
-              </li>
-              <li>
-                Integrated TradingView Advanced Charts with custom datafeed
-              </li>
-              <li>Real-time chart updates and synchronized order book</li>
-              <li>Successfully launched to production, serving real traders</li>
-            </ul>
-          </div>
-
-          <div
-            class="p-4 rounded-lg bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all scroll-reveal"
-          >
-            <h4 class="font-bold mb-2">🏎️ F1 Trading Ecosystem</h4>
-            <p class="text-sm opacity-90 mb-2">
-              Public web + CMS + backend services extending the trading platform
-              with content operations, onboarding, and real-time board prices.
-            </p>
-            <ul class="list-disc ml-4 text-sm opacity-80">
-              <li>Built with Vue 3, TypeScript, Spring Boot, and MySQL</li>
-              <li>Role-aware navigation and reusable table/form primitives</li>
-              <li>End-to-end approval workflows with CKEditor 5 integration</li>
-              <li>WebSocket/STOMP channels for real-time board prices</li>
-            </ul>
-          </div>
-
-          <div
-            class="p-4 rounded-lg bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all scroll-reveal"
-          >
-            <h4 class="font-bold mb-2">💅 KOMO Booking & KOMO Admin</h4>
-            <p class="text-sm opacity-90 mb-2">
-              End-to-end beauty service booking platform comprising
-              customer-facing web app and salon management dashboard.
-            </p>
-            <ul class="list-disc ml-4 text-sm opacity-80">
-              <li>
-                Built with React.js, TypeScript, MUI, and integrated CI/CD
-                pipeline
-              </li>
-              <li>Customer booking platform with real-time availability</li>
-              <li>Admin dashboard for multi-branch salon management</li>
-              <li>Staff management and scheduling system</li>
-            </ul>
-          </div>
+          {
+            featuredPosts.map((project) => (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block p-4 rounded-lg bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all scroll-reveal group"
+              >
+                <div class="flex items-start gap-3">
+                  <img
+                    src={project.image.url}
+                    alt={project.image.alt}
+                    class="w-10 h-10 rounded-lg object-cover flex-shrink-0"
+                  />
+                  <div class="flex-1">
+                    <h4 class="font-bold mb-1 group-hover:text-[#ffe895] transition-colors">
+                      {project.title}
+                    </h4>
+                    <p class="text-xs text-gray-400 mb-2">{project.publisher}</p>
+                    <p class="text-sm opacity-90">{project.description}</p>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
         </div>
 
         <div class="mt-6 scroll-reveal">
@@ -225,6 +170,9 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
           <div class="flex flex-wrap gap-2">
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
               >React.js</span
+            >
+            <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
+              >React Native</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
               >Next.js</span
@@ -236,26 +184,23 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
               >TypeScript</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
-              >Redux Toolkit</span
+              >Go & Gin</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
               >GraphQL</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
-              >TradingView</span
+              >WebSocket</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
-              >WebSocket</span
+              >Playwright</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
               >TailwindCSS</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm">MUI</span>
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
-              >Ant Design</span
-            >
-            <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
-              >Spring Boot</span
+              >PostgreSQL</span
             >
             <span class="px-2 py-1 bg-gray-700 rounded-full text-sm"
               >Docker</span

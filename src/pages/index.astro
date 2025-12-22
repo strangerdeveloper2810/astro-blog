@@ -7,35 +7,6 @@ import Link from "../components/Link.astro";
 ---
 
 <Layout seo={homePageContent.seo}>
-  <!-- Floating particles background -->
-  <div class="floating-particles">
-    <div
-      class="particle"
-      style="top: 10%; left: 10%; width: 4px; height: 4px; animation-delay: 0s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="top: 20%; right: 20%; width: 6px; height: 6px; animation-delay: 2s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="top: 50%; left: 5%; width: 3px; height: 3px; animation-delay: 4s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="bottom: 30%; right: 10%; width: 5px; height: 5px; animation-delay: 6s;"
-    >
-    </div>
-    <div
-      class="particle"
-      style="bottom: 10%; left: 30%; width: 4px; height: 4px; animation-delay: 1s;"
-    >
-    </div>
-  </div>
-
   <article class="mt-10 max-w-2xl mx-auto px-6">
     <header class="animate-fadeInDown">
       <h1 class="text-3xl mb-1">{identity.name}</h1>
@@ -99,15 +70,13 @@ import Link from "../components/Link.astro";
         >
           <h2 class="text-xl font-bold mb-4 cyber-text">👋 Hey there!</h2>
           <p class="leading-relaxed">
-            I'm a <strong>Software Engineer</strong> with 3+ years of experience
-            building scalable web applications using modern technologies. I specialize
-            in frontend development and am expanding into backend with <strong
-              class="text-blue-400">React.js</strong
-            >, <strong class="text-blue-400">Vue.js</strong>, <strong
+            I'm a <strong>Software Engineer & Frontend Lead</strong> with 4+ years
+            of experience building scalable web applications and leading frontend
+            teams. Currently leading frontend development for AI-powered healthcare
+            products, working across <strong class="text-blue-400">React</strong>,
+            <strong class="text-blue-400">React Native</strong>, <strong
               class="text-blue-400">TypeScript</strong
-            >, <strong class="text-blue-400">Go</strong>, and <strong
-              class="text-blue-400">Node.js</strong
-            >.
+            >, and <strong class="text-blue-400">Go</strong>.
           </p>
         </div>
 
@@ -118,20 +87,20 @@ import Link from "../components/Link.astro";
           <ul class="space-y-2 list-none">
             <li class="flex items-start gap-2">
               <span class="text-blue-400">▹</span>
-              Led frontend development for Trading Nano platform with real-time TradingView
-              Advanced Charts integration
+              Leading frontend for AI-powered healthcare products with React, React Native
+              & Go backend
             </li>
             <li class="flex items-start gap-2">
               <span class="text-blue-400">▹</span>
-              Built F1 Trading Ecosystem with Vue 3, TypeScript, and Spring Boot
+              Built real-time trading platform with TradingView Advanced Charts & WebSocket
             </li>
             <li class="flex items-start gap-2">
               <span class="text-blue-400">▹</span>
-              Architected KOMO Booking & Admin platforms serving multiple salon chains
+              Led frontend team for KOMO SaaS platforms serving salon chains across Australia
             </li>
             <li class="flex items-start gap-2">
               <span class="text-blue-400">▹</span>
-              Developed IoT solutions for smart building management systems
+              Implemented automation testing with Playwright for production reliability
             </li>
           </ul>
         </div>
@@ -163,15 +132,7 @@ import Link from "../components/Link.astro";
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Redux Toolkit</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
                     >GraphQL</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >TradingView Advanced Charts</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
@@ -185,10 +146,6 @@ import Link from "../components/Link.astro";
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
                     >MUI</span
                   >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Ant Design</span
-                  >
                 </div>
               </div>
 
@@ -197,10 +154,6 @@ import Link from "../components/Link.astro";
                   Mobile Development
                 </h4>
                 <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Flutter</span
-                  >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
                     >React Native</span
@@ -215,7 +168,7 @@ import Link from "../components/Link.astro";
                 <div class="flex flex-wrap gap-2">
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Go</span
+                    >Go & Gin</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
@@ -223,31 +176,15 @@ import Link from "../components/Link.astro";
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Java</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Spring Boot</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Express.js</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >GraphQL</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
                     >REST APIs</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >MySQL</span
+                    >PostgreSQL</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >MongoDB</span
+                    >MySQL</span
                   >
                 </div>
               </div>
@@ -259,7 +196,7 @@ import Link from "../components/Link.astro";
                 <div class="flex flex-wrap gap-2">
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Git</span
+                    >Playwright</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
@@ -267,27 +204,19 @@ import Link from "../components/Link.astro";
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Vite</span
+                    >Git</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Rsbuild</span
+                    >Figma</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Jenkins</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >Bitbucket Pipelines</span
+                    >CI/CD</span
                   >
                   <span
                     class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
                     >Jest</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-[#2a2a2a] rounded-full text-sm border border-[#3a3a3a] hover:border-[#4a4a4a] transition-all"
-                    >ESLint</span
                   >
                 </div>
               </div>
@@ -331,19 +260,14 @@ import Link from "../components/Link.astro";
       </p>
     </div>
   </article>
-
-  <!-- Cool Background Effects -->
-  <div class="floating-particles" id="particles"></div>
-  <div class="coding-background" id="codingBg"></div>
-  <div class="test-background" id="testBg"></div>
 </Layout>
 
 <script>
   // Typing animation
   const roles = [
     "Software Engineer",
-    "Frontend Engineer",
-    "Backend Engineer",
+    "Frontend Lead",
+    "Full Stack Developer",
     "React.js Developer",
   ];
 
@@ -406,236 +330,6 @@ import Link from "../components/Link.astro";
   document.querySelectorAll(".scroll-reveal").forEach((el) => {
     observer.observe(el);
   });
-
-  // Cool floating particles
-  function createParticles() {
-    const particlesContainer = document.getElementById("particles");
-    if (!particlesContainer) return;
-    const particleCount = 15;
-
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement("div");
-      particle.className = "particle";
-
-      // Random size between 2px and 6px
-      const size = Math.random() * 4 + 2;
-      particle.style.width = size + "px";
-      particle.style.height = size + "px";
-
-      // Random position
-      particle.style.left = Math.random() * 100 + "%";
-      particle.style.top = Math.random() * 100 + "%";
-
-      // Random animation delay
-      particle.style.animationDelay = Math.random() * 15 + "s";
-      particle.style.animationDuration = Math.random() * 10 + 10 + "s";
-
-      particlesContainer.appendChild(particle);
-    }
-  }
-
-  // Cool coding background
-  function createCodingBackground() {
-    const codingContainer = document.getElementById("codingBg");
-    if (!codingContainer) return;
-
-    // Code snippets
-    const codeSnippets = [
-      `function createPortfolio() {
-  const skills = ['React', 'Vue', 'TypeScript'];
-  return buildAmazingApp(skills);
-}`,
-      `const engineer = {
-  name: 'Nguyen Hai Trinh',
-  role: 'Software Engineer',
-  experience: '3+ years'
-};`,
-      `import { useState, useEffect } from 'react';
-const [projects, setProjects] = useState([]);
-useEffect(() => {
-  fetchProjects().then(setProjects);
-}, []);`,
-      `class SoftwareEngineer {
-  constructor(name, skills) {
-    this.name = name;
-    this.skills = skills;
-  }
-  
-  build() {
-    return 'Amazing software';
-  }
-}`,
-      `const tradingPlatform = {
-  charts: 'TradingView',
-  realtime: 'WebSocket',
-  framework: 'React 19'
-};`,
-    ];
-
-    // Create code snippets
-    for (let i = 0; i < 6; i++) {
-      const snippet = document.createElement("div");
-      snippet.className = "code-snippet";
-      snippet.textContent = codeSnippets[i % codeSnippets.length];
-
-      snippet.style.left = Math.random() * 80 + 10 + "%";
-      snippet.style.top = Math.random() * 80 + 10 + "%";
-      snippet.style.animationDelay = Math.random() * 25 + "s";
-      snippet.style.animationDuration = Math.random() * 15 + 20 + "s";
-
-      codingContainer.appendChild(snippet);
-    }
-
-    // Hex codes (thay vì binary)
-    for (let i = 0; i < 6; i++) {
-      const hex = document.createElement("div");
-      hex.className = "binary-stream";
-
-      let hexText = "";
-      for (let j = 0; j < 8; j++) {
-        hexText += Math.random() > 0.5 ? "A" : "F";
-        if (j % 2 === 1) hexText += " ";
-      }
-      hex.textContent = hexText;
-
-      hex.style.left = Math.random() * 100 + "%";
-      hex.style.animationDelay = Math.random() * 20 + "s";
-      hex.style.animationDuration = Math.random() * 10 + 15 + "s";
-
-      codingContainer.appendChild(hex);
-    }
-
-    // Circuit lines
-    for (let i = 0; i < 12; i++) {
-      const circuit = document.createElement("div");
-      circuit.className = "circuit-line";
-
-      circuit.style.left = Math.random() * 100 + "%";
-      circuit.style.top = Math.random() * 100 + "%";
-      circuit.style.width = Math.random() * 200 + 100 + "px";
-      circuit.style.transform = `rotate(${Math.random() * 360}deg)`;
-      circuit.style.animationDelay = Math.random() * 15 + "s";
-      circuit.style.animationDuration = Math.random() * 10 + 10 + "s";
-
-      codingContainer.appendChild(circuit);
-    }
-
-    // Tech symbols
-    const symbols = [
-      "</>",
-      "{ }",
-      "()",
-      "[]",
-      "=>",
-      "++",
-      "--",
-      "&&",
-      "||",
-      "==",
-      "!=",
-      "<=",
-      ">=",
-      "/*",
-      "*/",
-      "//",
-    ];
-    for (let i = 0; i < 15; i++) {
-      const symbol = document.createElement("div");
-      symbol.className = "tech-symbol";
-      symbol.textContent = symbols[i % symbols.length];
-
-      symbol.style.left = Math.random() * 100 + "%";
-      symbol.style.top = Math.random() * 100 + "%";
-      symbol.style.animationDelay = Math.random() * 30 + "s";
-      symbol.style.animationDuration = Math.random() * 20 + 20 + "s";
-
-      codingContainer.appendChild(symbol);
-    }
-
-    // API endpoints
-    const endpoints = [
-      "/api/users",
-      "/api/projects",
-      "/api/skills",
-      "/api/contact",
-      "GET /api/data",
-      "POST /api/create",
-      "PUT /api/update",
-      "DELETE /api/remove",
-    ];
-    for (let i = 0; i < 8; i++) {
-      const endpoint = document.createElement("div");
-      endpoint.className = "code-snippet";
-      endpoint.textContent = endpoints[i % endpoints.length];
-      endpoint.style.fontSize = "10px";
-      endpoint.style.color = "rgba(255, 119, 198, 0.3)";
-
-      endpoint.style.left = Math.random() * 100 + "%";
-      endpoint.style.top = Math.random() * 100 + "%";
-      endpoint.style.animationDelay = Math.random() * 25 + "s";
-      endpoint.style.animationDuration = Math.random() * 15 + 20 + "s";
-
-      codingContainer.appendChild(endpoint);
-    }
-
-    // File extensions
-    const extensions = [
-      ".js",
-      ".ts",
-      ".jsx",
-      ".tsx",
-      ".vue",
-      ".html",
-      ".css",
-      ".scss",
-      ".json",
-      ".md",
-      ".yml",
-      ".xml",
-    ];
-    for (let i = 0; i < 12; i++) {
-      const ext = document.createElement("div");
-      ext.className = "tech-symbol";
-      ext.textContent = extensions[i % extensions.length];
-      ext.style.fontSize = "12px";
-      ext.style.color = "rgba(120, 119, 198, 0.3)";
-
-      ext.style.left = Math.random() * 100 + "%";
-      ext.style.top = Math.random() * 100 + "%";
-      ext.style.animationDelay = Math.random() * 30 + "s";
-      ext.style.animationDuration = Math.random() * 20 + 20 + "s";
-
-      codingContainer.appendChild(ext);
-    }
-  }
-
-  // Initialize cool effects
-  createParticles();
-  createCodingBackground();
-
-  // Magnetic effect for interactive elements
-  function addMagneticEffect() {
-    const magneticElements = document.querySelectorAll(
-      ".magnetic, .magnetic-intense",
-    );
-
-    magneticElements.forEach((element) => {
-      element.addEventListener("mousemove", (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
-        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
-
-        (element as HTMLElement).style.transform =
-          `translate(${x * 0.05}px, ${y * 0.05}px)`;
-      });
-
-      element.addEventListener("mouseleave", () => {
-        (element as HTMLElement).style.transform = "translate(0, 0)";
-      });
-    });
-  }
-
-  // addMagneticEffect(); // Disabled for better readability
 </script>
 
 <style>
