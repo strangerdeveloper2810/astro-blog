@@ -168,13 +168,13 @@ const canonicalUrl = seo.canonical || seo.url;
         ))
     }
   </head>
-  <body class="min-h-screen bg-[#090d16] text-[#e2e8f0] antialiased selection:bg-indigo-500 selection:text-white">
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#090d16]/70 border-b border-white/10 transition-all duration-300">
+  <body class="min-h-screen bg-[#070a12] text-[#e2e8f0] antialiased selection:bg-cyan-400 selection:text-black cp-scanlines">
+    <header class="sticky top-0 z-50 backdrop-blur-2xl bg-[#070a12]/80 border-b border-cyan-500/20 shadow-lg shadow-cyan-950/30 transition-all duration-300">
       <div
-        class="px-6 py-4 max-w-4xl mx-auto flex items-center justify-between"
+        class="px-4 sm:px-6 py-3.5 max-w-6xl mx-auto flex items-center justify-between"
       >
         <a href="/" class="flex items-center gap-3 group">
-          <div class="relative p-0.5 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/20">
+          <div class="relative p-0.5 rounded-full bg-gradient-to-r from-cyan-400 via-yellow-300 to-pink-500 group-hover:scale-105 transition-transform duration-300 shadow-md shadow-cyan-400/30">
             <Image
               src={identity.logo}
               alt={identity.name}
@@ -184,15 +184,26 @@ const canonicalUrl = seo.canonical || seo.url;
               decoding="async"
               quality={100}
               densities={[1.5, 2]}
-              class="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#090d16]"
+              class="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#070a12]"
             />
           </div>
-          <span class="font-semibold text-slate-100 tracking-tight group-hover:text-cyan-400 transition-colors hidden sm:inline-block">
-            {identity.name}
-          </span>
+          <div class="flex flex-col">
+            <span class="font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors hidden sm:inline-block font-mono-code text-sm">
+              {identity.name}
+            </span>
+            <span class="text-[9px] font-mono-code text-cyan-400/80 tracking-widest hidden sm:inline-block">
+              SYS.VER // 2.077 // SENIOR_FULLSTACK
+            </span>
+          </div>
         </a>
-        <nav class="ml-auto mr-4 sm:mr-0 navbar">
-          <ul class="hidden sm:flex sm:items-center sm:gap-1.5 bg-slate-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+
+        <nav class="ml-auto mr-4 sm:mr-0 navbar flex items-center gap-3">
+          <div class="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded bg-yellow-400/10 border border-yellow-400/30 text-[10px] font-mono-code text-yellow-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-ping"></span>
+            NEURAL LINK: CONNECTED
+          </div>
+
+          <ul class="hidden sm:flex sm:items-center sm:gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-cyan-500/20 backdrop-blur-md">
             {
               navBarLinks.map((link) => {
                 const isActive =
@@ -201,9 +212,9 @@ const canonicalUrl = seo.canonical || seo.url;
                 return (
                   <li>
                     <a
-                      class={`px-4 py-1.5 rounded-full font-medium text-sm transition-all duration-200 block ${
+                      class={`px-4 py-1.5 rounded-lg font-mono-code font-bold text-xs tracking-wider transition-all duration-200 block ${
                         isActive
-                          ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md shadow-cyan-500/20 font-semibold"
+                          ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 shadow-md shadow-cyan-500/20"
                           : "text-slate-400 hover:text-slate-100 hover:bg-white/5"
                       }`}
                       href={link.url}

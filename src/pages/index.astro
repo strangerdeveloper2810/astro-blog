@@ -19,16 +19,16 @@ import { Icon } from "astro-icon/components";
           <div class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
           <span class="text-xs font-mono-code text-slate-400 ml-2">trinh@loanfactory-macbook ~ % ./init_profile.sh</span>
         </div>
-        <div class="hidden sm:flex items-center gap-2 text-[11px] font-mono-code text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-md border border-cyan-500/30">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-          STATUS: SENIOR FULLSTACK ENGINEER @ LOAN FACTORY
+        <div class="hidden sm:flex items-center gap-2 text-[10px] font-mono-code text-black cp-badge-yellow px-3 py-1 rounded">
+          <span class="w-2 h-2 rounded-full bg-black animate-ping"></span>
+          SYS_STATUS // SENIOR FULLSTACK @ LOAN FACTORY
         </div>
       </div>
 
       <!-- Hero Main Content Inside Terminal -->
       <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div class="md:col-span-8 space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs font-mono-code text-indigo-300">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-yellow-400/10 border border-yellow-400/30 text-xs font-mono-code text-yellow-300">
             <span class="text-cyan-400">const</span> engineer = <span class="text-emerald-400">"Nguyen Hai Trinh"</span>;
           </div>
 
@@ -45,6 +45,20 @@ import { Icon } from "astro-icon/components";
           </p>
 
           <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="https://hr-tool-software.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2.5 bg-[#fcee09] text-black font-mono-code font-bold text-xs tracking-wider uppercase hover:bg-yellow-300 transition-all cp-cut-corner-sm flex items-center gap-2 shadow-lg shadow-yellow-400/20"
+            >
+              <span>🚀</span> Launch HR-Tool Live ↗
+            </a>
+            <a
+              href="/about"
+              class="px-5 py-2.5 bg-slate-800 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/10 font-mono-code font-bold text-xs tracking-wider uppercase transition-all cp-cut-corner-sm flex items-center gap-2"
+            >
+              <span>👤</span> Access Profile HUD →
+            </a>
             {
               homePageContent.homeSocialLinks.map((link) => (
                 <SocialLink
