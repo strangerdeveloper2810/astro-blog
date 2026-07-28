@@ -74,47 +74,56 @@ import { Icon } from "astro-icon/components";
 
         <div class="md:col-span-4 flex flex-col items-center justify-center">
           <div class="relative group">
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 opacity-75 blur-md group-hover:opacity-100 transition duration-500"></div>
-            <Image
-              src="/img/me_2.jpg"
-              alt="Nguyen Hai Trinh Profile"
-              width={180}
-              height={180}
-              loading="eager"
-              decoding="async"
-              quality={100}
-              densities={[1.5, 2]}
-              class="relative rounded-xl border-2 border-slate-950 object-cover w-[160px] h-[160px] md:w-[170px] md:h-[170px]"
-            />
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-yellow-400 via-cyan-400 to-pink-500 opacity-90 blur-md group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+            <div class="relative cp-cut-corner bg-[#070a12] p-1">
+              <Image
+                src="/img/me_2.jpg"
+                alt="Nguyen Hai Trinh Profile"
+                width={180}
+                height={180}
+                loading="eager"
+                decoding="async"
+                quality={100}
+                densities={[1.5, 2]}
+                class="cp-cut-corner object-cover w-[160px] h-[160px] md:w-[170px] md:h-[170px] border border-cyan-400/50"
+              />
+            </div>
+            <div class="absolute -bottom-2 -right-2 bg-[#fcee09] text-black text-[9px] font-mono-code font-extrabold px-2 py-0.5 rounded shadow-md">
+              CYBER_OPERATIVE
+            </div>
           </div>
-          <div class="mt-3 text-center">
-            <p class="text-xs font-mono-code text-slate-400">Ho Chi Minh City, VN 🇻🇳</p>
-            <p class="text-[11px] font-mono-code text-indigo-400">B.S. Software Engineering</p>
+          <div class="mt-4 text-center">
+            <p class="text-xs font-mono-code text-cyan-300 font-bold">Ho Chi Minh City, VN 🇻🇳</p>
+            <p class="text-[11px] font-mono-code text-yellow-300/90">B.S. Software Engineering</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Engineering Impact Stats Grid -->
+    <!-- Engineering Impact Stats Grid (Cyberpunk HUD Badges) -->
     <section class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fadeInUp delay-200">
-      <div class="cyber-card p-4 rounded-xl text-center space-y-1">
-        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-cyan-400">4+ Yrs</p>
-        <p class="text-xs text-slate-300">Engineering Experience</p>
+      <div class="cyber-card p-4 rounded-xl text-center space-y-1 cp-cut-corner-sm border-l-2 border-l-[#fcee09]">
+        <span class="text-[9px] font-mono-code text-slate-400 tracking-widest block">METRIC // 01</span>
+        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-[#fcee09] drop-shadow-sm">4+ Yrs</p>
+        <p class="text-xs text-slate-300 font-mono-code">Engineering Experience</p>
       </div>
 
-      <div class="cyber-card p-4 rounded-xl text-center space-y-1">
-        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-indigo-400">~250ms</p>
-        <p class="text-xs text-slate-300">StarRocks OLAP Latency</p>
+      <div class="cyber-card p-4 rounded-xl text-center space-y-1 cp-cut-corner-sm border-l-2 border-l-[#00f0ff]">
+        <span class="text-[9px] font-mono-code text-slate-400 tracking-widest block">METRIC // 02</span>
+        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-[#00f0ff] drop-shadow-sm">~250ms</p>
+        <p class="text-xs text-slate-300 font-mono-code">StarRocks OLAP Latency</p>
       </div>
 
-      <div class="cyber-card p-4 rounded-xl text-center space-y-1">
-        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-emerald-400">20K+</p>
-        <p class="text-xs text-slate-300">OHLC Trading Records/Sec</p>
+      <div class="cyber-card p-4 rounded-xl text-center space-y-1 cp-cut-corner-sm border-l-2 border-l-[#ff0055]">
+        <span class="text-[9px] font-mono-code text-slate-400 tracking-widest block">METRIC // 03</span>
+        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-[#ff0055] drop-shadow-sm">20K+</p>
+        <p class="text-xs text-slate-300 font-mono-code">OHLC Records/Sec</p>
       </div>
 
-      <div class="cyber-card p-4 rounded-xl text-center space-y-1">
-        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-purple-400">55+ PRs</p>
-        <p class="text-xs text-slate-300">HR-Tool Solo SaaS</p>
+      <div class="cyber-card p-4 rounded-xl text-center space-y-1 cp-cut-corner-sm border-l-2 border-l-emerald-400">
+        <span class="text-[9px] font-mono-code text-slate-400 tracking-widest block">METRIC // 04</span>
+        <p class="text-2xl md:text-3xl font-extrabold font-mono-code text-emerald-400 drop-shadow-sm">55+ PRs</p>
+        <p class="text-xs text-slate-300 font-mono-code">HR-Tool Solo SaaS</p>
       </div>
     </section>
 

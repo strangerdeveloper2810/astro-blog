@@ -15,6 +15,7 @@ interface Props {
 const { seo } = Astro.props;
 const ogImageUrl = seo.image;
 const canonicalUrl = seo.canonical || seo.url;
+import GlitchEffects from "../components/GlitchEffects.astro";
 ---
 
 <script>
@@ -296,5 +297,6 @@ const canonicalUrl = seo.canonical || seo.url;
 
     <!-- Scroll Animations -->
     <ScrollAnimations />
+    <GlitchEffects />
   </body>
 </html>
