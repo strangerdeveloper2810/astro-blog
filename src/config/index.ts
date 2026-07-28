@@ -41,15 +41,14 @@ export const navBarLinks: NavBarLink[] = [
 // Home (/)
 export const homePageContent: HomePageContent = {
   seo: {
-    title:
-      "Nguyen Hai Trinh | Software Engineer | Frontend Lead | Full Stack Developer",
+    title: "Nguyen Hai Trinh | Senior Fullstack Engineer (Go + React)",
     description:
-      "Portfolio of Nguyen Hai Trinh, a Software Engineer and Frontend Lead with 4+ years of experience building scalable web applications, mobile apps, and backend APIs using React, React Native, TypeScript, and Go.",
+      "Portfolio of Nguyen Hai Trinh, Senior Fullstack Engineer (Go + React) at Loan Factory with 4+ years of experience engineering high-impact web applications, mobile apps, and backend APIs across fintech, mortgage/lending, healthcare, IoT, and banking.",
     image: openGraphImage,
     domain: "www.ethansoftwaredeveloper.com",
     url: "https://www.ethansoftwaredeveloper.com",
     keywords:
-      "Software Engineer, Frontend Lead, Full Stack Developer, React.js, React Native, TypeScript, Go, AI Healthcare, Trading Platform, SaaS, Mobile Development, Portfolio, Nguyen Hai Trinh",
+      "Loan Factory, Senior Fullstack Engineer, Go, React 19, Next.js 16, React Native, TypeScript, Nest.js, Fintech, Mortgage Lending, AI Healthcare, Portfolio, Nguyen Hai Trinh",
     canonical: "https://www.ethansoftwaredeveloper.com",
     author: "Nguyen Hai Trinh",
     type: "website",
@@ -57,12 +56,13 @@ export const homePageContent: HomePageContent = {
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Nguyen Hai Trinh",
-      jobTitle: "Software Engineer (Frontend Lead)",
+      jobTitle: "Senior Fullstack Engineer (Go + React)",
       description:
-        "Goal-oriented Software Engineer with 4+ years of experience leading frontend teams and building scalable web applications, mobile apps, and backend APIs. Currently leading frontend development for AI-powered healthcare products.",
+        "Senior Fullstack Engineer (Go + React) with 4+ years delivering high-impact web applications across fintech, mortgage lending, healthcare, IoT, and banking. Specialized in Go, React ecosystem, and type-safe architectures.",
       url: "https://www.ethansoftwaredeveloper.com",
       image: "https://www.ethansoftwaredeveloper.com/img/me_2.jpg",
       email: "n.haitrinh2810@gmail.com",
+      telephone: "+84384945724",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Ho Chi Minh City",
@@ -70,21 +70,23 @@ export const homePageContent: HomePageContent = {
       },
       worksFor: {
         "@type": "Organization",
-        name: "Cognisian",
+        name: "Loan Factory",
       },
       knowsAbout: [
-        "React.js",
+        "Go (Gin)",
+        "React 19",
+        "Next.js 16",
         "React Native",
-        "Next.js",
-        "Vue.js",
         "TypeScript",
-        "Go",
+        "Nest.js",
+        "tRPC",
         "GraphQL",
         "WebSocket",
         "TradingView",
         "Playwright",
-        "Figma",
         "PostgreSQL",
+        "StarRocks OLAP",
+        "Docker",
       ],
       sameAs: [
         "https://github.com/strangerdeveloper2810",
@@ -92,15 +94,21 @@ export const homePageContent: HomePageContent = {
       ],
     },
   },
-  role: "Software Engineer (Frontend Lead)",
-  company: "Cognisian",
+  role: "Fullstack Engineer (Go + React), Senior",
+  company: "Loan Factory",
   description:
-    "Hi, I'm Nguyen Hai Trinh, a goal-oriented Software Engineer with 4+ years of experience building scalable web applications and leading frontend teams. Currently, I lead frontend development for AI-powered healthcare products at Cognisian, working across the full stack with React, React Native, and Go. I've delivered real-time trading platforms, SaaS booking systems, banking applications, and IoT solutions. My expertise spans modern frontend technologies, mobile development, and backend APIs. In the next 3 years, I aim to become a Senior Software Engineer, and within 5 years, I plan to take on a Tech Lead role driving product and engineering decisions.",
+    "Hi, I'm Nguyen Hai Trinh, a Senior Fullstack Engineer (Go + React) with 4+ years of experience engineering high-concurrency web platforms, mobile solutions, and backend microservices. Currently at Loan Factory building mortgage & fintech solutions with Go and React. My career spans fintech lending platforms, AI-powered healthcare products at Cognisian, real-time commodity derivatives trading engines, multi-tenant SaaS platforms, and IoT systems.",
   socialLinks,
   homeSocialLinks,
   links: [
     { title: "About", url: "/about", icon: "mdi:account-circle" },
     { title: "Skills", url: "/skills", icon: "mdi:code-braces" },
+    {
+      title: "HR-Tool Live",
+      url: "https://hr-tool-software.netlify.app",
+      icon: "mdi:web",
+      external: true,
+    },
     {
       title: "GitHub",
       url: "https://github.com/strangerdeveloper2810",
@@ -113,14 +121,14 @@ export const homePageContent: HomePageContent = {
 // About (/about)
 export const aboutPageContent: AboutPageContent = {
   seo: {
-    title: "About | Nguyen Hai Trinh | Software Engineer | Frontend Lead",
+    title: "About | Nguyen Hai Trinh | Senior Fullstack Engineer (Go + React)",
     description:
-      "About Nguyen Hai Trinh - Software Engineer and Frontend Lead from Vietnam with 4+ years of experience. Currently leading frontend development for AI-powered healthcare products. Skilled in React, React Native, TypeScript, and Go.",
+      "About Nguyen Hai Trinh - Senior Fullstack Engineer (Go + React) at Loan Factory. 4+ years of experience across fintech lending, healthcare, derivatives trading, smart IoT platforms, and banking systems.",
     image: openGraphImage,
     domain: "www.ethansoftwaredeveloper.com",
     url: "https://www.ethansoftwaredeveloper.com/about",
     keywords:
-      "About Nguyen Hai Trinh, Software Engineer Vietnam, Frontend Lead, React Developer, React Native, Go Developer, AI Healthcare, Trading Platform Developer",
+      "About Nguyen Hai Trinh, Loan Factory, Senior Fullstack Engineer, Go Developer, React Developer, Next.js 16, React Native, Nest.js, Fintech, Mortgage Lending",
     canonical: "https://www.ethansoftwaredeveloper.com/about",
     author: "Nguyen Hai Trinh",
     type: "webpage",
@@ -129,14 +137,14 @@ export const aboutPageContent: AboutPageContent = {
       "@type": "AboutPage",
       name: "About Nguyen Hai Trinh",
       description:
-        "About Nguyen Hai Trinh - Software Engineer and Frontend Lead from Vietnam with 4+ years of experience. Currently leading frontend development for AI-powered healthcare products.",
+        "Senior Fullstack Engineer (Go + React) at Loan Factory with 4+ years delivering high-impact web & mobile applications.",
       url: "https://www.ethansoftwaredeveloper.com/about",
       mainEntity: {
         "@type": "Person",
         name: "Nguyen Hai Trinh",
-        jobTitle: "Software Engineer (Frontend Lead)",
+        jobTitle: "Senior Fullstack Engineer (Go + React)",
         description:
-          "Goal-oriented Software Engineer with 4+ years of experience leading frontend teams and building scalable web applications, mobile apps, and backend APIs",
+          "Senior Fullstack Engineer (Go + React) at Loan Factory with 4+ years of experience leading fullstack architectures, web/mobile development, and backend microservices.",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Ho Chi Minh City",
@@ -145,16 +153,13 @@ export const aboutPageContent: AboutPageContent = {
       },
     },
   },
-  subtitle: "Thanks for stopping by! Here's a bit about me.",
+  subtitle: "Specialized in Go, React ecosystem, type-safe architectures, and high-concurrency systems.",
   about: {
     description: `
-      Goal-oriented Software Engineer with 4+ years of experience building scalable web applications and leading frontend teams.
-      Currently leading frontend development for AI-powered healthcare products, working hands-on across web (React), mobile (React Native), and backend (Go & Gin).
-      I've delivered high-impact solutions including real-time trading platforms, SaaS booking systems, banking applications, and IoT platforms.
-      In the next 3 years, I aim to become a Senior Software Engineer, mastering system design and leading engineering best practices.
-      Within 5 years, I plan to take on the role of a Tech Lead, driving product and engineering decisions.
-      My long-term vision is to grow into a Software Architect or Engineering Manager,
-      designing robust, scalable, and maintainable software systems across large-scale platforms.
+      I am a Senior Fullstack Engineer (Go + React) with 4+ years of experience delivering high-impact web applications, cross-platform mobile apps, and backend APIs across fintech, healthcare, IoT, and banking.
+      Currently working at Loan Factory as a Senior Fullstack Engineer (Go + React), engineering scalable financial software. Previously led frontend architecture for AI healthcare products at Cognisian (React 19, React Native 0.82, Next.js 16, Go/Gin).
+      Holding a B.S. in Software Engineering from Van Lang University (2019–2024), my career highlights include architecting a licensed MXV derivatives trading platform from scratch (Nano Trading Platform), delivering clinical HIS & analytics engines for healthcare, building dual-app IoT smart-meter management portals (8TEN), and engineering multi-tenant AI HR/ATS SaaS platforms (HR-Tool).
+      My ultimate career goal is to evolve from Senior Engineer → Tech Lead (product & engineering leadership) → Software Architect (large-scale system design).
     `,
     image_l: {
       url: "/img/ethan_nguyen_1.jpg",
@@ -167,19 +172,28 @@ export const aboutPageContent: AboutPageContent = {
   },
   work: {
     description:
-      "Here are some of the companies and projects I've worked on recently:",
+      "Professional employment history & engineering roles:",
     items: [
       {
-        title: "Software Engineer (Frontend Lead)",
+        title: "Fullstack Engineer (Go + React), Senior",
+        company: {
+          name: "Loan Factory",
+          url: "https://www.loanfactory.com/",
+          image: "/img/loanfactory_logo.svg",
+        },
+        date: "Aug 2026 – Present",
+      },
+      {
+        title: "Fullstack Engineer (Senior Frontend)",
         company: {
           name: "Cognisian",
           url: "https://cognisian.com/",
           image: "/img/cognisian_logo.jpeg",
         },
-        date: "Sep 2025 – Present",
+        date: "Sep 2025 – Aug 2026",
       },
       {
-        title: "Software Engineer",
+        title: "Fullstack Engineer (Senior Frontend) — Contract",
         company: {
           name: "Bolt Technologies",
           url: "https://tornadoinvest.com.vn/",
@@ -188,25 +202,16 @@ export const aboutPageContent: AboutPageContent = {
         date: "Apr 2025 – Dec 2025",
       },
       {
-        title: "Frontend Lead",
+        title: "Middle Frontend Engineer",
         company: {
-          name: "EDS (Eye Design Sydney)",
-          url: "https://komobook.com/",
-          image: "/img/komo_logo.svg",
-        },
-        date: "Dec 2024 – Dec 2025",
-      },
-      {
-        title: "Software Engineer",
-        company: {
-          name: "WNE Solutions",
+          name: "WNE (Water & Environment Solutions SG)",
           url: "https://www.wnesolutions.sg/",
           image: "/img/wne_logo.jpeg",
         },
         date: "Nov 2023 – May 2025",
       },
       {
-        title: "Software Engineer",
+        title: "Frontend Engineer",
         company: {
           name: "ISB Vietnam Company (IVC)",
           url: "https://isb-vietnam.com.vn/",
@@ -215,9 +220,9 @@ export const aboutPageContent: AboutPageContent = {
         date: "Dec 2022 – Nov 2023",
       },
       {
-        title: "Software Engineer | Teaching Assistant",
+        title: "Software Engineer (Part Time)",
         company: {
-          name: "CyberSoft Academy",
+          name: "Cybersoft Technology Co., Ltd",
           url: "https://cybersoft.edu.vn/",
           image: "/img/cybersoft_logo.jpeg",
         },
@@ -226,7 +231,7 @@ export const aboutPageContent: AboutPageContent = {
     ],
   },
   connect: {
-    description: `I'm always interested in meeting new people and learning new things. Feel free to connect with me on any of the following platforms.`,
+    description: `Interested in technical collaboration, high-impact projects, or engineering discussions? Connect with me directly:`,
     links: socialLinks,
   },
 };
@@ -234,4 +239,4 @@ export const aboutPageContent: AboutPageContent = {
 export * from "./social";
 export * from "./featured";
 export * from "./github";
-export * from "./skills";
+

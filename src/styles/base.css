@@ -1,18 +1,16 @@
-/* ===== MODERN MESH GRADIENT THEME ===== */
+/* ===== HIGH-TECH CYBER ENGINEER THEME ===== */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 html {
-  font-family: "DM Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
-
-  /* Base gradient */
-  background: linear-gradient(135deg, #0a0a1a 0%, #111827 50%, #0f172a 100%);
+  background-color: #050811;
+  color: #e2e8f0;
 }
 
-/* Mesh gradient overlay - creates beautiful color blobs */
+/* Subtle Cyber Tech Grid & Mesh Ambient Overlay */
 html::before {
   content: '';
   position: fixed;
@@ -21,24 +19,17 @@ html::before {
   width: 100%;
   height: 100%;
   z-index: -2;
-  background:
-    /* Top-left purple/indigo blob */
-    radial-gradient(ellipse 80% 50% at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
-    /* Top-right pink/rose blob */
-    radial-gradient(ellipse 60% 40% at 85% 15%, rgba(244, 114, 182, 0.2) 0%, transparent 50%),
-    /* Center-left blue blob */
-    radial-gradient(ellipse 50% 60% at 5% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
-    /* Center violet blob */
-    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    /* Bottom-right cyan/teal blob */
-    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(34, 211, 238, 0.18) 0%, transparent 50%),
-    /* Bottom-left warm accent */
-    radial-gradient(ellipse 50% 40% at 20% 85%, rgba(251, 146, 60, 0.12) 0%, transparent 50%),
-    /* Bottom center purple */
-    radial-gradient(ellipse 80% 40% at 60% 95%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle 600px at 15% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 80%),
+    radial-gradient(circle 700px at 85% 25%, rgba(99, 102, 241, 0.14) 0%, transparent 80%),
+    radial-gradient(circle 500px at 50% 85%, rgba(168, 85, 247, 0.1) 0%, transparent 80%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+  pointer-events: none;
 }
 
-/* Subtle noise texture for depth */
+/* Subtle Glowing Tech Beam Effect */
 html::after {
   content: '';
   position: fixed;
@@ -47,9 +38,46 @@ html::after {
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   pointer-events: none;
+}
+
+.font-mono-code {
+  font-family: 'Fira Code', monospace !important;
+}
+
+/* High-tech terminal card styling */
+.terminal-window {
+  background: rgba(10, 15, 29, 0.85);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(6, 182, 212, 0.1);
+  backdrop-filter: blur(16px);
+  border-radius: 1rem;
+}
+
+.terminal-header {
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.25rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cyber-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(10, 15, 29, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-card:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.2), inset 0 0 15px rgba(6, 182, 212, 0.05);
 }
 
 .navbar {

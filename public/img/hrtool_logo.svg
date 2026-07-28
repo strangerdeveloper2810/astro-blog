@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Rounded Square Badge -->
+  <rect x="25" y="25" width="450" height="450" rx="100" fill="url(#hrGrad)" />
+  <rect x="35" y="35" width="430" height="430" rx="90" fill="#090d16" opacity="0.8" />
+
+  <!-- Center HR Monogram & Spark Icon -->
+  <g transform="translate(100, 110)">
+    <!-- Candidate / User Group Icon & Shield -->
+    <path d="M150 70 A 50 50 0 1 0 150 170 A 50 50 0 1 0 150 70 Z M90 240 C90 200 120 185 150 185 C180 185 210 200 210 240 L210 255 L90 255 Z" fill="url(#hrGrad)" />
+    
+    <!-- AI Spark Stars -->
+    <path d="M 230 60 Q 230 85 255 85 Q 230 85 230 110 Q 230 85 205 85 Q 230 85 230 60 Z" fill="#38bdf8" />
+    <path d="M 70 180 Q 70 195 85 195 Q 70 195 70 210 Q 70 195 55 195 Q 70 195 70 180 Z" fill="#818cf8" />
+    
+    <!-- HR Monogram Text -->
+    <text x="150" y="300" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Fira Code', sans-serif" font-weight="900" font-size="64" fill="#ffffff" letter-spacing="4">HR-TOOL</text>
+  </g>
+</svg>

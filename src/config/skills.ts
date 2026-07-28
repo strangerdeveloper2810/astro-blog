@@ -3,14 +3,14 @@ import { openGraphImage } from "./index";
 
 export const skillsPageContent: SkillsPageContent = {
   seo: {
-    title: "Skills | Nguyen Hai Trinh | Frontend Developer",
+    title: "Technical Skills & Arsenal | Nguyen Hai Trinh | Senior Fullstack Engineer",
     description:
-      "Technical skills and expertise of Nguyen Hai Trinh - React.js, Next.js, Vue.js, TypeScript, Redux, GraphQL, TradingView, WebSocket, and more. 3+ years of frontend development experience.",
+      "Technical skill arsenal of Nguyen Hai Trinh matching professional resume: Languages, Frontend, Styling, UI Libraries, State Management, Form State Management, Backend, Testing, Tooling, and AI-Assisted Development.",
     image: openGraphImage,
     domain: "www.ethansoftwaredeveloper.com",
     url: "https://www.ethansoftwaredeveloper.com/skills",
     keywords:
-      "React.js, Next.js, Vue.js, TypeScript, Redux, GraphQL, TradingView, WebSocket, TailwindCSS, MUI, Ant Design, Spring Boot, Docker, Frontend Developer",
+      "HTML5, CSS3, SCSS, JavaScript, TypeScript, React.js, Next.js, React Native, Tailwind CSS, Styled Components, MUI, AntD, Shadcn/UI, Redux, Zustand, TanStack Query, Apollo Client, Formik, React-Hook-Form, Yup, Zod, Node.js, Nest.js, Go, Gin, Spring Boot 3, PostgreSQL, MySQL, Redis, Jest, React Testing Library, Playwright, Webpack, Vite, Rsbuild, Docker, Git, Jenkins, ESLint, Prettier, Biome, Cursor Pro, Claude Code Max, Gemini CLI",
     canonical: "https://www.ethansoftwaredeveloper.com/skills",
     author: "Nguyen Hai Trinh",
     type: "webpage",
@@ -18,189 +18,125 @@ export const skillsPageContent: SkillsPageContent = {
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Nguyen Hai Trinh",
-      jobTitle: "Frontend Developer",
+      jobTitle: "Senior Fullstack Engineer (Go + React)",
       knowsAbout: [
+        "TypeScript",
         "React.js",
         "Next.js",
-        "Vue.js",
-        "TypeScript",
-        "Redux",
-        "GraphQL",
-        "TradingView",
-        "WebSocket",
-        "TailwindCSS",
+        "React Native",
+        "Go (Gin)",
+        "Nest.js",
+        "Tailwind CSS",
+        "Shadcn/UI",
         "MUI",
-        "Ant Design",
-        "Spring Boot",
+        "TanStack Query",
+        "PostgreSQL",
         "Docker",
+        "Playwright",
       ],
       url: "https://www.ethansoftwaredeveloper.com/skills",
     },
   },
-  title: "Technical Skills & Expertise",
-  subtitle: "Technologies and tools I use to build scalable applications",
+  title: "Technical Skills & Arsenal",
+  subtitle: "Full-stack technologies, frameworks, and AI tools mapped directly from my resume",
   categories: [
     {
-      name: "Language",
+      name: "Languages",
       skills: [
         {
           name: "HTML5",
           icon: "logos:html-5",
-          description: "Semantic markup, accessibility, web standards",
+          description: "Semantic markup, SEO optimization, accessibility (a11y)",
         },
         {
           name: "CSS3",
           icon: "logos:css-3",
-          description: "Flexbox, Grid, animations, responsive design",
+          description: "Modern layout positioning, Flexbox, Grid, keyframe animations",
         },
         {
-          name: "Sass",
+          name: "SCSS",
           icon: "logos:sass",
-          description: "CSS preprocessor, variables, nesting, mixins",
+          description: "CSS preprocessor, mixins, variables, nested style structures",
         },
         {
-          name: "JavaScript",
+          name: "JavaScript (ES6+)",
           icon: "logos:javascript",
-          description: "ES6+, async/await, modules, performance optimization",
+          description: "Async/await, ES modules, Web Workers, DOM API, Event Loop",
         },
         {
           name: "TypeScript",
           icon: "logos:typescript-icon",
-          description: "Type-safe development, advanced types, generics",
-        },
-        {
-          name: "Java",
-          icon: "logos:java",
-          description: "Enterprise applications, object-oriented programming",
+          description: "Strict type safety, generics, utility types, schema validation",
         },
       ],
     },
     {
-      name: "Frontend Development",
+      name: "Frontend",
       skills: [
         {
           name: "React.js",
           icon: "logos:react",
-          description:
-            "Component architecture, hooks, performance optimization, React 19",
+          description: "Component architecture, Hooks, React 19, Fiber, Concurrent Mode",
         },
         {
-          name: "Next.js",
+          name: "Next.js (Pages Router & App Router)",
           icon: "logos:nextjs-icon",
-          description: "SSR/SSG, API routes, performance optimization",
+          description: "Pages Router & App Router, SSR/SSG, Server Components, next-intl",
         },
         {
-          name: "Vue.js",
-          icon: "logos:vue",
-          description: "Composition API, Pinia, reactive programming, Vue 3",
-        },
-        {
-          name: "React Router",
-          icon: "simple-icons:reactrouter",
-          description: "Client-side routing, nested routes, navigation",
-        },
-        {
-          name: "TradingView",
-          icon: "heroicons:chart-bar",
-          description:
-            "Advanced Charts integration, custom datafeed, real-time updates",
-        },
-        {
-          name: "WebSocket",
-          icon: "heroicons:signal",
-          description:
-            "Real-time communication, Socket.io, live data streaming",
-        },
-      ],
-    },
-    {
-      name: "Backend Development",
-      skills: [
-        {
-          name: "Express.js",
-          icon: "simple-icons:express",
-          description: "RESTful APIs, middleware, authentication",
-        },
-        {
-          name: "Spring Boot",
-          icon: "logos:spring-icon",
-          description: "Enterprise Java framework, microservices, REST APIs",
-        },
-      ],
-    },
-    {
-      name: "Mobile Development",
-      skills: [
-        {
-          name: "Flutter",
-          icon: "logos:flutter",
-          description: "Cross-platform mobile apps, Dart programming",
-        },
-        {
-          name: "React Native",
+          name: "React Native (RN CLI)",
           icon: "logos:react",
-          description: "Mobile development with React, native modules",
+          description: "Fabric renderer, NativeWind v4, mobile EMR viewer, vitals tracking",
+        },
+        {
+          name: "Vue 3",
+          icon: "logos:vue",
+          description: "Composition API, Pinia, PrimeVue, eKYC admin dashboards",
+        },
+        {
+          name: "Astro.js",
+          icon: "logos:astro-icon",
+          description: "Content-driven web framework, island architecture, zero JS by default, SSG & SSR",
         },
       ],
     },
     {
-      name: "Architecture & Design Patterns",
+      name: "Styling",
       skills: [
         {
-          name: "Clean Architecture",
-          icon: "heroicons:building-library",
-          description:
-            "Separation of concerns, dependency inversion, maintainable code structure",
+          name: "Tailwind CSS",
+          icon: "logos:tailwindcss-icon",
+          description: "Utility-first CSS, custom design systems, responsive design",
         },
         {
-          name: "Component Architecture",
-          icon: "heroicons:puzzle-piece",
-          description: "Reusable components, composition patterns, props flow",
+          name: "SCSS (CSS Preprocessor)",
+          icon: "logos:sass",
+          description: "Modular styling, mixins, variable tokens, nesting",
         },
         {
-          name: "RESTful APIs",
-          icon: "heroicons:cloud-arrow-up",
-          description: "REST principles, HTTP methods, stateless design",
-        },
-        {
-          name: "Microservices",
-          icon: "heroicons:server-stack",
-          description: "Service decomposition, inter-service communication",
+          name: "Styled Components",
+          icon: "simple-icons:styledcomponents",
+          description: "CSS-in-JS, dynamic prop styling, themed component systems",
         },
       ],
     },
     {
-      name: "Database & ORM",
+      name: "UI Library",
       skills: [
         {
-          name: "MongoDB",
-          icon: "logos:mongodb-icon",
-          description: "Document modeling, aggregation, indexing",
+          name: "MUI",
+          icon: "logos:material-ui",
+          description: "Enterprise admin portals, customizable themes, dark mode",
         },
         {
-          name: "PostgreSQL",
-          icon: "logos:postgresql",
-          description: "Relational design, complex queries, optimization",
+          name: "AntD",
+          icon: "logos:ant-design",
+          description: "Internal admin systems, complex data tables, form controls",
         },
         {
-          name: "MySQL",
-          icon: "logos:mysql-icon",
-          description: "Database design, stored procedures, optimization",
-        },
-        {
-          name: "Prisma",
-          icon: "simple-icons:prisma",
-          description: "Type-safe database client, schema management",
-        },
-        {
-          name: "TypeORM",
-          icon: "simple-icons:typeorm",
-          description: "TypeScript ORM, entity management",
-        },
-        {
-          name: "Hibernate/JPA",
-          icon: "simple-icons:hibernate",
-          description: "Java ORM, entity mapping, database operations",
+          name: "Shadcn/UI",
+          icon: "simple-icons:shadcnui",
+          description: "Radix UI primitives, accessible dialogs, popovers, data tables",
         },
       ],
     },
@@ -208,194 +144,179 @@ export const skillsPageContent: SkillsPageContent = {
       name: "State Management",
       skills: [
         {
-          name: "Redux Toolkit",
+          name: "Redux (Toolkit, Thunk, Saga)",
           icon: "logos:redux",
-          description: "Complex state management, middleware, DevTools",
+          description: "Global state slices, Redux Saga side-effects, immutable state",
         },
         {
-          name: "Redux Saga",
-          icon: "heroicons:cog-6-tooth",
-          description: "Side effects management, async flow control",
+          name: "Zustand",
+          icon: "heroicons:cube",
+          description: "Lightweight atomic state management, store subscriptions",
         },
         {
           name: "TanStack Query",
-          icon: "simple-icons:reactquery",
-          description: "Server state management, caching, synchronization",
+          icon: "logos:react-query-icon",
+          description: "Server state caching, optimistic updates, background refetching",
         },
         {
-          name: "Apollo Client",
-          icon: "simple-icons:apollographql",
-          description: "GraphQL client, caching, real-time subscriptions",
-        },
-        {
-          name: "GraphQL",
+          name: "Apollo Client (GraphQL)",
           icon: "logos:graphql",
-          description: "Schema design, resolvers, API optimization",
-        },
-        {
-          name: "Pinia",
-          icon: "heroicons:cube",
-          description: "Vue.js state management, composition API integration",
+          description: "Multi-endpoint GraphQL client, dynamic service routing, subscriptions",
         },
       ],
     },
     {
-      name: "Form Handling",
+      name: "Form State Management",
       skills: [
-        {
-          name: "React Hook Form",
-          icon: "simple-icons:reacthookform",
-          description: "Performant forms, minimal re-renders, validation",
-        },
         {
           name: "Formik",
           icon: "simple-icons:formik",
-          description: "Form state management, validation, error handling",
+          description: "Form state handling, submission flow, error handling",
+        },
+        {
+          name: "React-Hook-Form",
+          icon: "simple-icons:reacthookform",
+          description: "Performant form state, minimal re-renders, uncontrolled inputs",
         },
         {
           name: "Yup",
           icon: "heroicons:shield-check",
-          description: "Schema validation, form validation rules",
+          description: "Object schema validation, custom validation rules",
+        },
+        {
+          name: "Zod",
+          icon: "simple-icons:zod",
+          description: "TypeScript-first schema declaration and validation",
         },
       ],
     },
     {
-      name: "Performance & Optimization",
+      name: "Backend",
       skills: [
         {
-          name: "Code Splitting",
-          icon: "heroicons:scissors",
-          description: "Dynamic imports, bundle optimization, lazy loading",
+          name: "Node.js",
+          icon: "logos:nodejs-icon",
+          description: "Asynchronous I/O, server-side JavaScript runtime",
         },
         {
-          name: "Tree Shaking",
-          icon: "heroicons:funnel",
-          description: "Dead code elimination, bundle size optimization",
+          name: "Nest.js",
+          icon: "logos:nestjs",
+          description: "TypeORM microservices, JWT auth, SSE streaming metrics",
         },
         {
-          name: "Bundle Analysis",
-          icon: "heroicons:chart-pie",
-          description: "Webpack bundle analyzer, performance monitoring",
+          name: "Go / Gin",
+          icon: "logos:go",
+          description: "High-concurrency REST APIs, backend hooks pattern, DB migrations",
         },
         {
-          name: "Web Vitals",
-          icon: "heroicons:bolt",
-          description: "Core Web Vitals optimization, performance metrics",
+          name: "Spring Boot 3",
+          icon: "logos:spring-icon",
+          description: "Java microservices, enterprise REST backend services",
+        },
+        {
+          name: "PostgreSQL",
+          icon: "logos:postgresql",
+          description: "Transactional CRUD, indexed queries, ON DELETE CASCADE, TypeORM",
+        },
+        {
+          name: "MySQL",
+          icon: "logos:mysql-icon",
+          description: "Relational database, query optimization, database indexing",
+        },
+        {
+          name: "Redis",
+          icon: "logos:redis",
+          description: "Redis BullMQ background queue, in-memory caching, rate-limiting",
         },
       ],
     },
     {
-      name: "UI Libraries & Design",
-      skills: [
-        {
-          name: "Material-UI (MUI)",
-          icon: "logos:material-ui",
-          description: "React components, theming, design systems",
-        },
-        {
-          name: "Ant Design",
-          icon: "simple-icons:antdesign",
-          description: "Enterprise-class UI components, Ant Design Vue",
-        },
-        {
-          name: "TailwindCSS",
-          icon: "logos:tailwindcss-icon",
-          description: "Utility-first CSS, custom designs, responsive layouts",
-        },
-        {
-          name: "PrimeVue",
-          icon: "heroicons:squares-2x2",
-          description: "Vue.js UI component library, rich components",
-        },
-        {
-          name: "SCSS",
-          icon: "logos:sass",
-          description: "CSS preprocessor, variables, nesting, mixins",
-        },
-      ],
-    },
-    {
-      name: "Development Workflow",
-      skills: [
-        {
-          name: "pnpm",
-          icon: "simple-icons:pnpm",
-          description: "Fast, disk space efficient package manager",
-        },
-        {
-          name: "Yarn",
-          icon: "logos:yarn",
-          description: "Package management, workspaces, dependency resolution",
-        },
-        {
-          name: "Biome",
-          icon: "simple-icons:biome",
-          description: "Fast formatter and linter, ESLint/Prettier alternative",
-        },
-        {
-          name: "ESLint",
-          icon: "simple-icons:eslint",
-          description: "Code linting, static analysis, code quality",
-        },
-      ],
-    },
-    {
-      name: "Development Tools",
-      skills: [
-        {
-          name: "Git",
-          icon: "logos:git-icon",
-          description: "Version control, branching strategies, collaboration",
-        },
-        {
-          name: "Docker",
-          icon: "logos:docker-icon",
-          description: "Containerization, multi-stage builds, compose",
-        },
-        {
-          name: "Webpack",
-          icon: "logos:webpack",
-          description: "Module bundling, optimization, configuration",
-        },
-        {
-          name: "Vite",
-          icon: "logos:vitejs",
-          description: "Fast build tool, development server",
-        },
-        {
-          name: "Rsbuild",
-          icon: "logos:rust",
-          description: "Build tool for modern web applications",
-        },
-        {
-          name: "Jenkins",
-          icon: "logos:jenkins",
-          description: "CI/CD pipelines, automated deployment",
-        },
-        {
-          name: "Bitbucket Pipelines",
-          icon: "logos:bitbucket",
-          description: "CI/CD pipelines, automated deployment",
-        },
-      ],
-    },
-    {
-      name: "Testing & Methodology",
+      name: "Testing",
       skills: [
         {
           name: "Jest",
           icon: "logos:jest",
-          description: "Unit testing, mocking, test coverage",
+          description: "JavaScript unit testing framework, test runners, assertion mocks",
         },
         {
           name: "React Testing Library",
           icon: "simple-icons:testinglibrary",
-          description: "Component testing, user-centric tests",
+          description: "Component DOM testing, user event simulations",
         },
         {
-          name: "Agile/Scrum",
-          icon: "simple-icons:scrumalliance",
-          description: "Agile methodology, sprint planning, team collaboration",
+          name: "Playwright",
+          icon: "logos:playwright",
+          description: "Automated E2E insurance claim & billing flows, cross-browser testing",
+        },
+      ],
+    },
+    {
+      name: "Tooling",
+      skills: [
+        {
+          name: "Webpack",
+          icon: "logos:webpack",
+          description: "Module bundling, code splitting, loader configurations",
+        },
+        {
+          name: "Vite",
+          icon: "logos:vitejs",
+          description: "Next-gen frontend tooling, lightning-fast HMR",
+        },
+        {
+          name: "Rsbuild",
+          icon: "/img/rsbuild_logo.svg",
+          description: "Rspack-powered build engine, cutting CI build time 5–10x",
+        },
+        {
+          name: "Docker",
+          icon: "logos:docker-icon",
+          description: "Multi-arch Docker images, standalone clinic bundles, containerization",
+        },
+        {
+          name: "Git",
+          icon: "logos:git-icon",
+          description: "Branching strategies, commit history, rebase, PR workflows",
+        },
+        {
+          name: "Jenkins",
+          icon: "logos:jenkins",
+          description: "Automated CI/CD pipelines, staging and production deployments",
+        },
+        {
+          name: "ESLint",
+          icon: "logos:eslint",
+          description: "Code linting and static code analysis",
+        },
+        {
+          name: "Prettier",
+          icon: "logos:prettier",
+          description: "Automated code formatting and style enforcement",
+        },
+        {
+          name: "Biome",
+          icon: "heroicons:sparkles",
+          description: "Ultra-fast JavaScript/TypeScript linter and formatter",
+        },
+      ],
+    },
+    {
+      name: "AI-Assisted Development",
+      skills: [
+        {
+          name: "Cursor Pro",
+          icon: "/img/cursor_logo.svg",
+          description: "AI-powered IDE, rapid feature prototyping, codebase context search",
+        },
+        {
+          name: "Claude Code Max",
+          icon: "/img/claude_code_logo.svg",
+          description: "Anthropic Claude agentic coding, automated refactoring, complex logic",
+        },
+        {
+          name: "Gemini CLI",
+          icon: "logos:google-gemini",
+          description: "Google DeepMind AI assistant for developer workflows",
         },
       ],
     },

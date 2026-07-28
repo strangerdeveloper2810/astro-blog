@@ -10,20 +10,34 @@ const { skill } = Astro.props;
 ---
 
 <div
-  class="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-44 flex flex-col"
+  class="group relative cyber-card rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 h-44 flex flex-col justify-between overflow-hidden border border-white/10 bg-slate-900/60 backdrop-blur-md skill-card-item"
+  data-skill-name={skill.name.toLowerCase()}
+  data-skill-desc={skill.description?.toLowerCase() || ""}
 >
   <!-- Icon & Name -->
-  <div class="flex items-center gap-4 mb-4">
-    <div class="relative">
-      <Icon
-        name={skill.icon}
-        width={48}
-        height={48}
-        class="transition-transform duration-300 group-hover:scale-110"
-      />
+  <div class="flex items-center gap-3.5 mb-2">
+    <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 transition-colors flex items-center justify-center min-w-12 h-12">
+      {
+        skill.icon.startsWith("/") ? (
+          <img
+            src={skill.icon}
+            alt={skill.name}
+            width={32}
+            height={32}
+            class="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110"
+          />
+        ) : (
+          <Icon
+            name={skill.icon}
+            width={32}
+            height={32}
+            class="transition-transform duration-300 group-hover:scale-110"
+          />
+        )
+      }
     </div>
-    <div class="flex-1">
-      <h3 class="font-semibold text-lg text-gray-900 dark:text-white">
+    <div class="flex-1 min-w-0">
+      <h3 class="font-bold text-sm sm:text-base text-white group-hover:text-cyan-400 transition-colors truncate">
         {skill.name}
       </h3>
     </div>
@@ -33,32 +47,16 @@ const { skill } = Astro.props;
   <div class="flex-1">
     {
       skill.description && (
-        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+        <p class="text-xs text-slate-300 leading-relaxed line-clamp-3">
           {skill.description}
         </p>
       )
     }
   </div>
 
-  <!-- Hover effect overlay -->
+  <!-- Hover accent overlay -->
   <div
-    class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
   >
-  </div>
-
-  <!-- Floating particles effect on hover -->
-  <div class="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
-    <div
-      class="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"
-    >
-    </div>
-    <div
-      class="absolute bottom-6 left-6 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping"
-    >
-    </div>
-    <div
-      class="absolute top-1/2 right-8 w-1.5 h-1.5 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-bounce"
-    >
-    </div>
   </div>
 </div>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- High Fidelity Rsbuild Crab Wizard Mascot Logo -->
+  <g transform="translate(250, 250)">
+    <!-- Wizard Hat Back Cone -->
+    <path d="M -40,-130 C -20,-220 80,-200 100,-130 C 120,-70 80,-40 30,-30 Z" fill="#9333ea" stroke="#2e1065" stroke-width="12"/>
+    <!-- Yellow Hat Band & Stars -->
+    <path d="M -70,-60 C -40,-90 70,-80 110,-40 C 120,-20 50,0 -70,-60 Z" fill="#facc15" stroke="#2e1065" stroke-width="10"/>
+    <polygon points="40,-85 45,-75 55,-75 47,-68 50,-58 40,-64 30,-58 33,-68 25,-75 35,-75" fill="#ffffff"/>
+
+    <!-- Coral Pink Crab Body -->
+    <ellipse cx="-10" cy="40" rx="145" ry="115" fill="#ff8a75" stroke="#2e1065" stroke-width="14"/>
+
+    <!-- Big Cute Oval Eyes -->
+    <ellipse cx="-55" cy="0" rx="38" ry="48" fill="#ffffff" stroke="#2e1065" stroke-width="10"/>
+    <ellipse cx="35" cy="0" rx="38" ry="48" fill="#ffffff" stroke="#2e1065" stroke-width="10"/>
+    <!-- Pupils looking left -->
+    <ellipse cx="-45" cy="5" rx="20" ry="26" fill="#1e1b4b"/>
+    <ellipse cx="45" cy="5" rx="20" ry="26" fill="#1e1b4b"/>
+    <circle cx="-40" cy="-5" r="7" fill="#ffffff"/>
+    <circle cx="50" cy="-5" r="7" fill="#ffffff"/>
+
+    <!-- Left Claw Holding Book -->
+    <!-- Purple Spellbook -->
+    <g transform="translate(-160, -90) rotate(-12)">
+      <!-- Book Back Cover -->
+      <rect x="-65" y="-85" width="120" height="160" rx="16" fill="#7e22ce" stroke="#2e1065" stroke-width="12"/>
+      <!-- Book Pages -->
+      <rect x="-55" y="-75" width="105" height="140" rx="8" fill="#f8fafc" stroke="#2e1065" stroke-width="8"/>
+      <!-- Rspack Yellow/Orange Diamond Symbol on Book Cover -->
+      <polygon points="-5,-30 25,-10 -5,10 -35,-10" fill="#f59e0b" stroke="#2e1065" stroke-width="6"/>
+      <polygon points="-5,10 25,-10 25,15 -5,35" fill="#d97706" stroke="#2e1065" stroke-width="6"/>
+      <polygon points="-5,10 -35,-10 -35,15 -5,35" fill="#b45309" stroke="#2e1065" stroke-width="6"/>
+    </g>
+
+    <!-- Left Claw Layer Over Book -->
+    <path d="M-150,10 C-200,-20 -220,70 -160,95 Z" fill="#ff8a75" stroke="#2e1065" stroke-width="12"/>
+
+    <!-- Right Claw -->
+    <path d="M125,25 C185,0 200,85 145,115 C170,75 155,45 125,25 Z" fill="#ff8a75" stroke="#2e1065" stroke-width="12"/>
+
+    <!-- Cute Smile -->
+    <path d="M-25,65 Q-5,85 15,65" fill="none" stroke="#2e1065" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -3,130 +3,183 @@ import Layout from "../layouts/Layout.astro";
 import SkillsCategory from "../components/SkillsCategory.astro";
 import { skillsPageContent } from "../config/skills";
 import { Icon } from "astro-icon/components";
+
+// Calculate total skill count
+const totalSkills = skillsPageContent.categories.reduce(
+  (acc, cat) => acc + cat.skills.length,
+  0
+);
 ---
 
 <Layout seo={skillsPageContent.seo}>
-  <div class="relative px-6 py-12">
-    <!-- Enhanced background decorations -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div
-        class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl float-animation"
-      >
+  <div class="relative px-4 sm:px-6 py-10 max-w-7xl mx-auto space-y-10">
+    <!-- Header Section -->
+    <header class="text-center space-y-4 animate-fadeInDown">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono-code text-cyan-300">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        TECHNICAL ARSENAL & TOOLING
       </div>
-      <div
-        class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl float-reverse"
-      >
-      </div>
-      <div
-        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-green-500/3 rounded-full blur-3xl rotate-slow"
-      >
-      </div>
-    </div>
 
-    <div class="max-w-6xl mx-auto relative">
-      <!-- Header Section -->
-      <header class="text-center mb-16 animate-fadeInDown">
-        <!-- Title with gradient and enhanced animation -->
-        <h1
-          class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight hover:scale-105 transition-transform duration-300"
-        >
-          {skillsPageContent.title}
-        </h1>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+        {skillsPageContent.title}
+      </h1>
 
-        <!-- Subtitle with scroll reveal -->
-        <p
-          class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed scroll-reveal"
-        >
-          {skillsPageContent.subtitle}
-        </p>
+      <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+        {skillsPageContent.subtitle}
+      </p>
 
-        <!-- Animated divider -->
-        <div class="mt-8 flex justify-center scroll-reveal">
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
-          >
-          </div>
+      <!-- Engineering Stats Bar -->
+      <div class="flex flex-wrap items-center justify-center gap-6 pt-4 text-xs font-mono-code">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/60 border border-white/10 text-slate-200">
+          <span class="text-cyan-400 font-bold text-base">{totalSkills}+</span>
+          <span class="text-slate-400">Mastered Technologies</span>
         </div>
-      </header>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/60 border border-white/10 text-slate-200">
+          <span class="text-indigo-400 font-bold text-base">{skillsPageContent.categories.length}</span>
+          <span class="text-slate-400">Specialized Domains</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/60 border border-white/10 text-slate-200">
+          <span class="text-emerald-400 font-bold text-base">4+ Yrs</span>
+          <span class="text-slate-400">Production Experience</span>
+        </div>
+      </div>
+    </header>
 
-      <!-- Skills Categories with enhanced animations -->
-      <main data-stagger="200">
-        {
-          skillsPageContent.categories.map((category, index) => (
-            <div class={`animate-fadeInUp delay-${(index + 1) * 200}`}>
-              <SkillsCategory category={category} index={index} />
-            </div>
-          ))
-        }
-      </main>
-
-      <!-- Enhanced Bottom Note Section -->
-      <section
-        class="text-center mt-16 py-12 bg-gray-50 dark:bg-gray-800/50 rounded-2xl hover-lift animate-fadeInUp delay-800 scroll-reveal"
-      >
-        <div class="mb-4">
-          <Icon
-            name="mdi:lightbulb"
-            width={48}
-            height={48}
-            class="mx-auto text-yellow-500 animate-pulse"
+    <!-- Interactive Control Bar: Search & Category Filter Tabs -->
+    <div class="sticky top-20 z-30 p-4 rounded-2xl bg-slate-900/80 border border-white/10 backdrop-blur-xl space-y-4 shadow-2xl shadow-cyan-950/20">
+      <div class="flex flex-col md:flex-row items-center gap-4 justify-between">
+        <!-- Live Instant Search Box -->
+        <div class="relative w-full md:w-80">
+          <input
+            type="text"
+            id="skill-search-input"
+            placeholder="Search technologies... (e.g. React, Go, Docker)"
+            class="w-full px-4 py-2.5 pl-10 rounded-xl bg-slate-800/80 border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 font-mono-code transition-all"
           />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
         </div>
-        <p
-          class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
-        >
-          I believe in continuous learning and staying updated with evolving
-          technologies. These skills represent my journey in software
-          development and my commitment to building quality applications.
-        </p>
-      </section>
+
+        <!-- Filter Category Tabs -->
+        <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs font-mono-code">
+          <button
+            class="cat-filter-btn px-3 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold hover:bg-cyan-500/30 transition-all active-tab"
+            data-target="all"
+          >
+            All ({totalSkills})
+          </button>
+          {skillsPageContent.categories.map((cat, idx) => (
+            <button
+              class="cat-filter-btn px-3 py-1.5 rounded-lg bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10 transition-all"
+              data-target={`cat-${idx}`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
+
+    <!-- Main Categories List -->
+    <main id="skills-main-container" class="space-y-4">
+      {
+        skillsPageContent.categories.map((category, index) => (
+          <SkillsCategory category={category} index={index} />
+        ))
+      }
+    </main>
+
+    <!-- Empty Search State -->
+    <div id="no-search-results" class="hidden text-center py-16 space-y-3">
+      <div class="text-4xl">🔍</div>
+      <h3 class="text-lg font-bold text-white">No matching technologies found</h3>
+      <p class="text-sm text-slate-400">Try searching for another keyword like "React", "Next", "Nest", "Go", or "Docker".</p>
+    </div>
+
+    <!-- Bottom Note Section -->
+    <section class="cyber-card p-6 rounded-2xl text-center space-y-3">
+      <div class="inline-flex items-center gap-2 text-cyan-400 font-mono-code text-xs">
+        <Icon name="mdi:lightbulb" width={18} height={18} class="text-yellow-400" />
+        <span>ENGINEERING PHILOSOPHY</span>
+      </div>
+      <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
+        I believe in continuous learning, type safety, clean code patterns, and maintaining high performance across both frontend web/mobile interfaces and backend microservices.
+      </p>
+    </section>
   </div>
 
+  <!-- Interactive Search & Tab Filtering Script -->
   <script>
-    // Additional page-specific animations
     document.addEventListener("DOMContentLoaded", () => {
-      // Add hover effects to skill categories
-      const categories = document.querySelectorAll('section[class*="mb-16"]');
-      categories.forEach((category) => {
-        category.addEventListener("mouseenter", () => {
-          (category as HTMLElement).style.transform = "translateY(-5px)";
-        });
-        category.addEventListener("mouseleave", () => {
-          (category as HTMLElement).style.transform = "translateY(0)";
+      const searchInput = document.getElementById("skill-search-input") as HTMLInputElement;
+      const filterBtns = document.querySelectorAll(".cat-filter-btn");
+      const categorySections = document.querySelectorAll(".skill-category-section");
+      const noResults = document.getElementById("no-search-results");
+
+      // Filter by Category Button
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => {
+            b.classList.remove("bg-cyan-500/20", "text-cyan-300", "border-cyan-500/40", "font-semibold");
+            b.classList.add("bg-white/5", "text-slate-300", "border-white/10");
+          });
+
+          btn.classList.remove("bg-white/5", "text-slate-300", "border-white/10");
+          btn.classList.add("bg-cyan-500/20", "text-cyan-300", "border-cyan-500/40", "font-semibold");
+
+          const target = btn.getAttribute("data-target");
+          if (target === "all") {
+            categorySections.forEach((sec) => ((sec as HTMLElement).style.display = "block"));
+          } else {
+            categorySections.forEach((sec) => {
+              if (sec.id === target) {
+                (sec as HTMLElement).style.display = "block";
+              } else {
+                (sec as HTMLElement).style.display = "none";
+              }
+            });
+          }
         });
       });
 
-      // Add parallax effect to background elements
-      window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelectorAll(
-          ".float-animation, .float-reverse",
-        );
-        const speed = 0.5;
+      // Instant Real-time Search Filter
+      searchInput?.addEventListener("input", (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+        let totalVisible = 0;
 
-        parallax.forEach((element) => {
-          const yPos = -(scrolled * speed);
-          (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
+        categorySections.forEach((sec) => {
+          const cardsInSec = sec.querySelectorAll(".skill-card-item");
+          let secVisibleCount = 0;
+
+          cardsInSec.forEach((card) => {
+            const name = card.getAttribute("data-skill-name") || "";
+            const desc = card.getAttribute("data-skill-desc") || "";
+
+            if (!query || name.includes(query) || desc.includes(query)) {
+              (card as HTMLElement).style.display = "flex";
+              secVisibleCount++;
+              totalVisible++;
+            } else {
+              (card as HTMLElement).style.display = "none";
+            }
+          });
+
+          if (secVisibleCount > 0) {
+            (sec as HTMLElement).style.display = "block";
+          } else {
+            (sec as HTMLElement).style.display = "none";
+          }
         });
+
+        if (noResults) {
+          if (totalVisible === 0) {
+            noResults.classList.remove("hidden");
+          } else {
+            noResults.classList.add("hidden");
+          }
+        }
       });
     });
   </script>
 </Layout>
-
-<style>
-  /* Additional custom animations */
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .float-animation {
-    animation: float 6s ease-in-out infinite;
-  }
-</style>

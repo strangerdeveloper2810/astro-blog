@@ -9,24 +9,28 @@ const { title, company, date } = Astro.props;
 
 <a
   href={company.url}
-  class="py-3 flex items-center justify-between group-hover:opacity-60 hover:!opacity-100 transition-opacity"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="p-4 mb-3 rounded-xl bg-slate-900/40 border border-white/5 hover:border-cyan-500/30 flex items-center justify-between transition-all duration-300 group hover:shadow-lg hover:shadow-cyan-500/5 hover:-translate-y-0.5"
 >
   <div class="flex items-center gap-4">
-    <Image
-      src={company.image}
-      alt={company.name}
-      width={40}
-      height={40}
-      loading="lazy"
-      decoding="async"
-      quality={100}
-      densities={[1.5, 2]}
-      class="rounded-full w-[40px] h-[40px] object-cover"
-    />
+    <div class="p-1 rounded-full bg-white/10 group-hover:bg-cyan-500/20 transition-colors">
+      <Image
+        src={company.image}
+        alt={company.name}
+        width={40}
+        height={40}
+        loading="lazy"
+        decoding="async"
+        quality={100}
+        densities={[1.5, 2]}
+        class="rounded-full w-[36px] h-[36px] object-cover"
+      />
+    </div>
     <div>
-      <h3 class="font-medium">{title}</h3>
-      <p class="text-sm opacity-60">{company.name}</p>
+      <h3 class="font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors text-sm sm:text-base">{title}</h3>
+      <p class="text-xs sm:text-sm text-slate-400">{company.name}</p>
     </div>
   </div>
-  <p class="text-sm opacity-60">{date}</p>
+  <p class="text-xs sm:text-sm text-indigo-300 font-medium whitespace-nowrap ml-2">{date}</p>
 </a>

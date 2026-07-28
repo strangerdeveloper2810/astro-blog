@@ -10,30 +10,27 @@ interface Props {
 const { category, index } = Astro.props;
 ---
 
-<section class="mb-16">
+<section class="mb-14 skill-category-section" data-category-name={category.name.toLowerCase()} id={`cat-${index}`}>
   <!-- Category Header -->
-  <div class="text-center mb-12">
-    <h2
-      class="text-3xl font-bold text-gray-900 dark:text-white mb-4 relative inline-block"
-    >
-      {category.name}
-      <!-- Decorative underline -->
-      <div
-        class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
-      >
-      </div>
-    </h2>
+  <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <div class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400/50"></div>
+      <h2 class="text-xl sm:text-2xl font-bold text-white font-mono-code tracking-tight">
+        {category.name}
+      </h2>
+    </div>
+    <span class="text-xs font-mono-code px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-semibold">
+      {category.skills.length} {category.skills.length === 1 ? 'Skill' : 'Skills'}
+    </span>
   </div>
 
   <!-- Skills Grid -->
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-  >
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
     {
       category.skills.map((skill, skillIndex) => (
         <div
           class="animate-fade-in-up"
-          style={`animation-delay: ${index * 100 + skillIndex * 50}ms`}
+          style={`animation-delay: ${index * 80 + skillIndex * 40}ms`}
         >
           <SkillCard skill={skill} />
         </div>

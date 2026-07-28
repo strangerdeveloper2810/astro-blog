@@ -1,0 +1,526 @@
+---
+import { Icon } from "astro-icon/components";
+import "@styles/base.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CYBER_FOLIO // Nguyen Hai Trinh</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --color-bg-base: #04050e;
+        --color-cyan: #00f0ff;
+        --color-purple: #b55fe6;
+        --color-glass: rgba(10, 11, 24, 0.7);
+        --color-border: rgba(0, 240, 255, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        background-color: var(--color-bg-base);
+        color: #d1d5db;
+        font-family: 'DM Sans', sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* Vibrant background mesh gradient */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background: 
+          radial-gradient(ellipse 60% 40% at 85% 15%, rgba(181, 95, 230, 0.22) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 50% at 15% 85%, rgba(0, 240, 255, 0.18) 0%, transparent 60%),
+          radial-gradient(circle at 50% 50%, rgba(4, 5, 12, 0.98) 0%, rgba(2, 3, 7, 1) 100%);
+      }
+
+      /* Fine dot grid overlay */
+      .dot-grid {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image: radial-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+      }
+
+      /* Scanning line overlay */
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(to bottom, rgba(0, 240, 255, 0) 0%, rgba(0, 240, 255, 0.12) 50%, rgba(0, 240, 255, 0) 100%);
+        z-index: 50;
+        pointer-events: none;
+        animation: scanline-sweep 12s linear infinite;
+        will-change: transform;
+      }
+
+      @keyframes scanline-sweep {
+        0% { transform: translateY(-10vh); }
+        100% { transform: translateY(110vh); }
+      }
+
+      /* Font rules */
+      .font-kanit {
+        font-family: 'Kanit', sans-serif !important;
+      }
+      .font-mono-tech {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-weight: 400;
+      }
+
+      /* Title gradients */
+      .cyan-purple-gradient {
+        background: linear-gradient(90deg, #00f0ff 0%, #b55fe6 100%);
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        color: transparent !important;
+        display: inline-block;
+      }
+
+      /* Giant Master Card (Left Column) */
+      .master-hud-container {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(9, 10, 22, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      /* Interactive Glass Panels */
+      .glass-panel {
+        background: rgba(13, 14, 30, 0.65);
+        border: 1px solid rgba(0, 240, 255, 0.15);
+        border-radius: 12px;
+        backdrop-filter: blur(12px);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transform-style: preserve-3d;
+        will-change: transform, box-shadow;
+      }
+
+      /* Tactical Corners pseudo-elements */
+      .tactical-corners {
+        position: relative;
+      }
+      .tactical-corners::before, .tactical-corners::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-color: var(--color-cyan);
+        border-style: solid;
+        pointer-events: none;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+      .tactical-corners::before {
+        top: -1px;
+        left: -1px;
+        border-width: 1.5px 0 0 1.5px;
+        border-top-left-radius: 6px;
+      }
+      .tactical-corners::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 1.5px 1.5px 0;
+        border-bottom-right-radius: 6px;
+      }
+
+      .glass-panel:hover {
+        border-color: rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), inset 0 0 10px rgba(0, 240, 255, 0.04);
+      }
+      .glass-panel:hover .tactical-corners::before, .glass-panel:hover .tactical-corners::after {
+        opacity: 1;
+        width: 14px;
+        height: 14px;
+        filter: drop-shadow(0 0 3px var(--color-cyan));
+      }
+
+      /* Metre filling */
+      .hud-meter-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--color-cyan) 0%, var(--color-purple) 100%);
+        border-radius: 2px;
+        box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+      }
+
+      /* Custom animations */
+      .glow-soft {
+        text-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+      }
+
+      /* Pulse Indicator */
+      .status-pulse {
+        position: relative;
+        display: inline-flex;
+        height: 8px;
+        width: 8px;
+      }
+      .status-pulse::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background-color: var(--color-cyan);
+        animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        opacity: 0.75;
+      }
+      .status-pulse::after {
+        content: '';
+        position: relative;
+        border-radius: 9999px;
+        height: 8px;
+        width: 8px;
+        background-color: var(--color-cyan);
+      }
+      @keyframes ping {
+        75%, 100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen relative p-4 md:p-8 flex items-center justify-center">
+    <div class="dot-grid"></div>
+    <div class="scanline"></div>
+
+    <!-- MAIN INTERACTIVE GRID CONTAINER -->
+    <div class="w-full max-w-[1350px] grid lg:grid-cols-[13fr_11fr] gap-6 items-start">
+      
+      <!-- ================= LEFT COLUMN: MASTER CONTROL CARD ================= -->
+      <div class="master-hud-container p-6 md:p-8 space-y-8 relative">
+        
+        <!-- Header Section (Inside Card) -->
+        <header class="flex items-center justify-between border-b border-[rgba(255,255,255,0.06)] pb-5 font-mono-tech text-[10px] tracking-wider text-gray-500">
+          <a href="#" class="flex items-center gap-1.5 font-bold text-white text-xs">
+            <span class="text-[var(--color-cyan)]">&lt;</span>
+            <span>CYBER_FOLIO</span>
+            <span class="text-[var(--color-cyan)]">/&gt;</span>
+          </a>
+          
+          <nav class="flex items-center gap-4 sm:gap-6">
+            <a href="#" class="text-[var(--color-cyan)] font-bold">HOME</a>
+            <span>//</span>
+            <a href="#projects" class="hover:text-white transition-colors">PROJECTS</a>
+            <span>//</span>
+            <a href="#skills" class="hover:text-white transition-colors">SKILLS</a>
+            <span>//</span>
+            <a href="#contact" class="hover:text-white transition-colors">CONTACT</a>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <span class="status-pulse"></span>
+            <span class="hidden sm:inline text-[var(--color-cyan)] text-[9px] bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] px-1.5 py-0.5 rounded">SYS_OK</span>
+          </div>
+        </header>
+
+        <!-- Huge Display Text Area -->
+        <div class="space-y-4">
+          <div class="font-mono-tech text-[11px] text-[var(--color-cyan)] bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] px-3 py-1.5 rounded w-fit">
+            <span>[ SYSTEM: NGUYEN_HAI_TRINH_PORTFOLIO ]</span>
+          </div>
+          
+          <div class="space-y-2">
+            <h1 class="text-4xl sm:text-6xl font-extrabold font-kanit tracking-tight leading-none text-white glow-soft">
+              NGUYEN HAI TRINH
+            </h1>
+            <h2 class="text-xl sm:text-2xl font-bold font-kanit cyan-purple-gradient uppercase tracking-wide">
+              FRONT-END LEAD SOFTWARE ENGINEER
+            </h2>
+            <p class="font-mono-tech text-xs text-gray-500 tracking-wide">// BUILDING IMMERSIVE WEBSITES & APPLICATIONS</p>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-4 font-mono-tech text-xs pt-2">
+            <a href="#projects" class="px-6 py-3 bg-[var(--color-cyan)] text-black font-bold rounded shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] hover:bg-white transition-all">
+              EXPLORE PROJECTS
+            </a>
+            <a href="#cv" class="px-6 py-3 border border-[rgba(255,255,255,0.15)] hover:border-[var(--color-cyan)] rounded text-white font-semibold transition-all">
+              DOWNLOAD CV
+            </a>
+          </div>
+        </div>
+
+        <!-- Mini Inner Columns: Photo + Bio -->
+        <div class="grid sm:grid-cols-2 gap-6 pt-2">
+          
+          <!-- Cyber Portrait Frame -->
+          <div class="glass-panel p-3 tactical-corners flex flex-col justify-center items-center group">
+            <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-[rgba(0,240,255,0.15)] bg-black/40 group-hover:border-[var(--color-cyan)] transition-all">
+              <img 
+                src="/img/me_2.jpg" 
+                alt="Nguyen Hai Trinh" 
+                class="w-full h-full object-cover filter brightness-[0.8] group-hover:brightness-[0.95] group-hover:scale-105 transition-all duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[rgba(0,240,255,0.2)] to-transparent pointer-events-none"></div>
+            </div>
+          </div>
+
+          <!-- Front-End Lead Block -->
+          <div class="glass-panel p-5 tactical-corners flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 font-mono-tech text-xs text-[var(--color-cyan)]">
+                <span>▹</span>
+                <span>FRONT-END LEAD</span>
+              </div>
+              <p class="text-xs text-gray-400 leading-relaxed font-sans">
+                Goal-oriented Software Engineer with 4+ years of experience leading frontend teams and building scalable web applications. Currently building AI-powered healthcare platforms.
+              </p>
+            </div>
+            <div class="border-t border-[rgba(255,255,255,0.06)] pt-3 flex justify-between font-mono-tech text-[9px] text-gray-500">
+              <span>REF: FE_SYS_L4</span>
+              <span>[SECURE]</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Skills Progress Section (Direct match of layout & gradient meters) -->
+        <div id="skills" class="space-y-5">
+          <div class="flex items-center justify-between border-b border-[rgba(255,255,255,0.06)] pb-3">
+            <h3 class="font-kanit font-semibold text-white tracking-wider text-xs uppercase">CAPABILITY INDEX // METRES</h3>
+            <span class="font-mono-tech text-[9px] text-gray-500">SYS_WEIGHT_9.82</span>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 font-mono-tech text-[10px]">
+            <!-- JS -->
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span class="text-white">JAVASCRIPT</span>
+                <span class="text-[var(--color-cyan)]">95%</span>
+              </div>
+              <div class="h-2 bg-black/40 border border-[rgba(0,240,255,0.15)] rounded-sm overflow-hidden p-[1px]">
+                <div class="hud-meter-fill w-[95%]"></div>
+              </div>
+            </div>
+
+            <!-- CSS -->
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span class="text-white">CSS / SCSS</span>
+                <span class="text-[var(--color-cyan)]">95%</span>
+              </div>
+              <div class="h-2 bg-black/40 border border-[rgba(0,240,255,0.15)] rounded-sm overflow-hidden p-[1px]">
+                <div class="hud-meter-fill w-[95%]"></div>
+              </div>
+            </div>
+
+            <!-- React -->
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span class="text-white">REACT.JS</span>
+                <span class="text-[var(--color-cyan)]">90%</span>
+              </div>
+              <div class="h-2 bg-black/40 border border-[rgba(0,240,255,0.15)] rounded-sm overflow-hidden p-[1px]">
+                <div class="hud-meter-fill w-[90%]"></div>
+              </div>
+            </div>
+
+            <!-- UI/UX -->
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span class="text-white">UI/UX INTERACTIVE</span>
+                <span class="text-[var(--color-cyan)]">90%</span>
+              </div>
+              <div class="h-2 bg-black/40 border border-[rgba(0,240,255,0.15)] rounded-sm overflow-hidden p-[1px]">
+                <div class="hud-meter-fill w-[90%]"></div>
+              </div>
+            </div>
+
+            <!-- TS -->
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span class="text-white">TYPESCRIPT</span>
+                <span class="text-[var(--color-cyan)]">90%</span>
+              </div>
+              <div class="h-2 bg-black/40 border border-[rgba(0,240,255,0.15)] rounded-sm overflow-hidden p-[1px]">
+                <div class="hud-meter-fill w-[90%]"></div>
+              </div>
+            </div>
+
+            <!-- Node -->
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span class="text-white">NODE.JS BACKEND</span>
+                <span class="text-[var(--color-cyan)]">75%</span>
+              </div>
+              <div class="h-2 bg-black/40 border border-[rgba(0,240,255,0.15)] rounded-sm overflow-hidden p-[1px]">
+                <div class="hud-meter-fill w-[75%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT COLUMN: SCROLLABLE DASHBOARD CARDS ================= -->
+      <div id="projects" class="space-y-6 lg:max-h-[85vh] lg:overflow-y-auto pr-1">
+        
+        <!-- Section Tracker Info -->
+        <div class="glass-panel p-4 tactical-corners flex items-center justify-between font-mono-tech text-[10px] text-gray-500">
+          <span>// PROJECT_LOADED: 03 INDEX_FILE</span>
+          <span>SYS_VER: 2.10.8</span>
+        </div>
+
+        <!-- Project Card 1: Neon Dashboard -->
+        <div class="glass-panel p-6 tactical-corners space-y-4 hover:translate-y-[-2px] transition-all duration-300 group" data-tilt>
+          <div class="flex items-center justify-between border-b border-[rgba(255,255,255,0.06)] pb-3">
+            <h3 class="text-lg font-bold font-kanit text-white tracking-wide group-hover:text-[var(--color-cyan)] transition-colors">NEON DASHBOARD // AI HEALTHCARE</h3>
+            <span class="text-[var(--color-cyan)] font-mono-tech text-xs">01</span>
+          </div>
+
+          <!-- Futuristic embedded mockup element (Direct match of image mockup styling) -->
+          <div class="relative w-full h-32 rounded bg-[#090b14] border border-[rgba(0,240,255,0.15)] overflow-hidden p-3 flex flex-col justify-between">
+            <div class="flex justify-between font-mono-tech text-[9px] text-gray-600">
+              <span>SYS_MONITOR // REACT_HEALTH</span>
+              <span>OK</span>
+            </div>
+            
+            <!-- Graphic layout mimicking the mockup screenshot -->
+            <div class="flex items-end justify-between gap-1 flex-grow pt-4">
+              <div class="w-[8%] bg-[rgba(0,240,255,0.1)] border border-[var(--color-cyan)] h-[40%]"></div>
+              <div class="w-[8%] bg-[rgba(0,240,255,0.1)] border border-[var(--color-cyan)] h-[70%]"></div>
+              <div class="w-[8%] bg-[rgba(0,240,255,0.2)] border border-[var(--color-cyan)] h-[55%]"></div>
+              <div class="w-[8%] bg-[rgba(181,95,230,0.2)] border border-[var(--color-purple)] h-[90%]"></div>
+              <div class="w-[8%] bg-[rgba(181,95,230,0.1)] border border-[var(--color-purple)] h-[65%]"></div>
+              <div class="w-[8%] bg-[rgba(0,240,255,0.1)] border border-[var(--color-cyan)] h-[35%]"></div>
+              <div class="w-[8%] bg-[rgba(0,240,255,0.2)] border border-[var(--color-cyan)] h-[80%]"></div>
+            </div>
+          </div>
+          
+          <p class="text-xs text-gray-400 leading-relaxed font-sans">
+            Leading frontend development for AI-powered healthcare products. Managing frontend architecture, establishing coding guidelines, and utilizing React Native for cross-platform apps.
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-1 font-mono-tech text-[9px]">
+            <span class="px-2 py-0.5 bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] text-[var(--color-cyan)] rounded">REACT</span>
+            <span class="px-2 py-0.5 bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] text-[var(--color-cyan)] rounded">GO & GIN</span>
+            <span class="px-2 py-0.5 bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] text-[var(--color-cyan)] rounded">PLAYWRIGHT</span>
+          </div>
+        </div>
+
+        <!-- Project Card 2: Quantum UI -->
+        <div class="glass-panel p-6 tactical-corners space-y-4 hover:translate-y-[-2px] transition-all duration-300 group" data-tilt>
+          <div class="flex items-center justify-between border-b border-[rgba(255,255,255,0.06)] pb-3">
+            <h3 class="text-lg font-bold font-kanit text-white tracking-wide group-hover:text-[var(--color-cyan)] transition-colors">QUANTUM UI // TRADING NANO</h3>
+            <span class="text-[var(--color-cyan)] font-mono-tech text-xs">02</span>
+          </div>
+
+          <!-- Mockup visual showing grid code structure -->
+          <div class="relative w-full h-32 rounded bg-[#090b14] border border-[rgba(0,240,255,0.15)] overflow-hidden p-3 font-mono-tech text-[8px] text-green-500/80 space-y-1 leading-tight">
+            <div>import {'{'} Chart {'}'} from 'tradingview-advanced';</div>
+            <div>const datafeed = new Datafeed('wss://nano.trading');</div>
+            <div>datafeed.connect().then(() => {'{'}</div>
+            <div class="text-[var(--color-cyan)]">&nbsp;&nbsp;console.log("SYS_LOADED: derivative_prices");</div>
+            <div>{'}'});</div>
+            <div class="absolute bottom-2 right-2 text-gray-700 text-[10px]">TV_API // v1.2</div>
+          </div>
+          
+          <p class="text-xs text-gray-400 leading-relaxed font-sans">
+            Derivatives trading platform integrated with Vietnam Commodity Exchange APIs. Built charts panel using TradingView and real-time WebSockets connections.
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-1 font-mono-tech text-[9px]">
+            <span class="px-2 py-0.5 bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] text-[var(--color-cyan)] rounded">REACT 19</span>
+            <span class="px-2 py-0.5 bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] text-[var(--color-cyan)] rounded">TRADINGVIEW API</span>
+            <span class="px-2 py-0.5 bg-[rgba(0,240,255,0.05)] border border-[rgba(0,240,255,0.15)] text-[var(--color-cyan)] rounded">WEBSOCKET</span>
+          </div>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div id="contact" class="glass-panel p-6 tactical-corners space-y-6">
+          <div class="flex items-center justify-between border-b border-[rgba(0,240,255,0.15)] pb-3">
+            <h3 class="font-kanit font-semibold text-white tracking-wider text-xs uppercase">TRANSMIT ENCRYPTED DATA</h3>
+            <span class="font-mono-tech text-[9px] text-[var(--color-cyan)]">// CONTACT_SECURE</span>
+          </div>
+
+          <form class="space-y-4 font-mono-tech text-[10px]" onsubmit="event.preventDefault()">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="text-[9px] text-gray-500 uppercase">IDENTIFIER NAME</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter name..." 
+                  class="w-full bg-black/50 border border-[rgba(0,240,255,0.15)] focus:border-[var(--color-cyan)] rounded px-3 py-2 text-white placeholder-gray-700 outline-none transition-all"
+                />
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-[9px] text-gray-500 uppercase">TRANSMISSION E-MAIL</label>
+                <input 
+                  type="email" 
+                  placeholder="Enter email..." 
+                  class="w-full bg-black/50 border border-[rgba(0,240,255,0.15)] focus:border-[var(--color-cyan)] rounded px-3 py-2 text-white placeholder-gray-700 outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[9px] text-gray-500 uppercase">TRANSMISSION MESSAGE</label>
+              <textarea 
+                rows="3" 
+                placeholder="Enter encrypted details..." 
+                class="w-full bg-black/50 border border-[rgba(0,240,255,0.15)] focus:border-[var(--color-cyan)] rounded px-3 py-2 text-white placeholder-gray-700 outline-none transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-3 bg-[rgba(0,240,255,0.06)] border border-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-black text-[var(--color-cyan)] font-bold rounded transition-all tracking-wider text-[10px]"
+            >
+              TRANSMIT ENCRYPTED MESSAGE
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Mouse Interaction Script for 3D tilting on cards -->
+    <script is:inline>
+      const cards = document.querySelectorAll('[data-tilt]');
+      
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((centerY - y) / centerY) * 4; // Max 4 degrees tilt for subtle response
+          const rotateY = ((x - centerX) / centerX) * 4;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
+      });
+    </script>
+  </body>
+</html>

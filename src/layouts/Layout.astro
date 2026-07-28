@@ -168,26 +168,31 @@ const canonicalUrl = seo.canonical || seo.url;
         ))
     }
   </head>
-  <body>
-    <header>
+  <body class="min-h-screen bg-[#090d16] text-[#e2e8f0] antialiased selection:bg-indigo-500 selection:text-white">
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#090d16]/70 border-b border-white/10 transition-all duration-300">
       <div
-        class="px-6 py-6 max-w-2xl mx-auto flex items-center justify-between"
+        class="px-6 py-4 max-w-4xl mx-auto flex items-center justify-between"
       >
-        <a href="/">
-          <Image
-            src={identity.logo}
-            alt={"Logo"}
-            width={50}
-            height={50}
-            loading="lazy"
-            decoding="async"
-            quality={100}
-            densities={[1.5, 2]}
-            class="w-[50px] h-[50px] object-cover"
-          />
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="relative p-0.5 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/20">
+            <Image
+              src={identity.logo}
+              alt={identity.name}
+              width={42}
+              height={42}
+              loading="eager"
+              decoding="async"
+              quality={100}
+              densities={[1.5, 2]}
+              class="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#090d16]"
+            />
+          </div>
+          <span class="font-semibold text-slate-100 tracking-tight group-hover:text-cyan-400 transition-colors hidden sm:inline-block">
+            {identity.name}
+          </span>
         </a>
-        <nav class="ml-auto mr-6 sm:m-0 navbar">
-          <ul class="hidden sm:flex sm:items-center sm:gap-2">
+        <nav class="ml-auto mr-4 sm:mr-0 navbar">
+          <ul class="hidden sm:flex sm:items-center sm:gap-1.5 bg-slate-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
             {
               navBarLinks.map((link) => {
                 const isActive =
@@ -196,10 +201,10 @@ const canonicalUrl = seo.canonical || seo.url;
                 return (
                   <li>
                     <a
-                      class={`group px-4 py-2 rounded-lg transition-all ${
+                      class={`px-4 py-1.5 rounded-full font-medium text-sm transition-all duration-200 block ${
                         isActive
-                          ? "active-nav-link border-b-2 border-[#ffe895] bg-[#2a2a2a] opacity-30"
-                          : "opacity-60 hover:opacity-100 hover:bg-[#2a2a2a]/40"
+                          ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md shadow-cyan-500/20 font-semibold"
+                          : "text-slate-400 hover:text-slate-100 hover:bg-white/5"
                       }`}
                       href={link.url}
                       target={link.external ? "_blank" : "_self"}
@@ -215,14 +220,16 @@ const canonicalUrl = seo.canonical || seo.url;
           <div class="relative sm:hidden">
             <button
               id="link-menu-button"
-              class="relative font-medium opacity-60 p-4"
-              >Menu <span id="open-indicator">+</span></button
+              class="flex items-center gap-1.5 font-medium text-slate-300 hover:text-cyan-400 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10"
+              aria-label="Toggle Navigation Menu"
             >
+              Menu <span id="open-indicator" class="text-cyan-400 font-bold">+</span>
+            </button>
             <div
               id="link-menu"
-              class="absolute p-2 right-0 bg-gray-bg rounded-lg w-44 transition-opacity ease-in-out duration-300 opacity-0 z-40"
+              class="absolute right-0 mt-2 p-2 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl w-48 transition-all ease-in-out duration-300 opacity-0 pointer-events-none shadow-2xl z-50"
             >
-              <ul>
+              <ul class="space-y-1">
                 {
                   navBarLinks.map((link) => {
                     const isActive =
@@ -232,10 +239,10 @@ const canonicalUrl = seo.canonical || seo.url;
                     return (
                       <li>
                         <a
-                          class={`block py-3 rounded-md ${
+                          class={`block px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                             isActive
-                              ? "active-nav-link border-l-2 border-[#ffe895] pl-3 bg-[#2a2a2a] opacity-90"
-                              : "pl-4 hover:bg-[#2a2a2a]/40"
+                              ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold"
+                              : "text-slate-300 hover:text-white hover:bg-white/5"
                           }`}
                           href={link.url}
                           target={link.external ? "_blank" : "_self"}
@@ -250,21 +257,31 @@ const canonicalUrl = seo.canonical || seo.url;
             </div>
           </div>
         </nav>
-        <div>
+        <div class="flex items-center gap-2">
           <a
-            href=`mailto:${identity.email}`
-            class="block p-2 opacity-60 hover:opacity-100 transition-opacity"
-            aria-label="Email"
+            href={`mailto:${identity.email}`}
+            class="p-2 text-slate-400 hover:text-cyan-400 hover:bg-white/5 rounded-full transition-all duration-200"
+            aria-label="Email Nguyen Hai Trinh"
+            title="Send Email"
           >
             <Icon name="mdi:email" width={20} height={20} />
           </a>
         </div>
       </div>
     </header>
-    <main class="mb-32">
+    <main class="mb-24 min-h-[calc(100vh-200px)]">
       <slot />
     </main>
-    <footer></footer>
+    <footer class="border-t border-white/10 py-8 text-center text-xs text-slate-500">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p>© {new Date().getFullYear()} {identity.name}. Built with Astro & Tailwind CSS.</p>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/strangerdeveloper2810" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">GitHub</a>
+          <a href="https://linkedin.com/in/trinhhainguyen" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">LinkedIn</a>
+          <a href={`mailto:${identity.email}`} class="hover:text-slate-300 transition-colors">Contact</a>
+        </div>
+      </div>
+    </footer>
 
     <!-- Scroll Animations -->
     <ScrollAnimations />
