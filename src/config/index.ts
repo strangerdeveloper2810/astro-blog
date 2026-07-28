@@ -105,7 +105,7 @@ export const homePageContent: HomePageContent = {
     { title: "Skills", url: "/skills", icon: "mdi:code-braces" },
     {
       title: "HR-Tool Live",
-      url: "https://hr-tool-software.netlify.app",
+      url: "https://hrtool.ethansoftwaredeveloper.com/",
       icon: "mdi:web",
       external: true,
     },

@@ -6,7 +6,7 @@ export const featuredPosts: FeaturedPost[] = [
     description:
       "Solo-engineered multi-tenant HR/ATS SaaS supporting enterprise HR & headhunt agencies with RBAC, full audit logging, recruitment pipeline, real-time Docker metrics, and an AI candidate-job matching engine (Anthropic Claude 4.8 Opus + Gemini 3.6 Flash fallback).",
     date: "2025-01-01",
-    url: "https://hr-tool-software.netlify.app",
+    url: "https://hrtool.ethansoftwaredeveloper.com/",
     author: "Nguyen Hai Trinh",
     image: {
       url: "/img/hrtool_logo.svg",
