@@ -169,13 +169,13 @@ import GlitchEffects from "../components/GlitchEffects.astro";
         ))
     }
   </head>
-  <body class="min-h-screen bg-[#070a12] text-[#e2e8f0] antialiased selection:bg-cyan-400 selection:text-black cp-scanlines">
-    <header class="sticky top-0 z-50 backdrop-blur-2xl bg-[#070a12]/80 border-b border-cyan-500/20 shadow-lg shadow-cyan-950/30 transition-all duration-300">
+  <body class="min-h-screen bg-[#040612] text-[#f1f5f9] antialiased selection:bg-fuchsia-500 selection:text-white">
+    <header class="sticky top-0 z-50 backdrop-blur-2xl bg-[#040612]/80 border-b border-fuchsia-500/20 shadow-xl shadow-fuchsia-950/30 transition-all duration-300">
       <div
         class="px-4 sm:px-6 py-3.5 max-w-6xl mx-auto flex items-center justify-between"
       >
         <a href="/" class="flex items-center gap-3 group">
-          <div class="relative p-0.5 rounded-full bg-gradient-to-r from-cyan-400 via-yellow-300 to-pink-500 group-hover:scale-105 transition-transform duration-300 shadow-md shadow-cyan-400/30">
+          <div class="relative p-0.5 rounded-full bg-gradient-to-r from-amber-400 via-fuchsia-500 to-cyan-400 group-hover:scale-105 transition-transform duration-300 shadow-md shadow-fuchsia-500/30">
             <Image
               src={identity.logo}
               alt={identity.name}
@@ -185,26 +185,26 @@ import GlitchEffects from "../components/GlitchEffects.astro";
               decoding="async"
               quality={100}
               densities={[1.5, 2]}
-              class="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#070a12]"
+              class="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#040612]"
             />
           </div>
           <div class="flex flex-col">
-            <span class="font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors hidden sm:inline-block font-mono-code text-sm">
+            <span class="font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors hidden sm:inline-block font-mono-code text-sm">
               {identity.name}
             </span>
-            <span class="text-[9px] font-mono-code text-cyan-400/80 tracking-widest hidden sm:inline-block">
-              SYS.VER // 2.077 // SENIOR_FULLSTACK
+            <span class="text-[9px] font-mono-code text-fuchsia-400/90 tracking-widest hidden sm:inline-block font-bold">
+              MILANO SHIP // AWESOME TECH MIX VOL. 1
             </span>
           </div>
         </a>
 
         <nav class="ml-auto mr-4 sm:mr-0 navbar flex items-center gap-3">
-          <div class="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded bg-yellow-400/10 border border-yellow-400/30 text-[10px] font-mono-code text-yellow-300">
-            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-ping"></span>
-            NEURAL LINK: CONNECTED
+          <div class="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-[10px] font-mono-code text-amber-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+            COSMIC ORBIT: STABLE 100%
           </div>
 
-          <ul class="hidden sm:flex sm:items-center sm:gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-cyan-500/20 backdrop-blur-md">
+          <ul class="hidden sm:flex sm:items-center sm:gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-fuchsia-500/25 backdrop-blur-md">
             {
               navBarLinks.map((link) => {
                 const isActive =
@@ -215,7 +215,7 @@ import GlitchEffects from "../components/GlitchEffects.astro";
                     <a
                       class={`px-4 py-1.5 rounded-lg font-mono-code font-bold text-xs tracking-wider transition-all duration-200 block ${
                         isActive
-                          ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 shadow-md shadow-cyan-500/20"
+                          ? "bg-gradient-to-r from-amber-500 via-fuchsia-600 to-cyan-500 text-white shadow-md shadow-fuchsia-500/30 font-extrabold"
                           : "text-slate-400 hover:text-slate-100 hover:bg-white/5"
                       }`}
                       href={link.url}
