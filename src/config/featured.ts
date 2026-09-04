@@ -2,6 +2,19 @@ import type { FeaturedPost } from "../types/config";
 
 export const featuredPosts: FeaturedPost[] = [
   {
+    title: "J.A.R.V.I.S. | Autonomous AI Agent Platform",
+    description:
+      "Self-built AI Agent platform featuring a custom Go 1.25+ ReAct runtime (multi-agent routing, 25+ parallel tools, 3-tier memory, MCP client/server) and a Fastify/TypeScript BFF gateway handling auth & SSE streaming. Integrated with MongoDB Atlas Vector Search, Redis, and auto-fallback LLMs (DeepSeek/Gemini/Claude).",
+    date: "2026-09-01",
+    url: "https://ai.ethansoftwaredeveloper.com/",
+    author: "Nguyen Hai Trinh",
+    image: {
+      url: "/img/jarvis_logo.svg",
+      alt: "J.A.R.V.I.S. AI Agent Platform",
+    },
+    publisher: "NewPineTech",
+  },
+  {
     title: "HR-Tool | Multi-Tenant HR/ATS SaaS",
     description:
       "Solo-engineered multi-tenant HR/ATS SaaS supporting enterprise HR & headhunt agencies with RBAC, full audit logging, recruitment pipeline, real-time Docker metrics, and an AI candidate-job matching engine (Anthropic Claude 4.8 Opus + Gemini 3.6 Flash fallback).",
