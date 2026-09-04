@@ -13,7 +13,7 @@ export const identity: Identity = {
   email: "n.haitrinh2810@gmail.com",
 };
 
-export const openGraphImage: string = "/img/me_2.jpg";
+export const openGraphImage: string = "https://www.ethansoftwaredeveloper.com/img/me_2.jpg";
 
 // Google Analytics Configuration
 export const googleAnalytics = {
